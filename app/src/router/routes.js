@@ -5,13 +5,12 @@ const routes = [
         component: () => import('layouts/MainLayout.vue'),
         children: [
             { path: '', component: () => import('pages/Index.vue') },
-            { path: 'simple', component: () => import('pages/Simple.vue') },
-            { path: 'extended', component: () => import('pages/Extended.vue') },
+            { path: 'select_crate', component: () => import('pages/SelectCrate.vue') },
+            { path: 'select_crop', component: () => import('pages/SelectCrop.vue') },
+            { path: 'select_place', component: () => import('pages/SelectPlace.vue') },
+            { path: 'save_harvest', component: () => import('pages/SaveHarvest.vue') },
             { path: 'dev0', component: () => import('pages/Dev0.vue') },
-            { path: 'dev1', component: () => import('pages/Dev1.vue') },
-            { path: 'dev2', component: () => import('pages/Dev2.vue') },
-            { path: 'dev3', component: () => import('pages/Dev3.vue') },
-            { path: 'dev4', component: () => import('pages/Dev4.vue') },
+            { path: 'about', component: () => import('pages/About.vue') },
             { path: 'settings', component: () => import('pages/Settings.vue') }
         ]
     },
@@ -33,14 +32,24 @@ export const linksData = [
         link: '/'
     },
     {
-        title: 'Vanilla',
+        title: 'Select Crate',
         icon: 'aspect_ratio',
-        link: 'simple'
+        link: 'select_crate'
     },
     {
-        title: 'Vuex',
-        icon: 'code',
-        link: 'extended'
+        title: 'Select Crop',
+        icon: 'local_florist',
+        link: 'select_crop'
+    },
+    {
+        title: 'Select Place',
+        icon: 'place',
+        link: 'select_place'
+    },
+    {
+        title: 'Save Harvest',
+        icon: 'save_alt',
+        link: 'save_harvest'
     },
     {
         title: 'Dev0',
@@ -48,24 +57,9 @@ export const linksData = [
         link: 'dev0'
     },
     {
-        title: 'Dev1',
-        icon: 'code',
-        link: 'dev1'
-    },
-    {
-        title: 'Dev2',
-        icon: 'code',
-        link: 'dev2'
-    },
-    {
-        title: 'Dev3',
-        icon: 'code',
-        link: 'dev3'
-    },
-    {
-        title: 'Dev4',
-        icon: 'code',
-        link: 'dev4'
+        title: 'About',
+        icon: 'information-variant',
+        link: 'about'
     },
     {
         title: 'Settings',
