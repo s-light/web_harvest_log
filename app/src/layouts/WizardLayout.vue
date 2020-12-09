@@ -1,14 +1,5 @@
 <template>
     <q-layout view="lHh Lpr lFf">
-        <q-btn
-            flat
-            dense
-            round
-            icon="menu"
-            aria-label="Menu"
-            @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
         <q-drawer
             v-model="leftDrawerOpen"
             show-if-above
@@ -18,6 +9,11 @@
             <q-list>
                 <EssentialLink
                     v-for="item in childrenWizard"
+                    :key="item.title"
+                    v-bind="item"
+                />
+                <EssentialLink
+                    v-for="item in childrenDev"
                     :key="item.title"
                     v-bind="item"
                 />
@@ -32,15 +28,15 @@
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
 import EssentialNavigation from 'components/EssentialNavigation.vue'
-import { childrenCommon, childrenWizard } from '../router/routes'
+import { childrenWizard, childrenDev } from '../router/routes'
 
 export default {
-    name: 'MainLayout',
+    name: 'WizardLayout',
     components: { EssentialNavigation, EssentialLink },
     data () {
         return {
             leftDrawerOpen: false,
-            childrenCommon: childrenCommon,
+            childrenDev: childrenDev,
             childrenWizard: childrenWizard
         }
     },

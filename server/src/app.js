@@ -22,15 +22,20 @@ const app = express(feathers());
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet({
-  contentSecurityPolicy: false
+    contentSecurityPolicy: false
 }));
 app.use(cors());
 app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
+app.use(favicon(path.join(app.get('publicApp'), 'favicon.ico')));
 // Host the public folder
-app.use('/', express.static(app.get('public')));
+// app.use('/', express.static(app.get('public')));
+// app.use('/', express.static(app.get('publicConfig')));
+app.use('/', express.static(app.get('publicApp')));
+app.use('/api/', express.static(app.get('publicConfig')));
+// "public": "../../app_config",
+// console.log('__dirname + /public', __dirname + '/public');
 
 // Set up Plugins and providers
 app.configure(express.rest());

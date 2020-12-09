@@ -1,0 +1,30 @@
+[
+    {
+        "text": "Sun",
+        "name": "Sun",
+        "icon": "mdi-white-balance-sunny",
+        "image": "",
+        "description": ""
+    },
+    {
+        "text": "Moon",
+        "name": "Moon",
+        "icon": "mdi-moon-and-stars",
+        "image": "",
+        "description": ""
+    },
+    {
+        "text": "Flower",
+        "name": "Flower",
+        "icon": "mdi-flower-tulip",
+        "image": "",
+        "description": ""
+    },
+    {
+        "text": "Cloud",
+        "name": "Cloud",
+        "icon": "mdi-weather-cloudy",
+        "image": "",
+        "description": ""
+    }
+]

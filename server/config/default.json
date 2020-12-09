@@ -2,9 +2,11 @@
   "host": "localhost",
   "port": 3030,
   "public": "../public/",
+  "publicConfig": "../../app_config/",
+  "publicApp": "../../app/dist/spa/",
   "paginate": {
-    "default": 10,
-    "max": 50
+    "default": 100,
+    "max": 200
   },
   "nedb": "../data"
 }

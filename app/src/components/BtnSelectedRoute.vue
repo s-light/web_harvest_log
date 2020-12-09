@@ -7,8 +7,6 @@
         </div> -->
         <q-btn
             @click=""
-            :class="item.value === value ? activeClass : ''"
-            stack
         >
             <q-icon
                 v-if="item.icon"

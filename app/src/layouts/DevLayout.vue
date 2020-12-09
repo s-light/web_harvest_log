@@ -14,9 +14,15 @@
             show-if-above
             bordered
         >
+            <EssentialNavigation />
             <q-list>
                 <EssentialLink
-                    v-for="link in essentialLinks"
+                    v-for="link in childrenWizard"
+                    :key="link.title"
+                    v-bind="link"
+                />
+                <EssentialLink
+                    v-for="link in childrenDev"
                     :key="link.title"
                     v-bind="link"
                 />
@@ -30,15 +36,17 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
-import routes from '../router/routes'
+import EssentialNavigation from 'components/EssentialNavigation.vue'
+import { childrenWizard, childrenDev } from '../router/routes'
 
 export default {
     name: 'MainLayout',
-    components: { EssentialLink },
+    components: { EssentialNavigation, EssentialLink },
     data () {
         return {
             leftDrawerOpen: false,
-            essentialLinks: routes
+            childrenWizard: childrenWizard,
+            childrenDev: childrenDev
         }
     }
 }

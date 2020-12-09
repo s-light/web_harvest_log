@@ -25,6 +25,7 @@ export const childrenWizard = [
         title: 'Select Crate',
         icon: 'aspect_ratio',
         path: 'select_crate',
+        name: 'wizard',
         component: () => import('pages/SelectCrate.vue')
     },
     {
@@ -49,22 +50,33 @@ export const childrenWizard = [
 
 export const childrenDev = [
     {
-        path: 'dev0', component: () => import('pages/Dev0.vue')
+        title: 'Dev0',
+        icon: 'code',
+        path: 'dev0',
+        component: () => import('pages/Dev0.vue')
+    },
+    {
+        title: 'Dev1',
+        icon: 'code',
+        path: 'dev1',
+        component: () => import('pages/Dev1.vue')
     }
 ]
 
 const routes = [
+    // {
+    //     path: '/dev/',
+    //     name: 'develop',
+    //     component: () => import('layouts/DevLayout.vue'),
+    //     children: [
+    //         ...childrenCommon,
+    //         ...childrenWizard,
+    //         ...childrenDev
+    //     ]
+    // },
     {
         path: '/',
         component: () => import('layouts/WizardLayout.vue'),
-        children: [
-            ...childrenCommon,
-            ...childrenWizard
-        ]
-    },
-    {
-        path: '/dev/',
-        component: () => import('layouts/DevLayout.vue'),
         children: [
             ...childrenCommon,
             ...childrenWizard,
