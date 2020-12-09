@@ -30,7 +30,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
-import { linksData } from '../router/routes'
+import routes from '../router/routes'
 
 export default {
     name: 'MainLayout',
@@ -38,7 +38,7 @@ export default {
     data () {
         return {
             leftDrawerOpen: false,
-            essentialLinks: linksData
+            essentialLinks: routes
         }
     }
 }

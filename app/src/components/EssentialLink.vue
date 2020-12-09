@@ -2,13 +2,13 @@
     <q-item
         clickable
         v-ripple
-        :to="link"
+        :to="path"
         exact
     >
         <q-item-section avatar>
             <q-icon :name="icon" />
         </q-item-section>
-        <q-item-section>
+        <q-item-section v-if="!hideText">
             <q-item-label>{{ title }}</q-item-label>
             <q-item-label caption>
                 {{ caption }}
@@ -28,26 +28,26 @@
 export default {
     name: 'EssentialLink',
     props: {
+        hideText: {
+            type: Boolean,
+            default: false
+        },
         title: {
             type: String,
-            required: true
+            default: ''
         },
-
         caption: {
             type: String,
             default: ''
         },
-
-        link: {
+        path: {
             type: String,
             default: '#'
         },
-
         icon: {
             type: String,
             default: ''
         },
-
         target: {
             type: String,
             default: '_self'

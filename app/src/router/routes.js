@@ -1,17 +1,74 @@
 
+export const childrenCommon = [
+    {
+        title: 'Welcome',
+        icon: 'home',
+        path: '/',
+        component: () => import('pages/Index.vue')
+    },
+    {
+        title: 'About',
+        icon: 'mdi-information-variant',
+        path: 'about',
+        component: () => import('pages/About.vue')
+    },
+    {
+        title: 'Settings',
+        icon: 'settings',
+        path: 'settings',
+        component: () => import('pages/Settings.vue')
+    }
+]
+
+export const childrenWizard = [
+    {
+        title: 'Select Crate',
+        icon: 'aspect_ratio',
+        path: 'select_crate',
+        component: () => import('pages/SelectCrate.vue')
+    },
+    {
+        title: 'Select Crop',
+        icon: 'local_florist',
+        path: 'select_crop',
+        component: () => import('pages/SelectCrop.vue')
+    },
+    {
+        title: 'Select Place',
+        icon: 'place',
+        path: 'select_place',
+        component: () => import('pages/SelectPlace.vue')
+    },
+    {
+        title: 'Save Harvest',
+        icon: 'save_alt',
+        path: 'save_harvest',
+        component: () => import('pages/SaveHarvest.vue')
+    }
+]
+
+export const childrenDev = [
+    {
+        path: 'dev0', component: () => import('pages/Dev0.vue')
+    }
+]
+
 const routes = [
     {
         path: '/',
-        component: () => import('layouts/MainLayout.vue'),
+        component: () => import('layouts/WizardLayout.vue'),
         children: [
-            { path: '', component: () => import('pages/Index.vue') },
-            { path: 'select_crate', component: () => import('pages/SelectCrate.vue') },
-            { path: 'select_crop', component: () => import('pages/SelectCrop.vue') },
-            { path: 'select_place', component: () => import('pages/SelectPlace.vue') },
-            { path: 'save_harvest', component: () => import('pages/SaveHarvest.vue') },
-            { path: 'dev0', component: () => import('pages/Dev0.vue') },
-            { path: 'about', component: () => import('pages/About.vue') },
-            { path: 'settings', component: () => import('pages/Settings.vue') }
+            ...childrenCommon,
+            ...childrenWizard
+        ]
+    },
+    {
+        path: '/dev/',
+        component: () => import('layouts/DevLayout.vue'),
+        children: [
+            ...childrenCommon,
+            ...childrenWizard,
+            ...childrenDev
         ]
     },
 
@@ -24,46 +81,3 @@ const routes = [
 ]
 
 export default routes
-
-export const linksData = [
-    {
-        title: 'Welcome',
-        icon: 'home',
-        link: '/'
-    },
-    {
-        title: 'Select Crate',
-        icon: 'aspect_ratio',
-        link: 'select_crate'
-    },
-    {
-        title: 'Select Crop',
-        icon: 'local_florist',
-        link: 'select_crop'
-    },
-    {
-        title: 'Select Place',
-        icon: 'place',
-        link: 'select_place'
-    },
-    {
-        title: 'Save Harvest',
-        icon: 'save_alt',
-        link: 'save_harvest'
-    },
-    {
-        title: 'Dev0',
-        icon: 'code',
-        link: 'dev0'
-    },
-    {
-        title: 'About',
-        icon: 'information-variant',
-        link: 'about'
-    },
-    {
-        title: 'Settings',
-        icon: 'settings',
-        link: 'settings'
-    }
-]
