@@ -28,9 +28,16 @@ class Management extends BaseModel {
             service: servicePath,
             params: params
         }
-        // const instance = new Management(data)
-        // return instance.create()
-        return new Management(data).create()
+        const instance = new Management(data)
+        let result = null
+        result = instance.create()
+        // instance.create().then(
+        //     (response) => { result = response }
+        // ).catch(
+        //     (error) => { result = error }
+        // )
+        return result
+        // return new Management(data).create()
     }
 
     static serverExportAsCSV (servicePath, timeframe) {
@@ -39,8 +46,9 @@ class Management extends BaseModel {
             'export-cvs',
             servicePath,
             {
+                // paginate: false,
+                // https://docs.feathersjs.com/api/databases/querying.html#equality
                 query: {
-                    paginate: false,
                     timeframe: timeframe
                 }
             }

@@ -1,5 +1,5 @@
 
-const {actions, service} = require('./management.actions');
+const {actions} = require('./management.actions');
 
 /* eslint-disable no-unused-vars */
 exports.Management = class Management {
@@ -58,15 +58,19 @@ exports.Management = class Management {
         if (actionFn) {
             const service = this.app.services[servicePath];
             // console.log('service', service);
+            // const services = this.app.services;
+            // console.log('services', services);
+            // console.log('keys(services)', Object.keys(services));
+            // const service_available = Object.keys(this.app.services).includes(servicePath);
+            // console.log('service_available', service_available);
+            // if (service_available) {
+            // if (Object.keys(this.app.services).includes(servicePath)) {
             if (service) {
-                // const services = this.app.services;
-                // console.log('services', services);
-                // console.log('keys(services)', Object.keys(services));
-                const actionFnBound = actionFn.bind(this.app, service, params);
+                const actionFnBound = actionFn.bind(this.app, service, servicePath, params);
                 return actionFnBound();
             } else {
                 throw {
-                    message: `Management: '${action}' - servicePath '${service}' not found.`
+                    message: `Management: '${action}' - servicePath '${servicePath}' not found.`
                 };
             }
         } else {

@@ -101,9 +101,6 @@ export default {
         },
         serverImportCrops: function () {
             console.group('serverExportToCSVHarvest')
-            // console.log('this', this)
-            // console.log('this.$FeathersVuex', this.$FeathersVuex)
-            // console.log('this.$FeathersVuex.api.Management', this.$FeathersVuex.api.Management)
             this.$FeathersVuex.api.Management.serverImport('crop')
                 .then(response => {
                     console.log('response', response)
