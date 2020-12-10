@@ -48,6 +48,7 @@
     "feathers-memory": "^4.1.0",
     "feathers-nedb": "^5.1.0",
     "helmet": "^4.2.0",
+    "json2csv": "^5.0.5",
     "nedb": "^1.8.0",
     "serialport": "^9.0.3",
     "serve-favicon": "^2.5.0",

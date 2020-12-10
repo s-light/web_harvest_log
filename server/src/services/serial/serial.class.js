@@ -30,8 +30,9 @@ exports.Serial = class Serial extends Service {
         console.log('create list');
         SerialPort.list().then((spList) => {
             spList = spList.filter(item => item.manufacturer);
-            console.log(spList);
-            this.saveItem('list', JSON.stringify(spList));
+            console.log('serial port list:',spList);
+            // this.saveItem('list', JSON.stringify(spList));
+            this.saveItem('list', spList);
         });
         this.connect();
         console.groupEnd();
@@ -52,6 +53,7 @@ exports.Serial = class Serial extends Service {
                 this.connected = true;
                 console.log('serial port opened.');
                 this.saveItem('connected', this.connected);
+                this.saveItem('error', '');
             });
             this.serialPort.on('close', () => {
                 this.connected = false;
@@ -60,7 +62,7 @@ exports.Serial = class Serial extends Service {
                 setTimeout(this.reconnect.bind(this), this.retryDelay);
             });
             this.serialPort.on('error', (error) => {
-                console.log('serial port error:', error);
+                console.log('serial port:', error);
                 // console.log('error.message', error.message);
                 this.saveItem('error', error.message);
                 setTimeout(this.reconnect.bind(this), this.retryDelay);

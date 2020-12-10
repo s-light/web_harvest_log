@@ -20,7 +20,6 @@
             <q-img
                 v-else-if="item.image_url"
                 :src="item.image_url"
-                spinner-color="white"
                 :style="img_style"
             />
             <div>{{ item.label }}</div>

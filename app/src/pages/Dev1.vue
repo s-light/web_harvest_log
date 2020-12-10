@@ -10,6 +10,18 @@
                 icon="sync"
                 @click="globalConfigLoadFromServer()"
             />
+            <q-btn
+                v-ripple
+                label="export harvest to csv on server"
+                icon="mdi-database-export"
+                @click="serverExportToCSVHarvest()"
+            />
+            <q-btn
+                v-ripple
+                label="export harvest to csv on server"
+                icon="mdi-database-export"
+                @click="serverImportCrops()"
+            />
         </section>
     </q-page>
 </template>
@@ -48,7 +60,7 @@ export default {
     },
     methods: {
         globalConfigLoadFromServer: function () {
-            console.log('TODO: implement load from server')
+            console.group('globalConfigLoadFromServer')
             this.$axios.get('/app_config/crops/crop.json')
                 .then((response) => {
                     // this.data = response.data
@@ -72,6 +84,33 @@ export default {
                         icon: 'report_problem'
                     })
                 })
+            console.groupEnd()
+        },
+        serverExportToCSVHarvest: function () {
+            console.group('serverExportToCSVHarvest')
+            // console.log('this', this)
+            // console.log('this.$FeathersVuex', this.$FeathersVuex)
+            // console.log('this.$FeathersVuex.api.Management', this.$FeathersVuex.api.Management)
+            this.$FeathersVuex.api.Management.serverExportAsCSV('harvest', 'day')
+                .then(response => {
+                    console.log('response', response)
+                }).catch(err => {
+                    console.error('err', err)
+                })
+            console.groupEnd()
+        },
+        serverImportCrops: function () {
+            console.group('serverExportToCSVHarvest')
+            // console.log('this', this)
+            // console.log('this.$FeathersVuex', this.$FeathersVuex)
+            // console.log('this.$FeathersVuex.api.Management', this.$FeathersVuex.api.Management)
+            this.$FeathersVuex.api.Management.serverImport('crop')
+                .then(response => {
+                    console.log('response', response)
+                }).catch(err => {
+                    console.error('err', err)
+                })
+            console.groupEnd()
         }
     },
     // created () {
