@@ -18,9 +18,15 @@
             />
             <q-btn
                 v-ripple
-                label="export harvest to csv on server"
+                label="import crops from file"
                 icon="mdi-database-export"
-                @click="serverImportCrops()"
+                @click="serverImport('crop')"
+            />
+            <q-btn
+                v-ripple
+                label="import crops from file"
+                icon="mdi-database-export"
+                @click="serverImport('crate')"
             />
         </section>
     </q-page>
@@ -99,9 +105,9 @@ export default {
                 })
             console.groupEnd()
         },
-        serverImportCrops: function () {
-            console.group('serverExportToCSVHarvest')
-            this.$FeathersVuex.api.Management.serverImport('crop')
+        serverImport: function (servicePath) {
+            console.group('serverImport')
+            this.$FeathersVuex.api.Management.serverImport(servicePath)
                 .then(response => {
                     console.log('response', response)
                 }).catch(err => {

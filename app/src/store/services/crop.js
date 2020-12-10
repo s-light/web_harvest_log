@@ -16,8 +16,8 @@ class Crop extends BaseModel {
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            text: '',
             name: '',
+            _id: '',
             icon: '',
             image: '',
             description: ''

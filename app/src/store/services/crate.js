@@ -17,6 +17,7 @@ class Crate extends BaseModel {
     static instanceDefaults () {
         return {
             tareWeight: 0,
+            _id: '',
             name: '',
             icon: '',
             image: '',

@@ -7,6 +7,9 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 
+// const path = require('path')
+// console.log('path', path.join(__dirname, '../app_config/'))
+
 module.exports = function (/* ctx */) {
     return {
     // https://quasar.dev/quasar-cli/supporting-ts
@@ -80,18 +83,26 @@ module.exports = function (/* ctx */) {
 
         // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
         devServer: {
-            open: true, // opens browser window automatically
+            open: false, // opens browser window automatically
             port: 8080,
-            https: false,
+            https: false
+            // contentBase: path.join(__dirname, '../app_config/'),
+            // contentBasePublicPath: '/api/'
             // https://webpack.js.org/configuration/dev-server/#devserverproxy
-            proxy: {
-                '/api': {
-                    target: 'https://localhost:3030',
-                    pathRewrite: { '^/api': '' },
-                    secure: false,
-                    changeOrigin: true
-                }
-            }
+            // proxy: {
+            //     // '/api': {
+            //     //     target: 'https://localhost:3030',
+            //     //     pathRewrite: { '^/api': '' },
+            //     //     secure: false,
+            //     //     changeOrigin: true
+            //     // }
+            //     '/api': {
+            //         target: 'https://localhost:3030',
+            //         pathRewrite: { '^/api': '' },
+            //         secure: false,
+            //         changeOrigin: true
+            //     }
+            // }
         },
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
