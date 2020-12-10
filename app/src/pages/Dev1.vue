@@ -2,7 +2,7 @@
     <q-page class="fit column no-wrap justify-center items-center content-center">
         <h1>Dev1</h1>
         <debugSection label="crop" :obj="crop"/>
-        <!-- <debugSection label="serialDevice" :obj="serialDevice"/> -->
+        <debugSection label="serial" :obj="serial"/>
         <section>
             <q-btn
                 v-ripple
@@ -35,9 +35,13 @@ export default {
     },
     components: { DebugSection },
     mixins: [
-        makeFindMixin({ service: 'crop' })
+        makeFindMixin({ service: 'crop' }),
+        makeFindMixin({ service: 'serial' })
     ],
     computed: {
+        serialParams () {
+            return { query: {} }
+        },
         cropParams () {
             return { query: {} }
         }

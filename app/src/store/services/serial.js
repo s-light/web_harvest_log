@@ -16,11 +16,8 @@ class Serial extends BaseModel {
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            tareWeight: 0,
-            name: '',
-            icon: '',
-            image: '',
-            description: ''
+            id: '',
+            value: ''
         }
     }
 

@@ -6,19 +6,36 @@ exports.Serial = class Serial extends Service {
     constructor(app, configKey){
         super(app, configKey);
         this.serialPort = null;
-        this.parser = new Readline({ delimiter: '\r\n' });
+        this.parser = new Readline({
+            delimiter: '\r\n',
+            encoding: 'utf8'
+        });
         this.connected = false;
         this.retryDelay = 10000;
-        this.port = '/dev/ttyUSB0';
-        this.baudRate = 19200;
-
-        this.connect();
+        // this.port = '/dev/ttyUSB0';
+        // this.baudRate = 19200;
+        this.port = '/dev/ttyACM0';
+        this.baudRate = 115200;
     }
 
     // setup(path, app){
-    //     super.setup(path, app);
-    //
-    // }
+    setup() {
+        console.group('serial setup');
+        console.log('create message');
+        this.saveItem('message', '');
+        console.log('create connected');
+        this.saveItem('connected', this.connected);
+        console.log('create error');
+        this.saveItem('error', '');
+        console.log('create list');
+        SerialPort.list().then((spList) => {
+            spList = spList.filter(item => item.manufacturer);
+            console.log(spList);
+            this.saveItem('list', JSON.stringify(spList));
+        });
+        this.connect();
+        console.groupEnd();
+    }
 
     // https://serialport.io/docs/guide-usage
     // https://stackoverflow.com/questions/18551293/node-js-serialport-events-stop-working-after-reconnecting-to-port#57433601
@@ -28,6 +45,7 @@ exports.Serial = class Serial extends Service {
                 baudRate: this.baudRate,
                 autoOpen: false
             });
+            this.serialPort.flush();
             this.parser = this.serialPort.pipe(this.parser);
 
             this.serialPort.on('open', () => {
@@ -43,10 +61,22 @@ exports.Serial = class Serial extends Service {
             });
             this.serialPort.on('error', (error) => {
                 console.log('serial port error:', error);
-                this.saveItem('error', error);
+                // console.log('error.message', error.message);
+                this.saveItem('error', error.message);
                 setTimeout(this.reconnect.bind(this), this.retryDelay);
             });
-            this.parser.on('data', this.handle_incoming);
+            this.parser.on('error', (error) => {
+                console.log('serial port parser error:', error);
+                // console.log('error.message', error.message);
+                this.saveItem('errorParser', error.message);
+                setTimeout(this.reconnect.bind(this), this.retryDelay*2);
+            });
+            this.parser.on('data', (msg) => {
+                msg = msg.trim();
+                console.log(`handle_incoming '${msg}'`);
+                this.saveItem('message', msg);
+                // this.handle_incoming_message(msg)
+            });
 
             this.serialPort.open();
 
@@ -58,32 +88,23 @@ exports.Serial = class Serial extends Service {
         if (!this.connected) { this.serialPort.open(); }
     }
 
-    handle_incoming (msg) {
-        msg = msg.trim();
-        console.log('handle_incoming', msg);
-        console.log('this', this);
-        this.saveItem('message', 'hello world');
-        // if (!gcItem) {
-        //     // create new item
-        //     gcItem = new ModelClass({
-        //         id: entryName,
-        //         _id: entryName,
-        //         value: null
-        //     })
-        //     gcItem.create().catch((error) => {
-        //     })'
-        //' }
-    }
-
     saveItem(id, value) {
         const data = { id:id, value: value };
+        // console.log('saveItem', id, data);
         this.save(id, data, {});
+        // this.save(id, data, { data: data });
+        // console.log('saveItem done.');
     }
 
     save(id, data, params) {
         // try to patch. if fails create new.
+        // console.info('save-patch', id, data, params);
         this.patch(id, data, params).then(() => {
-            // console.info('serial patched.', 'id', id, 'data', data, 'params', params);
+            // console.group('serial patched');
+            // console.info('id', id);
+            // console.info('data', data);
+            // console.info('params', params);
+            // console.groupEnd();
         }).catch((error) => {
             if (error.name === 'NotFound') {
                 this.create(data, params).catch((error) => {
@@ -94,4 +115,5 @@ exports.Serial = class Serial extends Service {
             }
         });
     }
+
 };
