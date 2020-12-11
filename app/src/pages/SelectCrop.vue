@@ -44,9 +44,7 @@ export default {
         ...mapBind('localconfig', [
             'btnSize',
             'btnSpace',
-            'cropSelected',
-            'crateSelected',
-            'placeSelected'
+            'cropSelected'
         ]),
         btnSizeUnit () {
             return this.btnSize + 'mm'

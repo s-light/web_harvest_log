@@ -2,7 +2,6 @@
 const path = require('path');
 const fs = require('fs');
 const { parseAsync } = require('json2csv');
-const { app_config } = require('../../../../app_config');
 
 module.exports.actions = {
     'export-cvs': exportCSV,
@@ -68,6 +67,7 @@ async function importFromFile (service, servicePath, params) {
     // console.log('app_config[servicePath]', app_config[servicePath]);
     // const data = app_config[servicePath];
     // console.log('data', data);
+    const { app_config } = require('../../../../app_config');
     const serviceEntries = app_config[servicePath];
     if (serviceEntries) {
         for (const entry of app_config[servicePath]) {

@@ -1,50 +1,55 @@
 <template>
     <q-page class="">
-        <section class="center">
-            <p>TODO: implement load and view and Selection of package options</p>
-            <br>
-            <p>
-                selectedValue: {{ selectedValue }}
-            </p>
-            <br>
-        </section>
+        <debugSection label="crateSelected" :obj="crateSelected"/>
         <btn-toggle-grid
-            v-model="package_selected"
-            :options="package_options"
+            v-model="crateSelected"
+            :options="crate"
             active-class="bg-orange"
             push
             rounded
             stack
-            size="40mm"
+            :size="btnSizeUnit"
+            :space="btnSpaceUnit"
         />
 </q-page>
 </template>
 
 <script>
+import { makeFindMixin } from 'feathers-vuex'
+import { mapBind } from '../store/mapBind.js'
+import DebugSection from 'components/debugSection'
 import BtnToggleGrid from 'components/BtnToggleGrid.vue'
 
 export default {
     name: 'PageSelectCrate',
     data () {
         return {
-            selectedValue: 'car',
-            btn_list: []
         }
     },
     filters: {
     },
     computed: {
-        localComputedExample () { return 0 }
-        // mix this into the outer object with the object spread operator
-        // ...mapState([
-        //     // https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
-        //     // map this.count to store.state.count
-        //     'package_selected',
-        //     'package_options'
-        // ])
+        ...mapBind('localconfig', [
+            'btnSize',
+            'btnSpace',
+            'crateSelected'
+        ]),
+        btnSizeUnit () {
+            return this.btnSize + 'mm'
+        },
+        btnSpaceUnit () {
+            return this.btnSpace + 'mm'
+        },
+        crateParams () {
+            return { query: {} }
+        }
     },
+    mixins: [
+        makeFindMixin({ service: 'crate' })
+    ],
     components: {
-        BtnToggleGrid
+        BtnToggleGrid,
+        DebugSection
     }
 }
 

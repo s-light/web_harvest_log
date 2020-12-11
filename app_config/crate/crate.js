@@ -1,25 +1,41 @@
 module.exports = [
     {
-        _id: 'Nothing',
-        name: 'Nothing',
+        _id: '0_Nothing',
+        text: 'Nothing',
         tareWeight: 0,
-        icon: '',
+        icon: 'mdi-tray',
         image: '',
         description: ''
     },
     {
-        _id: 'Box_2',
-        name: 'Box 2',
+        _id: '1_Custom',
+        text: 'custom',
+        tareWeight: 0,
+        icon: 'mdi-tray-alert',
+        image: '',
+        description: ''
+    },
+    {
+        _id: 'Box_2.0',
+        text: 'Box 2',
         tareWeight: 200,
-        icon: '',
+        icon: 'mdi-tray-full',
         image: '',
         description: ''
     },
     {
-        _id: 'Box_35',
-        name: 'Box 3.5',
+        _id: 'Box_3.5',
+        text: 'Box 3.5',
         tareWeight: 350,
-        icon: 'mdi-bird',
+        icon: 'mdi-bag-personal',
+        image: '',
+        description: ''
+    },
+    {
+        _id: 'Box_4.0',
+        text: 'Box 4',
+        tareWeight: 450,
+        icon: 'mdi-bag-suitcase',
         image: '',
         description: ''
     },

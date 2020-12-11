@@ -8,10 +8,11 @@
         <q-btn
             v-for="item in options"
             :key="item._id"
-            @click="$emit('input', item._id)"
-            :class="item._id === value ? activeClass : ''"
+            @click="$emit('input', item)"
+            :class="item._id === value._id ? activeClass : ''"
             stack
             :title="item._id"
+            :size="size"
         >
             <q-icon
                 v-if="item.icon"
@@ -49,8 +50,8 @@ export default {
     },
     props: {
         value: {
-            type: String,
-            required: true
+            type: Object,
+            required: false
         },
         options: {
             type: Array,

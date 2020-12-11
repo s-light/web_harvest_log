@@ -1,9 +1,6 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
         <h1>Global Settings</h1>
-        <debugSection label="globalConfig" :obj="globalConfig"/>
-        <debugSection label="serialDevice" :obj="serialDevice"/>
-        <debugSection label="btnSpace" :obj="btnSpace"/>
         <section>
             <q-btn
                 round
@@ -87,6 +84,9 @@
                 color="purple"
              /> -->
         </section>
+        <debugSection label="globalConfig" :obj="globalConfig"/>
+        <debugSection label="serialDevice" :obj="serialDevice"/>
+        <debugSection label="btnSpace" :obj="btnSpace"/>
     </q-page>
 </template>
 
