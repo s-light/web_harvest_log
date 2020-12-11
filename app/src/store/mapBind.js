@@ -1,3 +1,14 @@
+// ------------------------------------------
+// usage:
+// import { mapBind } from 'store/mapBind.js'
+//
+// export default {
+//     name: 'ComponentName',
+//     computed: {
+//         ...mapBind('appconfig', ['globalMessage', 'someOtherThing'])
+//     },
+// }
+
 // inspired by https://stackoverflow.com/a/48447361/574981
 
 import { mapState } from 'vuex'
@@ -31,14 +42,3 @@ export const mapBind = function (base, params) {
     return result
 // )
 }
-
-// ------------------------------------------
-// usage:
-// import { mapBinder } from 'store/mapBind.js';
-//
-// export default {
-//     name: 'ComponentName',
-//     computed: {
-//         ...mapBinder('appconfig', ['globalMessage', 'someOtherThing'])
-//     },
-// }

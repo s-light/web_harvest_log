@@ -15,9 +15,27 @@
         <section>
             <q-btn
                 v-ripple
-                label="load db from server"
-                icon="sync"
-                @click="globalConfigLoadFromServer()"
+                label="export harvest to csv on server"
+                icon="mdi-database-export"
+                @click="serverExportToCSV('harvest', 'current_day')"
+            /><br>
+            <q-btn
+                v-ripple
+                label="import global-config from file"
+                icon="mdi-database-export"
+                @click="serverImport('global-config')"
+            /><br>
+            <q-btn
+                v-ripple
+                label="import crop from file"
+                icon="mdi-database-export"
+                @click="serverImport('crop')"
+            /><br>
+            <q-btn
+                v-ripple
+                label="import crate from file"
+                icon="mdi-database-export"
+                @click="serverImport('crate')"
             />
         </section>
         <section>
@@ -90,37 +108,55 @@ export default {
         ...mapBindIDItems('global-config', ['serialDevice', 'pos', 'btnSize', 'btnSpace'])
     },
     methods: {
-        globalConfigLoadFromServer: function () {
-            console.log('TODO: implement load from server')
-            this.$axios.get('/config/global-config.json')
-                .then((response) => {
-                    // this.data = response.data
-                    console.log('response.data', response.data)
-                    this.$q.notify({
-                        color: 'info',
-                        message: 'Loaded config from server. Processing now.',
-                        icon: 'info'
-                    })
-
-                    this.$q.notify({
-                        color: 'negative',
-                        message: 'TODO: Please Implement this!',
-                        icon: 'info'
-                    })
-
+        serverExportToCSV: function (servicePath, timeframe) {
+            console.group('serverExportToCSV')
+            this.$q.notify({
+                color: 'info',
+                message: `Export ${servicePath} as CSV on server. Processing now.`,
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.serverExportAsCSV(servicePath, timeframe)
+                .then(response => {
+                    console.log('serverImport: ', response)
                     this.$q.notify({
                         color: 'positive',
-                        message: 'done.',
+                        message: `${servicePath} done.`,
                         icon: 'info'
                     })
-                })
-                .catch(() => {
+                }).catch(error => {
+                    console.error('serverImport:', error)
                     this.$q.notify({
                         color: 'negative',
-                        message: 'Loading failed',
+                        message: `${servicePath} loading failed.`,
                         icon: 'report_problem'
                     })
                 })
+            console.groupEnd()
+        },
+        serverImport: function (servicePath) {
+            console.group('serverImport')
+            this.$q.notify({
+                color: 'info',
+                message: `Import ${servicePath} from server. Processing now.`,
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.serverImport(servicePath)
+                .then(response => {
+                    console.log('serverImport: ', response)
+                    this.$q.notify({
+                        color: 'positive',
+                        message: `${servicePath} done.`,
+                        icon: 'info'
+                    })
+                }).catch(error => {
+                    console.error('serverImport:', error)
+                    this.$q.notify({
+                        color: 'negative',
+                        message: `${servicePath} loading failed.`,
+                        icon: 'report_problem'
+                    })
+                })
+            console.groupEnd()
         }
     },
     created: function () {

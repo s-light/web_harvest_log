@@ -21,10 +21,10 @@ class Serial extends BaseModel {
         }
     }
 
-    async update (id, data, params) {
-        console.log('Serial', id, data, params)
-        return super.update(id, data, params)
-    }
+    // async update (id, data, params) {
+    //     console.log('Serial', id, data, params)
+    //     return super.update(id, data, params)
+    // }
 }
 const servicePath = 'serial'
 const servicePlugin = makeServicePlugin({

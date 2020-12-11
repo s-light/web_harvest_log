@@ -1,16 +1,17 @@
 <template>
     <div class="fit row wrap justify-around items-center content-center">
         <!-- <div class="shadow-10">
-            value {{ value }} <br>
+            _id {{ _id }} <br>
             options {{ options }} <br>
             activeClass {{ activeClass }} <br>
         </div> -->
         <q-btn
             v-for="item in options"
-            :key="item.title"
-            @click="$emit('input', item.value)"
-            :class="item.value === value ? activeClass : ''"
+            :key="item._id"
+            @click="$emit('input', item._id)"
+            :class="item._id === value ? activeClass : ''"
             stack
+            :title="item._id"
         >
             <q-icon
                 v-if="item.icon"
@@ -18,11 +19,13 @@
                 :name="item.icon"
             />
             <q-img
-                v-else-if="item.image_url"
-                :src="item.image_url"
+                v-else-if="item.image"
+                :src="item.image"
                 :style="img_style"
             />
-            <div>{{ item.label }}</div>
+            <div>
+                {{ item.text }}
+            </div>
         </q-btn>
     </div>
 </template>
@@ -53,6 +56,12 @@ export default {
             type: Array,
             required: true
         },
+        // key: {
+        //     this does not work :-(
+        //     as iam not aible to use this in the template..
+        //     type: String,
+        //     required: '_id'
+        // },
         size: {
             type: String,
             required: false,
