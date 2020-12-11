@@ -4,6 +4,7 @@ module.exports = [
         text: 'Bird',
         icon: 'mdi-bird',
         image: '',
+        tags: ['animal', 'air'],
         description: ''
     },
     {
@@ -11,12 +12,13 @@ module.exports = [
         text: 'Bicycle',
         icon: 'mdi-bicycle',
         image: '',
+        tags: ['object', 'metal'],
         description: ''
     },
     {
         _id: 'Tomato',
         text: 'Tomato',
-        // image: 'images/213975_tomato - coloured.svg',
+        // image: 'images/213975_tomato-coloured.svg',
         image: 'http://localhost:3030/api/crops/images/213975_tomato-coloured.svg',
         places: 0,
         fill_check: {
@@ -25,6 +27,7 @@ module.exports = [
                 max: 1000,
             }
         },
+        tags: ['fruit', 'red'],
         description: ''
     },
     {
@@ -33,26 +36,16 @@ module.exports = [
         // image: 'images/213975_tomato - coloured.svg',
         image: 'http://localhost:3030/api/crops/images/213975_tomato-coloured.svg',
         places: 2,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'red'],
         description: ''
     },
     {
         _id: 'TomatoCocktail',
         text: 'Tomato Cocktail',
-        // image: 'images/213975_tomato - coloured.svg',
-        image: 'http://localhost:3030/api/crops/images/213975_tomato-coloured.svg',
+        image: 'images/213975_tomato-coloured.svg',
+        // image: 'http://localhost:3030/api/crops/images/213975_tomato-coloured.svg',
         places: 3,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'red'],
         description: ''
     },
     {
@@ -60,12 +53,7 @@ module.exports = [
         text: 'Carrot',
         image: 'http://localhost:3030/api/crops/images/215799_carrot-coloured.svg',
         places: ['Indoor', 'Outdoor'],
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['root','vegetable', 'orange'],
         description: ''
     },
     {
@@ -73,12 +61,7 @@ module.exports = [
         text: 'Peas',
         image: 'http://localhost:3030/api/crops/images/213646_peas.svg',
         places: 3,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'legume', 'vegetable'],
         description: ''
     },
     {
@@ -86,12 +69,7 @@ module.exports = [
         text: 'Chili',
         image: 'http://localhost:3030/api/crops/images/314518_chili_mod.svg',
         places: 1,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'vegetable'],
         description: ''
     },
     {
@@ -99,12 +77,7 @@ module.exports = [
         text: 'Peppers',
         image: 'http://localhost:3030/api/crops/images/314520_peppers_mod.svg',
         places: 1,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'vegetable'],
         description: ''
     },
     {
@@ -112,12 +85,7 @@ module.exports = [
         text: 'Onion',
         image: 'http://localhost:3030/api/crops/images/314628_red_onion.svg',
         places: 2,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['onion', 'vegetable'],
         description: ''
     },
     {
@@ -125,12 +93,15 @@ module.exports = [
         text: 'Strawberry',
         image: 'http://localhost:3030/api/crops/images/313382_strawberry_mod.svg',
         places: 9,
-        fill_check: {
-            Box_35: {
-                min: 100,
-                max: 1000,
-            }
-        },
+        tags: ['fruit', 'vegetable'],
+        description: ''
+    },
+    {
+        _id: 'Strawberry',
+        text: 'Strawberry',
+        image: 'http://localhost:3030/api/crops/images/313382_strawberry_mod.svg',
+        places: 9,
+        tags: ['kale', 'cabbage', 'vegetable'],
         description: ''
     },
 ]

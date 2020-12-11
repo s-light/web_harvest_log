@@ -4,53 +4,30 @@ import feathersClient, {
     BaseModel
 } from '../../feathers-client'
 
-class Crop extends BaseModel {
+class CropFilter extends BaseModel {
     // constructor(data, options) {
     //     super(data, options)
     // }
 
     // Required for $FeathersVuex plugin to work after production transpile.
-    static modelName = 'Crop'
+    static modelName = 'CropFilter'
 
     // Define default properties here
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            name: '',
             _id: '',
+            filter: '',
+            name: '',
             icon: '',
             image: '',
             description: ''
         }
     }
-
-    placesList () {
-        const result = []
-        if (this.places) {
-            let places = []
-            if (typeof this.places === 'number') {
-                if (this.places > 1) {
-                    for (let i = 1; i <= this.places; i++) {
-                        places.push(i)
-                    }
-                }
-            } else if (Array.isArray(this.places)) {
-                places = this.places
-            }
-            for (const item of places) {
-                result.push({
-                    _id: item,
-                    text: item,
-                    icon: 'mdi-map-marker'
-                })
-            }
-        }
-        return result
-    }
 }
-const servicePath = 'crop'
+const servicePath = 'crop-filter'
 const servicePlugin = makeServicePlugin({
-    Model: Crop,
+    Model: CropFilter,
     service: feathersClient.service(servicePath),
     servicePath,
     debug: true

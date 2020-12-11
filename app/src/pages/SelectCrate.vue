@@ -1,6 +1,6 @@
 <template>
     <q-page class="">
-        <debugSection label="crateSelected" :obj="crateSelected"/>
+        <!-- <debugSection label="crateSelected" :obj="crateSelected"/> -->
         <btn-toggle-grid
             v-model="crateSelected"
             :options="crate"
@@ -17,7 +17,7 @@
 <script>
 import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-import DebugSection from 'components/debugSection'
+// import DebugSection from 'components/debugSection'
 import BtnToggleGrid from 'components/BtnToggleGrid.vue'
 
 export default {
@@ -41,15 +41,21 @@ export default {
             return this.btnSpace + 'mm'
         },
         crateParams () {
-            return { query: {} }
+            return {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
         }
     },
     mixins: [
         makeFindMixin({ service: 'crate' })
     ],
     components: {
-        BtnToggleGrid,
-        DebugSection
+        // DebugSection,
+        BtnToggleGrid
     }
 }
 

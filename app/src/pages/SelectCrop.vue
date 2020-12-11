@@ -1,6 +1,6 @@
 <template>
     <q-page class="">
-        <debugSection label="crop_selected" :obj="cropSelected"/>
+        <!-- <debugSection label="crop_selected" :obj="cropSelected"/> -->
         <!-- <debugSection label="crop" :obj="crop"/> -->
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
         <btn-toggle-grid
@@ -28,7 +28,7 @@ import {
     makeFindMixin
 } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-import DebugSection from 'components/debugSection'
+// import DebugSection from 'components/debugSection'
 import BtnToggleGrid from 'components/BtnToggleGrid.vue'
 
 export default {
@@ -60,8 +60,8 @@ export default {
         makeFindMixin({ service: 'crop' })
     ],
     components: {
-        BtnToggleGrid,
-        DebugSection
+        // DebugSection,
+        BtnToggleGrid
     }
 }
 

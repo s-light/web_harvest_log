@@ -1,7 +1,7 @@
 <template>
     <q-page class="">
         <!-- <debugSection label="cropSelected" :obj="cropSelected"/> -->
-        <debugSection label="placeSelected" :obj="placeSelected"/>
+        <!-- <debugSection label="placeSelected" :obj="placeSelected"/> -->
         <!-- <debugSection label="place" :obj="place"/> -->
         <btn-toggle-grid
             v-model="placeSelected"
@@ -19,7 +19,7 @@
 <script>
 // import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-import DebugSection from 'components/debugSection'
+// import DebugSection from 'components/debugSection'
 import BtnToggleGrid from 'components/BtnToggleGrid.vue'
 
 export default {
@@ -47,16 +47,16 @@ export default {
             let result = []
             const crop = this.cropSelected
             console.log('crop', crop)
-            console.log('crop.places', crop.places)
-            if (crop) {
+            if (crop && crop.places) {
+                console.log('crop.places', crop.places)
                 result = crop.placesList()
             }
             return result
         }
     },
     components: {
-        BtnToggleGrid,
-        DebugSection
+        // DebugSection,
+        BtnToggleGrid
     }
 }
 

@@ -12,7 +12,6 @@
             :class="item._id === value._id ? activeClass : ''"
             stack
             :title="item._id"
-            :size="size"
         >
             <q-icon
                 v-if="item.icon"
