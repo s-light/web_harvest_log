@@ -40,6 +40,15 @@ class Management extends BaseModel {
         // return new Management(data).create()
     }
 
+    static updateSerialDeviceList () {
+        console.log('updateSerialDeviceList')
+        return this.sendAction(
+            'update-serial-device-list',
+            'serial',
+            {}
+        )
+    }
+
     static serverExportAsCSV (servicePath, timeframe) {
         console.log('serverExportAsCSV')
         return this.sendAction(

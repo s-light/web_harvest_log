@@ -12,10 +12,10 @@ exports.Serial = class Serial extends Service {
         });
         this.connected = false;
         this.retryDelay = 10000;
-        // this.port = '/dev/ttyUSB0';
-        // this.baudRate = 19200;
-        this.port = '/dev/ttyACM0';
-        this.baudRate = 115200;
+        this.port = '/dev/ttyUSB0';
+        this.baudRate = 19200;
+        // this.port = '/dev/ttyACM0';
+        // this.baudRate = 115200;
     }
 
     // setup(path, app){
@@ -27,13 +27,13 @@ exports.Serial = class Serial extends Service {
         this.saveItem('connected', this.connected);
         console.log('create error');
         this.saveItem('error', '');
+        console.log('create port');
+        this.createItem('port', this.port);
+        console.log('create baudRate');
+        this.createItem('baudRate', this.baudRate);
         console.log('create list');
-        SerialPort.list().then((spList) => {
-            spList = spList.filter(item => item.manufacturer);
-            console.log('serial port list:',spList);
-            // this.saveItem('list', JSON.stringify(spList));
-            this.saveItem('list', spList);
-        });
+        this.updateSerialDeviceList();
+
         this.connect();
         console.groupEnd();
     }
@@ -87,7 +87,20 @@ exports.Serial = class Serial extends Service {
     }
 
     reconnect() {
-        if (!this.connected) { this.serialPort.open(); }
+        if (this.connected) {
+            // this.serialPort.close().then(() =>);
+            this.serialPort.close();
+        }
+        if (!this.connected) {
+            this.serialPort.open();
+        }
+    }
+
+    createItem(id, value) {
+        const data = { id:id, value: value };
+        this.create(data, {}).catch((error) => {
+            console.error('createItem - ' + error.message, error);
+        });
     }
 
     saveItem(id, value) {
@@ -115,6 +128,15 @@ exports.Serial = class Serial extends Service {
             } else {
                 console.error('save - patch - ' + error.message, error);
             }
+        });
+    }
+
+    updateSerialDeviceList() {
+        SerialPort.list().then((spList) => {
+            spList = spList.filter(item => item.manufacturer);
+            console.log('serial port list:',spList);
+            // this.saveItem('list', JSON.stringify(spList));
+            this.saveItem('list', spList);
         });
     }
 

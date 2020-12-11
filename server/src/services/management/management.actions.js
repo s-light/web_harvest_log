@@ -4,9 +4,21 @@ const fs = require('fs');
 const { parseAsync } = require('json2csv');
 
 module.exports.actions = {
+    'update-serial-device-list': updateSerialDeviceList,
     'export-cvs': exportCSV,
     'import-from-file': importFromFile,
 };
+
+// eslint-disable-next-line no-unused-vars
+async function updateSerialDeviceList (service, servicePath, params) {
+    console.group('updateSerialDeviceList:');
+    // console.log('service', service);
+    // this == app context
+    const result = await service.updateSerialDeviceList();
+    console.log('result', result);
+    console.groupEnd();
+    return result;
+}
 
 // eslint-disable-next-line no-unused-vars
 async function exportCSV (service, servicePath, params) {
