@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{"632c":function(e,n,t){"use strict";t.r(n);var a={name:"PageSelectCrop"},l=t("2877"),s=t("9989"),o=t("eebe"),c=t.n(o),i=Object(l.a)(a,(function(){var e=this.$createElement,n=this._self._c||e;return n("q-page",{staticClass:"flex flex-center"},[n("h1",[this._v("TODO: implement load and view of Plants options")])])}),[],!1,null,null,null);n.default=i.exports;c()(i,"components",{QPage:s.a})}}]);
-//# sourceMappingURL=11.61baa35c.js.map
