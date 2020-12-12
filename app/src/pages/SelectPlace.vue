@@ -12,6 +12,7 @@
             stack
             :size="btnSizeUnit"
             :space="btnSpaceUnit"
+            @click="next"
         />
 </q-page>
 </template>
@@ -26,6 +27,11 @@ export default {
     name: 'PageSelectPlace',
     data () {
         return {
+        }
+    },
+    methods: {
+        next: function () {
+            this.$router.push('save_harvest')
         }
     },
     filters: {

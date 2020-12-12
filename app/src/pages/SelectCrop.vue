@@ -11,7 +11,10 @@
             rounded
             stack
             :size="btnSizeUnit"
+            fontSize="2em"
             :space="btnSpaceUnit"
+            to="/selecte_place"
+            exact
         />
 </q-page>
 </template>

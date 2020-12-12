@@ -10,6 +10,8 @@
             stack
             :size="btnSizeUnit"
             :space="btnSpaceUnit"
+            to="/selecte_crop"
+            exact
         />
 </q-page>
 </template>

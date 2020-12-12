@@ -17,8 +17,8 @@ class CropFilter extends BaseModel {
     static instanceDefaults () {
         return {
             _id: '',
-            filter: '',
-            name: '',
+            text: '',
+            query: '',
             icon: '',
             image: '',
             description: ''

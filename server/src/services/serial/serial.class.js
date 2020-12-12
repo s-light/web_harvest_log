@@ -12,10 +12,10 @@ exports.Serial = class Serial extends Service {
         });
         this.connected = false;
         this.retryDelay = 10000;
-        this.port = '/dev/ttyUSB0';
-        this.baudRate = 19200;
-        // this.port = '/dev/ttyACM0';
-        // this.baudRate = 115200;
+        // this.port = '/dev/ttyUSB0';
+        // this.baudRate = 19200;
+        this.port = '/dev/ttyACM0';
+        this.baudRate = 115200;
     }
 
     // setup(path, app){

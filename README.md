@@ -17,3 +17,8 @@ have a look at the [online preview](https://s-light.github.io/web_harvest_log/ap
 - start server `yarn start`
 - open webbrowser at [`localhost:8080`](http://localhost:8080)
 - ToDo: extend this information!!
+
+
+## ToDo
+- research or create image set
+    - [Karl Urban Wild-Flowers](https://openclipart.org/search/?p=2&query=Karl%20Urban)

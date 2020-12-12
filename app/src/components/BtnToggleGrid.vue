@@ -20,10 +20,13 @@
             />
             <q-img
                 v-else-if="item.image"
-                :src="item.image"
+                :src="imageBaseURL + item.image"
                 :style="img_style"
+                contain
             />
-            <div>
+            <div
+                :style="label_style"
+            >
                 {{ item.text }}
             </div>
         </q-btn>
@@ -44,7 +47,16 @@ export default {
     computed: {
         img_style: function () {
             // `this` points to the vm instance
-            return 'width:' + this.size + '; height:' + this.size + ';'
+            return `
+                width: ${this.size};
+                height: ${this.size};
+            `
+        },
+        label_style: function () {
+            // `this` points to the vm instance
+            return `
+                font-size: ${this.fontSize};
+            `
         }
     },
     props: {
@@ -62,10 +74,20 @@ export default {
         //     type: String,
         //     required: '_id'
         // },
+        imageBaseURL: {
+            type: String,
+            required: false,
+            default: 'http://localhost:3030/api/'
+        },
         size: {
             type: String,
             required: false,
             default: 'text-orange'
+        },
+        fontSize: {
+            type: String,
+            required: false,
+            default: '1em'
         },
         activeClass: {
             type: String,
