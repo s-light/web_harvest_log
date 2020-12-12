@@ -1,7 +1,6 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
         <h1>Dev1</h1>
-        <debugSection label="crop" :obj="crop"/>
         <debugSection label="serial" :obj="serial"/>
         <section>
             <q-btn
@@ -15,18 +14,6 @@
                 label="export harvest to csv on server"
                 icon="mdi-database-export"
                 @click="serverExportToCSVHarvest()"
-            />
-            <q-btn
-                v-ripple
-                label="import crops from file"
-                icon="mdi-database-export"
-                @click="serverImport('crop')"
-            />
-            <q-btn
-                v-ripple
-                label="import crops from file"
-                icon="mdi-database-export"
-                @click="serverImport('crate')"
             />
         </section>
     </q-page>

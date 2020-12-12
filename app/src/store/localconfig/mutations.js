@@ -10,6 +10,9 @@ export function setBtnSpace (state, value) {
 export function setCropSelected (state, value) {
     state.cropSelected = value
 }
+export function setCropFilterSelected (state, value) {
+    state.cropFilterSelected = value
+}
 export function setCrateSelected (state, value) {
     state.crateSelected = value
 }

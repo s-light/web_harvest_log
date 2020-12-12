@@ -4,6 +4,17 @@
         <!-- <debugSection label="crop" :obj="crop"/> -->
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
         <btn-toggle-grid
+            v-model="cropFilterSelected"
+            :options="cropFilter"
+            active-class="bg-orange"
+            push
+            rounded
+            stack
+            :size="btnSizeUnit"
+            fontSize="2em"
+            :space="btnSpaceUnit"
+        />
+        <btn-toggle-grid
             v-model="cropSelected"
             :options="crop"
             active-class="bg-orange"
@@ -55,7 +66,8 @@ export default {
         ...mapBind('localconfig', [
             'btnSize',
             'btnSpace',
-            'cropSelected'
+            'cropSelected',
+            'cropFilterSelected'
         ]),
         btnSizeUnit () {
             return this.btnSize + 'mm'
@@ -64,11 +76,21 @@ export default {
             return this.btnSpace + 'mm'
         },
         cropParams () {
-            return { query: {} }
+            return { query: this.cropFilterSelected.queryFixed }
+        },
+        cropFilterParams () {
+            return {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
         }
     },
     mixins: [
-        makeFindMixin({ service: 'crop' })
+        makeFindMixin({ service: 'crop' }),
+        makeFindMixin({ service: 'crop-filter' })
     ],
     components: {
         // DebugSection,

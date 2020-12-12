@@ -3,6 +3,7 @@ export default function () {
         btnSize: 50,
         btnSpace: 10,
         cropSelected: {},
+        cropFilterSelected: {},
         crateSelected: {},
         placeSelected: {}
     }

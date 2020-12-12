@@ -1,0 +1,91 @@
+module.exports = [
+    {
+        _id: '0_recent',
+        text: 'recently used',
+        query: {
+            _$limit: 3,
+            _$sort: {
+                lastUsed: -1
+            }
+        },
+        icon: 'mdi-calendar-clock',
+        description: ''
+    },
+    {
+        _id: 'leaf-greens',
+        text: 'leaf greens',
+        query: {
+            tags: {
+                _$in: [ 'leaf' ]
+            }
+        },
+        image: 'images/313740_leafy-green-vegetable_mod.svg',
+        description: ''
+    },
+    {
+        _id: 'cabbage',
+        text: 'cabbage',
+        query: {
+            tags: {
+                _$in: [ 'cabbage' ]
+            }
+        },
+        image: 'images/232225_green_cabbage.svg',
+        description: ''
+    },
+    {
+        _id: 'onion',
+        text: 'onion',
+        query: {
+            tags: {
+                _$in: [ 'onion' ]
+            }
+        },
+        image: 'images/314628_red_onion.svg',
+        description: ''
+    },
+    {
+        _id: 'fruit',
+        text: 'fruit',
+        query: {
+            tags: {
+                _$in: [ 'fruit' ]
+            }
+        },
+        image: 'images/213975_tomato-coloured.svg',
+        description: ''
+    },
+    {
+        _id: 'root',
+        text: 'root',
+        query: {
+            tags: {
+                _$in: [ 'root' ]
+            }
+        },
+        image: 'images/215799_carrot-coloured.svg',
+        description: ''
+    },
+    {
+        _id: 'herb',
+        text: 'herb',
+        query: {
+            tags: {
+                _$in: [ 'herb' ]
+            }
+        },
+        image: 'images/241191_Sage_Lores.svg',
+        description: ''
+    },
+    {
+        _id: 'flower',
+        text: 'flower',
+        query: {
+            tags: {
+                _$in: [ 'flower' ]
+            }
+        },
+        image: 'images/214593_Paisley_Flower-02.svg',
+        description: ''
+    },
+]

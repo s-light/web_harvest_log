@@ -26,14 +26,26 @@
                 v-ripple
                 label="import crop from file"
                 icon="mdi-database-export"
+                @click="importAll()"
+            /><br>
+            <!-- <q-btn
+                v-ripple
+                label="import crop from file"
+                icon="mdi-database-export"
                 @click="serverImport('crop')"
+            /><br>
+            <q-btn
+                v-ripple
+                label="import cropFilter from file"
+                icon="mdi-database-export"
+                @click="serverImport('crop-filter')"
             /><br>
             <q-btn
                 v-ripple
                 label="import crate from file"
                 icon="mdi-database-export"
                 @click="serverImport('crate')"
-            />
+            /> -->
         </section>
         <settingsSerial />
         <!-- <section>
@@ -89,6 +101,11 @@ export default {
         }
     },
     methods: {
+        importAll: function () {
+            this.serverImport('crate')
+            this.serverImport('crop')
+            this.serverImport('crop-filter')
+        },
         serverExportToCSV: function (servicePath, timeframe) {
             console.group('serverExportToCSV')
             this.$q.notify({
