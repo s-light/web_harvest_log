@@ -13,8 +13,7 @@
             :size="btnSizeUnit"
             fontSize="2em"
             :space="btnSpaceUnit"
-            to="/selecte_place"
-            exact
+            @click="next"
         />
 </q-page>
 </template>
@@ -42,6 +41,15 @@ export default {
         }
     },
     filters: {
+    },
+    methods: {
+        next: function () {
+            if (this.cropSelected && this.cropSelected.placesCount() > 1) {
+                this.$router.push('select_place')
+            } else {
+                this.$router.push('save_harvest')
+            }
+        }
     },
     computed: {
         ...mapBind('localconfig', [

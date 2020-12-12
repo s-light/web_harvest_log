@@ -10,8 +10,7 @@
             stack
             :size="btnSizeUnit"
             :space="btnSpaceUnit"
-            to="/selecte_crop"
-            exact
+            @click="next"
         />
 </q-page>
 </template>
@@ -26,6 +25,11 @@ export default {
     name: 'PageSelectCrate',
     data () {
         return {
+        }
+    },
+    methods: {
+        next: function () {
+            this.$router.push('select_crop')
         }
     },
     filters: {

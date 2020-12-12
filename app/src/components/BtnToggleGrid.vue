@@ -8,7 +8,7 @@
         <q-btn
             v-for="item in options"
             :key="item._id"
-            @click="$emit('input', item)"
+            @click="$emit('input', item); $emit('click', $event)"
             :class="item._id === value._id ? activeClass : ''"
             stack
             :title="item._id"

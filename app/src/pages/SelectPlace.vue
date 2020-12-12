@@ -11,6 +11,7 @@
             rounded
             stack
             :size="btnSizeUnit"
+            fontSize="5em"
             :space="btnSpaceUnit"
             @click="next"
         />

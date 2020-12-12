@@ -47,6 +47,18 @@ class Crop extends BaseModel {
         }
         return result
     }
+
+    placesCount () {
+        let result = -1
+        if (this.places) {
+            if (typeof this.places === 'number') {
+                result = this.places
+            } else if (Array.isArray(this.places)) {
+                result = this.places.length
+            }
+        }
+        return result
+    }
 }
 const servicePath = 'crop'
 const servicePlugin = makeServicePlugin({
