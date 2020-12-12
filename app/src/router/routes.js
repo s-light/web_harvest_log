@@ -62,6 +62,12 @@ export const childrenDev = [
         component: () => import('pages/Dev1.vue')
     },
     {
+        title: 'Dev2Layout',
+        icon: 'code',
+        path: 'dev2_Layout',
+        component: () => import('pages/Dev2Layout.vue')
+    },
+    {
         title: 'DevList',
         icon: 'code',
         path: 'dev_list',

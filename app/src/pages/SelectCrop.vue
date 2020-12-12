@@ -1,31 +1,37 @@
 <template>
-    <q-page class="">
+    <q-page class="fit">
         <!-- <debugSection label="crop_selected" :obj="cropSelected"/> -->
         <!-- <debugSection label="crop" :obj="crop"/> -->
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
-        <btn-toggle-grid
-            v-model="cropFilterSelected"
-            :options="cropFilter"
-            active-class="bg-orange"
-            push
-            rounded
-            stack
-            :size="btnSizeUnit"
-            fontSize="2em"
-            :space="btnSpaceUnit"
-        />
-        <btn-toggle-grid
-            v-model="cropSelected"
-            :options="crop"
-            active-class="bg-orange"
-            push
-            rounded
-            stack
-            :size="btnSizeUnit"
-            fontSize="2em"
-            :space="btnSpaceUnit"
-            @click="next"
-        />
+        <section class="row no-wrap fit">
+            <btn-toggle-grid
+                style="flex:column"
+                vertical
+                v-model="cropFilterSelected"
+                :options="cropFilter"
+                active-class="bg-orange"
+                push
+                rounded
+                stack
+                :size="btnSize/2 + 'mm'"
+                fontSize="2em"
+                :space="btnSpace/2 + 'mm'"
+            />
+            <btn-toggle-grid
+                class="col-grow"
+                style="flex-shrink:1;"
+                v-model="cropSelected"
+                :options="crop"
+                active-class="bg-orange"
+                push
+                rounded
+                stack
+                :size="btnSize + 'mm'"
+                fontSize="2em"
+                :space="btnSpace + 'mm'"
+                @click="next"
+            />
+        </section>
 </q-page>
 </template>
 

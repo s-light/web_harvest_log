@@ -1,5 +1,13 @@
 <template>
-    <div class="fit row wrap justify-around items-center content-center">
+    <div :class="containerClassObject">
+        <!-- style="
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: center;
+            " -->
         <!-- <div class="shadow-10">
             _id {{ _id }} <br>
             options {{ options }} <br>
@@ -12,6 +20,7 @@
             :class="item._id === value._id ? activeClass : ''"
             stack
             :title="item._id"
+            :style="{ margin: space}"
         >
             <q-icon
                 v-if="item.icon"
@@ -21,11 +30,11 @@
             <q-img
                 v-else-if="item.image"
                 :src="imageBaseURL + item.image"
-                :style="img_style"
+                :style="{width: size, height: size}"
                 contain
             />
             <div
-                :style="label_style"
+                :style="{ 'font-size': fontSize }"
             >
                 {{ item.text }}
             </div>
@@ -38,25 +47,21 @@ export default {
     name: 'BtnToggleGrid',
     data () {
         return {
-            // things
         }
     },
     methods: {
         //
     },
     computed: {
-        img_style: function () {
-            // `this` points to the vm instance
-            return `
-                width: ${this.size};
-                height: ${this.size};
-            `
-        },
-        label_style: function () {
-            // `this` points to the vm instance
-            return `
-                font-size: ${this.fontSize};
-            `
+        containerClassObject: function () {
+            return [
+                { column: this.vertical },
+                { row: !this.vertical },
+                'wrap',
+                'justify-around',
+                'content-start',
+                'items-center'
+            ]
         }
     },
     props: {
@@ -82,7 +87,12 @@ export default {
         size: {
             type: String,
             required: false,
-            default: 'text-orange'
+            default: '30mm'
+        },
+        space: {
+            type: String,
+            required: false,
+            default: '5mm'
         },
         fontSize: {
             type: String,
@@ -93,6 +103,11 @@ export default {
             type: String,
             required: false,
             default: 'text-orange'
+        },
+        vertical: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     }
 }
