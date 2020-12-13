@@ -10,11 +10,12 @@
             push
             rounded
             stack
-            :size="btnSizeUnit"
-            fontSize="5em"
-            :space="btnSpaceUnit"
+            :size="btnSize/8 + 'mm'"
+            fontSize="12em"
+            :space="2 + 'mm'"
             @click="next"
         />
+        <!-- :space="btnSpace + 'mm'" -->
 </q-page>
 </template>
 

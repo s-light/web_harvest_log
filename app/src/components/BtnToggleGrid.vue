@@ -34,7 +34,7 @@
                 contain
             />
             <div
-                :style="{ 'font-size': fontSize }"
+                :style="{ 'font-size': fontSize, 'line-height':'100%' }"
             >
                 {{ item.text }}
             </div>
@@ -109,6 +109,11 @@ export default {
             required: false,
             default: false
         }
+        // showImage: {
+        //     type: Boolean,
+        //     required: false,
+        //     default: true
+        // }
     }
 }
 </script>

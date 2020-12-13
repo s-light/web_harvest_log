@@ -3,14 +3,20 @@
         <!-- <debugSection label="crop_selected" :obj="cropSelected"/> -->
         <!-- <debugSection label="crop" :obj="crop"/> -->
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
-        <section class="row no-wrap fit">
+        <section
+            class="row no-wrap"
+            :style="{
+                overflow:'hidden',
+                maxHeight:'100vh',
+            }"
+        >
             <btn-toggle-grid
-                style="{
-                    flex:column,
-                    min-width:btnSize/2 + 'mm',
-                    overflow-y:scroll,
+                :style="{
+                    flex:'column',
+                    overflowY:'scroll',
+                    maxHeight:'100vh',
                 }"
-                class="justify-start"
+                class="justify-start no-wrap col-auto"
                 vertical
                 v-model="cropFilterSelected"
                 :options="cropFilter"
@@ -24,7 +30,12 @@
             />
             <btn-toggle-grid
                 class="col-grow justify-around"
-                style="flex-shrink:1;"
+                :style="{
+                    flex:'column',
+                    flexShrink:1,
+                    overflowY:'scroll',
+                    maxHeight:'100vh',
+                }"
                 v-model="cropSelected"
                 :options="crop"
                 active-class="bg-orange"
@@ -32,7 +43,7 @@
                 rounded
                 stack
                 :size="btnSize + 'mm'"
-                fontSize="1.7em"
+                fontSize="1.5em"
                 :space="btnSpace + 'mm'"
                 @click="next"
             />
