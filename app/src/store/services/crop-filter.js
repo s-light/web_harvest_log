@@ -5,10 +5,9 @@ import feathersClient, {
 } from '../../feathers-client'
 
 class CropFilter extends BaseModel {
-    constructor (data, options) {
-        super(data, options)
-        this.queryFixed = {}
-    }
+    // constructor (data, options) {
+    //     super(data, options)
+    // }
 
     // Required for $FeathersVuex plugin to work after production transpile.
     static modelName = 'CropFilter'
@@ -20,6 +19,7 @@ class CropFilter extends BaseModel {
             _id: '',
             text: '',
             query: {},
+            queryFixed: {},
             icon: '',
             image: '',
             description: ''
@@ -41,7 +41,10 @@ class CropFilter extends BaseModel {
     }
 
     setQueryFixed (query) {
-        this.queryFixed = this.fixFieldNames(query, {})
+        this.service.FeathersVuexModel.store.commit(
+            'handleSummaryData',
+            this.fixFieldNames(query, {})
+        )
     }
 }
 const servicePath = 'crop-filter'
@@ -49,11 +52,11 @@ const servicePlugin = makeServicePlugin({
     Model: CropFilter,
     service: feathersClient.service(servicePath),
     servicePath,
-    // mutations: {
-    //     setQueryFixed (state, queryFixed) {
-    //         state.queryFixed = queryFixed
-    //     }
-    // },
+    mutations: {
+        setQueryFixed (state, queryFixed) {
+            state.queryFixed = queryFixed
+        }
+    },
     debug: true
 })
 

@@ -9,7 +9,7 @@ const crop_flower = require(__dirname + '/crop/crop_flower.js');
 const cropFilter = require(__dirname + '/crop/crop_filter.js');
 const crate = require(__dirname + '/crate/crate.js');
 
-module.exports.app_config = {
+module.exports= {
     crop: [
         ...crop_root,
         ...crop_onion,

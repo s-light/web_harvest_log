@@ -79,7 +79,15 @@ async function importFromFile (service, servicePath, params) {
     // console.log('app_config[servicePath]', app_config[servicePath]);
     // const data = app_config[servicePath];
     // console.log('data', data);
-    const { app_config } = require('../../../../app_config');
+    let app_config = {};
+    try {
+        app_config = await require('../../../../app_config');
+    } catch (e) {
+        if (e.code === 'MODULE_NOT_FOUND') {
+            // this means we need to fallback to the dev file
+            app_config = require('../../../../app_config/index_dev.js');
+        }
+    }
     const serviceEntries = app_config[servicePath];
     if (serviceEntries) {
         for (const entry of app_config[servicePath]) {

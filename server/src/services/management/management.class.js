@@ -29,7 +29,7 @@ exports.Management = class Management {
             return Promise.all(data.map(current => this.create(current, params)));
         } else {
             if (data.action && data.service && data.params) {
-                this.handleAction(data.action, data.service, data.params);
+                data = this.handleAction(data.action, data.service, data.params);
                 // this.handleAction(data.action, data.service, data.params).catch((error) => {
                 //     throw {
                 //         message: 'Management: handleAction failed.',
