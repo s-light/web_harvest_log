@@ -1,2 +1,4 @@
-#crop/crop_*.js
+*
 #.gitignore
+!*_dev*
+!.gitkeep

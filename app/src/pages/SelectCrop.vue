@@ -5,7 +5,11 @@
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
         <section class="row no-wrap fit">
             <btn-toggle-grid
-                style="flex:column"
+                style="{
+                    flex:column,
+                    min-width:btnSize/2 + 'mm',
+                    overflow-y:scroll,
+                }"
                 class="justify-start"
                 vertical
                 v-model="cropFilterSelected"

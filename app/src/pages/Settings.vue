@@ -24,7 +24,7 @@
             /><br> -->
             <q-btn
                 v-ripple
-                label="import crop from file"
+                label="import app_config from files"
                 icon="mdi-database-export"
                 @click="importAll()"
             /><br>

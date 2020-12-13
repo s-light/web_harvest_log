@@ -1,6 +1,6 @@
 module.exports = [
     {
-        _id: 'Sun',
+        _id: 'dev_Sun',
         text: 'Sun',
         icon: 'mdi-white-balance-sunny',
         image: '',
@@ -8,7 +8,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Moon',
+        _id: 'dev_Moon',
         text: 'Moon',
         icon: 'mdi-weather-night',
         image: '',
@@ -16,7 +16,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Flower',
+        _id: 'dev_flower2',
         text: 'Flower',
         icon: 'mdi-flower-tulip',
         image: '',
@@ -24,7 +24,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Cloud',
+        _id: 'dev_Cloud',
         text: 'Cloud',
         icon: 'mdi-weather-cloudy',
         image: '',
@@ -32,7 +32,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Bird',
+        _id: 'dev_Bird',
         text: 'Bird',
         icon: 'mdi-bird',
         image: '',
@@ -40,7 +40,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Bicycle',
+        _id: 'dev_Bicycle',
         text: 'Bicycle',
         icon: 'mdi-bicycle',
         image: '',
@@ -48,7 +48,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Book',
+        _id: 'dev_Book',
         text: 'Book',
         icon: 'mdi-book-open-variant',
         image: '',
@@ -56,7 +56,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Time',
+        _id: 'dev_Time',
         text: 'Time',
         icon: 'mdi-clock-time-four-outline',
         image: '',
@@ -64,7 +64,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Alarm',
+        _id: 'dev_Alarm',
         text: 'Alarm',
         icon: 'mdi-alarm-note',
         image: '',
@@ -72,7 +72,7 @@ module.exports = [
         description: ''
     },
     {
-        _id: 'Atom',
+        _id: 'dev_Atom',
         text: 'Atom',
         icon: 'mdi-atom',
         image: '',

@@ -2,6 +2,8 @@ const { Service } = require('feathers-memory');
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
 
+const serial_config = require('../../../../app_config/serial.js');
+
 exports.Serial = class Serial extends Service {
     constructor(app, configKey){
         super(app, configKey);
@@ -11,16 +13,24 @@ exports.Serial = class Serial extends Service {
             encoding: 'utf8'
         });
         this.connected = false;
-        this.retryDelay = 10000;
+        // this.retryDelay = 10000;
         // this.port = '/dev/ttyUSB0';
         // this.baudRate = 19200;
-        this.port = '/dev/ttyACM0';
-        this.baudRate = 115200;
+        // this.port = '/dev/ttyACM0';
+        // this.baudRate = 115200;
+        this.retryDelay = serial_config.retryDelay;
+        this.port = serial_config.port;
+        this.baudRate = serial_config.baudRate;
     }
 
     // setup(path, app){
     setup() {
         console.group('serial setup');
+
+        console.log('retryDelay', this.retryDelay);
+        console.log('port', this.port);
+        console.log('baudRate', this.baudRate);
+
         console.log('create message');
         this.saveItem('message', '');
         console.log('create connected');
