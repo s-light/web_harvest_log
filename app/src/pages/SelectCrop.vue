@@ -6,6 +6,7 @@
         <section class="row no-wrap fit">
             <btn-toggle-grid
                 style="flex:column"
+                class="justify-start"
                 vertical
                 v-model="cropFilterSelected"
                 :options="cropFilter"
@@ -14,11 +15,11 @@
                 rounded
                 stack
                 :size="btnSize/2 + 'mm'"
-                fontSize="2em"
-                :space="btnSpace/2 + 'mm'"
+                fontSize="1.2em"
+                :space="0 + 'mm'"
             />
             <btn-toggle-grid
-                class="col-grow"
+                class="col-grow justify-around"
                 style="flex-shrink:1;"
                 v-model="cropSelected"
                 :options="crop"
@@ -27,7 +28,7 @@
                 rounded
                 stack
                 :size="btnSize + 'mm'"
-                fontSize="2em"
+                fontSize="1.7em"
                 :space="btnSpace + 'mm'"
                 @click="next"
             />

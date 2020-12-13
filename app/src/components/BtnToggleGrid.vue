@@ -58,7 +58,7 @@ export default {
                 { column: this.vertical },
                 { row: !this.vertical },
                 'wrap',
-                'justify-around',
+                // 'justify-around',
                 'content-start',
                 'items-center'
             ]
