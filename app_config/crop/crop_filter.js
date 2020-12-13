@@ -19,7 +19,7 @@ module.exports = [
                 _$in: [ 'leaf' ]
             }
         },
-        image: 'images/313740_leafy-green-vegetable_mod.svg',
+        image: 'images_dev/313740_leafy-green-vegetable_mod.svg',
         description: ''
     },
     {
@@ -30,7 +30,7 @@ module.exports = [
                 _$in: [ 'cabbage' ]
             }
         },
-        image: 'images/232225_green_cabbage.svg',
+        image: 'images_dev/232225_green_cabbage.svg',
         description: ''
     },
     {
@@ -41,7 +41,7 @@ module.exports = [
                 _$in: [ 'onion' ]
             }
         },
-        image: 'images/314628_red_onion.svg',
+        image: 'images_dev/314628_red_onion.svg',
         description: ''
     },
     {
@@ -52,7 +52,7 @@ module.exports = [
                 _$in: [ 'fruit' ]
             }
         },
-        image: 'images/213975_tomato-coloured.svg',
+        image: 'images_dev/fruit/213975_tomato-coloured.svg',
         description: ''
     },
     {
@@ -63,7 +63,7 @@ module.exports = [
                 _$in: [ 'root' ]
             }
         },
-        image: 'images/215799_carrot-coloured.svg',
+        image: 'images_dev/215799_carrot-coloured.svg',
         description: ''
     },
     {
@@ -74,7 +74,7 @@ module.exports = [
                 _$in: [ 'herb' ]
             }
         },
-        image: 'images/241191_Sage_Lores.svg',
+        image: 'images_dev/241191_Sage_Lores.svg',
         description: ''
     },
     {
@@ -85,7 +85,7 @@ module.exports = [
                 _$in: [ 'flower' ]
             }
         },
-        image: 'images/214593_Paisley_Flower-02.svg',
+        image: 'images_dev/214593_Paisley_Flower-02.svg',
         description: ''
     },
 ]
