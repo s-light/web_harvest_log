@@ -1,10 +1,13 @@
 export default function () {
     return {
         btnSize: 30,
-        btnSpace: 0,
+        btnSpace: 3,
         cropSelected: {},
         cropFilterSelected: {},
         crateSelected: {},
-        placeSelected: {}
+        placeSelected: {},
+        totalWeight: '0',
+        scaleStable: false,
+        scaleUnit: 'kg'
     }
 }

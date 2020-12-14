@@ -1,49 +1,43 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
-        <debugSection label="crateSelected" :obj="crateSelected"/>
-        <debugSection label="cropSelected" :obj="cropSelected"/>
-        <debugSection label="placeSelected" :obj="placeSelected"/>
-        <section
-            class="q-ma-md q-pa-sm"
-        >
-            <h1>{{ current_weight }}</h1>
+        <section>
+            <h2>{{ currentWeight }}</h2>
         </section>
-
         <section
             class="q-mt-md"
             style="min-width: 50vw"
         >
             <q-input
                 filled
-                label="Send Message"
-                v-model="messagaeToSend"
-                @keyup.enter="messageSend()"
+                label="Total Weight"
+                v-model="totalWeight"
+                @keyup.enter="save()"
             >
                 <template #append>
-                    <q-icon
-                        :style="{opacity: (messagaeToSend !== '' ? 'inherit' : '0.1')}"
-                        name="close"
-                        @click="messagaeToSend = ''"
-                        class="cursor-pointer"
-                    />
-                </template>
-                <template #after>
-                    <q-btn
-                        round
-                        v-ripple
-                        dense
-                        flat
-                        icon="send"
-                        @click="messageSend()"
-                    />
+                    {{ scaleUnit }}
                 </template>
             </q-input>
+        </section>
+        <section>
+            <q-btn
+                round
+                v-ripple
+                dense
+                flat
+                icon="send"
+                @click="save()"
+            />
+        </section>
+        <section style="font-size:0.8em;">
+            <debugSection label="crateSelected" :obj="crateSelected"/>
+            <debugSection label="cropSelected" :obj="cropSelected"/>
+            <debugSection label="placeSelected" :obj="placeSelected"/>
         </section>
     </q-page>
 </template>
 
 <script>
-import { makeFindMixin } from 'feathers-vuex'
+// import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
 import DebugSection from 'components/debugSection'
 // import BtnToggleGrid from 'components/BtnToggleGrid.vue'
@@ -52,29 +46,53 @@ export default {
     name: 'PageSaveHarvest',
     data () {
         return {
+            // totalWeight: '-'
         }
     },
-    filters: {
+    methods: {
+        save: function () {
+            console.group('save harvest log entry')
+            console.log('crateSelected', this.crateSelected)
+            console.log('cropSelected', this.cropSelected)
+            console.log('placeSelected', this.placeSelected)
+            console.log('totalWeight', this.totalWeight)
+            console.log('scaleStable', this.scaleStable)
+            console.log('scaleUnit', this.scaleUnit)
+            console.groupEnd()
+        }
     },
     computed: {
+        currentWeight: function () {
+            let result = this.totalWeight
+            if (
+                !isNaN(result) &&
+                this.crateSelected &&
+                this.crateSelected.tareWeight
+            ) {
+                result -= this.crateSelected.tareWeight
+            }
+            return result
+        },
         ...mapBind('localconfig', [
             'btnSize',
             'btnSpace',
-            'crateSelected'
-        ]),
-        btnSizeUnit () {
-            return this.btnSize + 'mm'
-        },
-        btnSpaceUnit () {
-            return this.btnSpace + 'mm'
-        },
-        crateParams () {
-            return { query: {} }
-        }
+            'crateSelected',
+            'cropSelected',
+            'placeSelected',
+            'totalWeight',
+            'scaleStable',
+            'scaleUnit'
+        ])
+        // ]),
+        // crateParams () {
+        //     return { query: {} }
+        // }
     },
     mixins: [
-        makeFindMixin({ service: 'crate' })
+        // makeFindMixin({ service: 'crate' })
     ],
+    filters: {
+    },
     components: {
         // BtnToggleGrid,
         DebugSection

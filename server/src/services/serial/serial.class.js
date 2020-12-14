@@ -2,7 +2,7 @@ const { Service } = require('feathers-memory');
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
 
-const serial_config = require('../../../../app_config/serial.js');
+const { config:serial_config } = require('../../../../app_config/serial.js');
 
 exports.Serial = class Serial extends Service {
     constructor(app, configKey){

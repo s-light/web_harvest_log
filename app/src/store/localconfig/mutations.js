@@ -19,3 +19,12 @@ export function setCrateSelected (state, value) {
 export function setPlaceSelected (state, value) {
     state.placeSelected = value
 }
+export function setTotalWeight (state, value) {
+    state.totalWeight = value
+}
+export function setScaleStable (state, value) {
+    state.scaleStable = value
+}
+export function setScaleUnit (state, value) {
+    state.scaleUnit = value
+}

@@ -31,6 +31,19 @@ const servicePlugin = makeServicePlugin({
     Model: Serial,
     service: feathersClient.service(servicePath),
     servicePath,
+    // https://vuex.feathersjs.com/service-plugin.html#custom-event-handlers
+    handleEvents: {
+        patched: (item, { model, models }) => {
+            // console.log('models', models)
+            // console.log('model.store.state', model.store.state)
+            if (item.id === 'message' && model.store) {
+                // console.log('model', model)
+                // console.log('item', item)
+                // model.handleMessage(model.store, item.value)
+            }
+            return true
+        }
+    },
     debug: true
 })
 
