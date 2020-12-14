@@ -6,6 +6,10 @@
 `app/`
 ```
 quasar dev
+```
+
+build for release:
+```
 quasar build
 ```
 

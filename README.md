@@ -36,6 +36,7 @@ then have a look at the file and the sub folders to change to your needs.
 - this fills / adds to the database
 - happy harvesting ;-)
 
+for development and testing have a look at [setup.md](setup.md)
 
 ## ToDo
 - ToDo: extend Usage information!!
