@@ -46,6 +46,12 @@
                 icon="mdi-database-export"
                 @click="serverImport('crate')"
             /> -->
+            <q-btn
+                v-ripple
+                label="remove database files"
+                icon="mdi-database-export"
+                @click="removeAll()"
+            /><br>
         </section>
         <settingsSerial />
         <!-- <section>
@@ -106,6 +112,11 @@ export default {
             this.serverImport('crop')
             this.serverImport('crop-filter')
         },
+        removeAll: function () {
+            this.removeDBFile('crate')
+            this.removeDBFile('crop')
+            this.removeDBFile('crop-filter')
+        },
         serverExportToCSV: function (servicePath, timeframe) {
             console.group('serverExportToCSV')
             this.$q.notify({
@@ -151,6 +162,31 @@ export default {
                     this.$q.notify({
                         color: 'negative',
                         message: `${servicePath} loading failed.`,
+                        icon: 'report_problem'
+                    })
+                })
+            console.groupEnd()
+        },
+        removeDBFile: function (servicePath) {
+            console.group('removeDBFile')
+            this.$q.notify({
+                color: 'info',
+                message: `remove ${servicePath} db from server. Processing now.`,
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.removeDBFile(servicePath)
+                .then(response => {
+                    console.log('removeDBFile: ', response)
+                    this.$q.notify({
+                        color: 'positive',
+                        message: `${servicePath} done.`,
+                        icon: 'info'
+                    })
+                }).catch(error => {
+                    console.error('removeDBFile:', error)
+                    this.$q.notify({
+                        color: 'negative',
+                        message: `${servicePath} removing failed.`,
                         icon: 'report_problem'
                     })
                 })

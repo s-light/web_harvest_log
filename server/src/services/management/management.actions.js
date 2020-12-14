@@ -7,6 +7,7 @@ module.exports.actions = {
     'update-serial-device-list': updateSerialDeviceList,
     'export-cvs': exportCSV,
     'import-from-file': importFromFile,
+    'remove-db-file': removeDBFile,
 };
 
 // eslint-disable-next-line no-unused-vars
@@ -69,7 +70,7 @@ async function exportCSV (service, servicePath, params) {
 
 // eslint-disable-next-line no-unused-vars
 async function importFromFile (service, servicePath, params) {
-    console.group('importFromFile');
+    console.group('importFromFile', servicePath);
     // const service = this.app.services[servicePath];
     // console.log('service', service);
     // console.log('servicePath', servicePath);
@@ -81,7 +82,7 @@ async function importFromFile (service, servicePath, params) {
     // console.log('data', data);
     let app_config = {};
     try {
-        app_config = await require('../../../../app_config');
+        app_config = await require('../../../../app_config/index.js');
     } catch (e) {
         if (e.code === 'MODULE_NOT_FOUND') {
             // this means we need to fallback to the dev file
@@ -105,11 +106,12 @@ async function importFromFile (service, servicePath, params) {
                 // console.log(response);
             }).catch((error) => {
                 if (error.errorType == 'uniqueViolated') {
-                    service.patch(entry._id, entry).then((response) => {
-                        console.log(response);
+                    // service.patch(entry._id, entry).then((response) => {
+                    service.patch(entry._id, entry).then(() => {
+                        // console.log(response);
                     }).catch((error) => {
-                        console.error(error); }
-                    );
+                        console.error(error);
+                    });
                 } else {
                     console.error(error);
                 }
@@ -122,5 +124,32 @@ async function importFromFile (service, servicePath, params) {
         };
     }
 
+    console.groupEnd();
+}
+
+// eslint-disable-next-line no-unused-vars
+async function removeDBFile (service, servicePath, params) {
+    console.group('removeDBFile', servicePath);
+    // console.log('service', service);
+    // console.log('servicePath', servicePath);
+    // console.log('params', params);
+
+    // const dbPath = app.get('nedb');
+    const dbPath = 'data';
+    let fileName = path.join(dbPath, servicePath + '.db');
+    fileName = path.resolve(fileName);
+    // console.log('fileName', fileName);
+    fs.unlink(fileName, (err) => {
+        if (err) {
+            console.error(err);
+            console.groupEnd();
+            throw {
+                message: 'removeDBFile: error removing file \'' + fileName + '\' .',
+                error: err
+            };
+        } else {
+            console.log('removeDBFile: file \'' + fileName + '\' removed.');
+        }
+    });
     console.groupEnd();
 }
