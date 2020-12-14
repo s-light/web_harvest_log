@@ -6,15 +6,20 @@
         <section
             class="row no-wrap"
             :style="{
-                overflow:'hidden',
                 maxHeight:'100vh',
             }"
         >
             <btn-toggle-grid
                 :style="{
                     flex:'column',
-                    overflowY:'scroll',
-                    maxHeight:'100vh',
+                    overflowY:'auto',
+                    height:'100vh',
+                    boxShadow:`
+                        0 0 5px -6px hsla(0, 0%, 0%, 1.0),
+                        0 0 10px 2px hsla(0, 0%, 0%, 0.5),
+                        0 0 15px 6px hsla(0, 0%, 0%, 0.5)
+                    `,
+                    'background-color':'hsla(0, 0%, 100%, 0.1)',
                 }"
                 class="justify-start no-wrap col-auto"
                 vertical
@@ -33,7 +38,7 @@
                 :style="{
                     flex:'column',
                     flexShrink:1,
-                    overflowY:'scroll',
+                    overflowY:'auto',
                     maxHeight:'100vh',
                 }"
                 v-model="cropSelected"

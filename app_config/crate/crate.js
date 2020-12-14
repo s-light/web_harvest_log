@@ -18,7 +18,7 @@ module.exports = [
     {
         _id: 'Box_1.5',
         text: 'Box 1.5',
-        tareWeight: 750,
+        tareWeight: 0.750,
         icon: 'mdi-tray-full',
         image: '',
         description: ''
@@ -26,7 +26,7 @@ module.exports = [
     {
         _id: 'Box_2.0',
         text: 'Box 2',
-        tareWeight: 1250,
+        tareWeight: 1.250,
         icon: 'mdi-tray-full',
         image: '',
         description: ''
@@ -34,7 +34,7 @@ module.exports = [
     {
         _id: 'Box_3.5',
         text: 'Box 3.5',
-        tareWeight: 1750,
+        tareWeight: 1.700,
         icon: 'mdi-bag-personal',
         image: '',
         description: ''
@@ -42,7 +42,7 @@ module.exports = [
     {
         _id: 'Box_4.0',
         text: 'Box 4',
-        tareWeight: 2000,
+        tareWeight: 2.000,
         icon: 'mdi-bag-suitcase',
         image: '',
         description: ''
