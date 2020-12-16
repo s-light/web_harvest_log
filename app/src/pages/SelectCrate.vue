@@ -29,7 +29,9 @@ export default {
     },
     methods: {
         next: function () {
-            this.$router.push('select_crop')
+            setTimeout(() => {
+                this.$router.push('select_crop')
+            }, 100)
         }
     },
     filters: {

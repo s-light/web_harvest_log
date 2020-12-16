@@ -55,7 +55,7 @@
                 :size="btnSize + 'mm'"
                 fontSize="1.5em"
                 :space="btnSpace + 'mm'"
-                @click="next"
+                @click="handleCropSelect"
             />
         </section>
 </q-page>
@@ -86,11 +86,19 @@ export default {
     filters: {
     },
     methods: {
-        next: function () {
-            if (this.cropSelected && this.cropSelected.placesCount() > 1) {
-                this.$router.push('select_place')
-            } else {
-                this.$router.push('save_harvest')
+        handleCropSelect: function () {
+            if (this.cropSelected) {
+                // update lastUsed timestamp
+                this.cropSelected.patch()
+                // give a short delay so the selection of the button is visible
+                setTimeout(() => {
+                    // handle routing
+                    if (this.cropSelected.placesCount() > 1) {
+                        this.$router.push('select_place')
+                    } else {
+                        this.$router.push('save_harvest')
+                    }
+                }, 100)
             }
         }
     },

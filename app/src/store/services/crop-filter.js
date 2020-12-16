@@ -27,27 +27,27 @@ class CropFilter extends BaseModel {
     }
 
     static fixFieldNames (objIn) {
-        console.group('fixFieldNames')
+        // console.group('fixFieldNames')
         const objResult = {}
         // console.log(`fixFieldNames objIn: '${objIn}' objResult: '${objResult}'`)
-        console.log('objIn', objIn)
+        // console.log('objIn', objIn)
         // recusive!
         for (const [key, value] of Object.entries(objIn)) {
-            console.log('for loop -----')
-            console.log('key', key)
-            console.log('value', value)
+            // console.log('for loop -----')
+            // console.log('key', key)
+            // console.log('value', value)
             const keyFixed = key.replace('_$', '$')
-            console.log('keyFixed', keyFixed)
+            // console.log('keyFixed', keyFixed)
             if (!Array.isArray(value) && typeof value === 'object') {
-                console.log('is object and not array - so recusive call:')
+                // console.log('is object and not array - so recusive call:')
                 objResult[keyFixed] = this.fixFieldNames(value)
             } else {
-                console.log('normal value - just add it to the result')
+                // console.log('normal value - just add it to the result')
                 objResult[keyFixed] = value
             }
         }
-        console.log('objResult', objResult)
-        console.groupEnd()
+        // console.log('objResult', objResult)
+        // console.groupEnd()
         return objResult
     }
 

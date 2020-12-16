@@ -22,6 +22,9 @@
         </q-drawer>
         <q-page-container>
             <router-view />
+            <!-- <transition name="fade" :duration="5000">
+                <router-view />
+            </transition> -->
         </q-page-container>
     </q-layout>
 </template>

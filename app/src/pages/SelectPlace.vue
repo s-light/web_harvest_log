@@ -33,7 +33,9 @@ export default {
     },
     methods: {
         next: function () {
-            this.$router.push('save_harvest')
+            setTimeout(() => {
+                this.$router.push('save_harvest')
+            }, 100)
         }
     },
     filters: {
@@ -54,9 +56,9 @@ export default {
         place () {
             let result = []
             const crop = this.cropSelected
-            console.log('crop', crop)
+            // console.log('crop', crop)
             if (crop && crop.places) {
-                console.log('crop.places', crop.places)
+                // console.log('crop.places', crop.places)
                 result = crop.placesList()
             }
             return result
