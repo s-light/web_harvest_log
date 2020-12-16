@@ -7,14 +7,14 @@ https://quasar.dev/options/app-internationalization#Create-language-switcher
 -->
 <template>
     <q-select
-        v-model="lang"
-        :options="langOptions"
+        rounded
+        outlined
+        class="q-mr-md"
         label="Quasar Language"
-        dense
+        v-model="lang"
         emit-value
+        :options="langOptions"
         map-options
-        options-dense
-        style="min-width: 150px"
     />
 </template>
 

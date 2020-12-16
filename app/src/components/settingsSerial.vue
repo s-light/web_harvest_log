@@ -7,7 +7,6 @@
                 rounded
                 outlined
                 class="q-mr-md"
-                style="min-width:12em; background: transparent"
                 label="Device"
                 v-model="deviceSelected"
                 :option-label="(item) => item.comName"

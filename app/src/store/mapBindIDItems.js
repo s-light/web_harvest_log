@@ -125,12 +125,12 @@ export const mapBindIDItems = function (servicePath, entryNames) {
             //     console.log('mapBindIDItems: create - ' + error.message, error)
             // })
             gcItem.create().catch((error) => {
-                console.log('mapBindIDItems: create - ', error.type, error.message)
+                console.error('mapBindIDItems: create - ', error.type, error.message)
                 // console.log('gcItem', gcItem)
                 // console.log('ModelClass', ModelClass)
                 // console.log('ModelClass.store.commit', ModelClass.store.commit)
                 // console.log(`ModelClass.store.commit '${ModelClass.store.commit}'`)
-                console.log('manually commit mutation *addItem*')
+                console.log('→ manually commit mutation *addItem*')
                 ModelClass.store.commit(servicePath + '/addItem', data)
             })
         }

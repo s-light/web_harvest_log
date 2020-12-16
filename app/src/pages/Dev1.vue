@@ -8,18 +8,34 @@
                 label="load from server"
                 icon="sync"
                 @click="globalConfigLoadFromServer()"
-            />
+            /><br>
             <q-btn
                 v-ripple
                 label="export harvest to csv on server"
                 icon="mdi-database-export"
                 @click="serverExportToCSVHarvest()"
-            />
+            /><br>
+            <q-btn
+                v-ripple
+                label="start Scale Demo Generator "
+                icon="mdi-clock-start"
+                @click="startScaleDemo()"
+            /><br>
+            <q-btn
+                v-ripple
+                label="start Scale Demo Generator "
+                icon="mdi-clock-end"
+                @click="stopScaleDemo()"
+            /><br>
         </section>
+        <debugSection label="totalWeight" :obj="totalWeight"/>
+        <debugSection label="scaleStable" :obj="scaleStable"/>
+        <debugSection label="scaleUnit" :obj="scaleUnit"/>
     </q-page>
 </template>
 
 <script>
+import { mapBind } from '../store/mapBind.js'
 import DebugSection from 'components/debugSection'
 // import {
 //     // mapState,
@@ -49,7 +65,17 @@ export default {
         },
         cropParams () {
             return { query: {} }
-        }
+        },
+        ...mapBind('localconfig', [
+            // 'btnSize',
+            // 'btnSpace',
+            // 'crateSelected',
+            // 'cropSelected',
+            // 'placeSelected',
+            'totalWeight',
+            'scaleStable',
+            'scaleUnit'
+        ])
     },
     methods: {
         globalConfigLoadFromServer: function () {
@@ -101,6 +127,40 @@ export default {
                     console.error('err', err)
                 })
             console.groupEnd()
+        },
+        startScaleDemo: function () {
+            this.$store.dispatch('localconfig/startScaleDemo').then(response => {
+                console.log('startScaleDemo: ', response)
+                this.$q.notify({
+                    color: 'positive',
+                    message: 'startScaleDemo done.',
+                    icon: 'info'
+                })
+            }).catch(error => {
+                console.error('startScaleDemo:', error)
+                this.$q.notify({
+                    color: 'negative',
+                    message: 'startScaleDemo failed.',
+                    icon: 'report_problem'
+                })
+            })
+        },
+        stopScaleDemo: function () {
+            this.$store.dispatch('localconfig/stopScaleDemo').then(response => {
+                console.log('stopScaleDemo: ', response)
+                this.$q.notify({
+                    color: 'positive',
+                    message: 'stopScaleDemo done.',
+                    icon: 'info'
+                })
+            }).catch(error => {
+                console.error('stopScaleDemo:', error)
+                this.$q.notify({
+                    color: 'negative',
+                    message: 'stopScaleDemo failed.',
+                    icon: 'report_problem'
+                })
+            })
         }
     },
     // created () {
