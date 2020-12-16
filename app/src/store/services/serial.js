@@ -4,13 +4,8 @@ import feathersClient, {
     BaseModel
 } from '../../feathers-client'
 
-<<<<<<< HEAD
 import { ScaleDemoGenerator } from '../scale_demo'
 // import ScaleDemoGenerator from '../scale_demo'
-=======
-// import { ScaleDemoGenerator } from './scale_demo'
-// import ScaleDemoGenerator from './scale_demo'
->>>>>>> a7166626f9b6020899700588fb1f9e2994be033c
 
 // import { store } from '../index'
 
@@ -117,7 +112,6 @@ const servicePlugin = makeServicePlugin({
                 // console.log('item', item)
                 // console.log('store', store)
                 console.log('this', this)
-<<<<<<< HEAD
                 if (item.value) {
                     // serial is connected
                     this.demoHandler.stop()
@@ -130,20 +124,6 @@ const servicePlugin = makeServicePlugin({
                     this.demoHandler.start()
                     model.store.commit('localconfig/setScaleUnit', 'kg')
                 }
-=======
-                // if (item.value) {
-                //     // serial is connected
-                //     this.demoHandler.stop()
-                // } else {
-                //     // serial disconnected
-                //     // start demo
-                //     if (!this.demoHandler) {
-                //         // this.demoHandler = new ScaleDemoGenerator(model.store)
-                //     }
-                //     this.demoHandler.start()
-                //     model.store.commit('localconfig/setScaleUnit', 'kg')
-                // }
->>>>>>> a7166626f9b6020899700588fb1f9e2994be033c
             }
             return true
         }
