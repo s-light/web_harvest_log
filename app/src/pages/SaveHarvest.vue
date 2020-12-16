@@ -1,16 +1,14 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
-        <section>
-            <h2>{{ currentWeight }}</h2>
-        </section>
         <section
             class="q-mt-md"
             style="min-width: 50vw"
         >
             <q-input
                 filled
-                label="Total Weight"
-                v-model="totalWeight"
+                label="Weight"
+                hint="Mask: #.##"
+                v-model="currentWeight"
                 @keyup.enter="save()"
             >
                 <template #append>

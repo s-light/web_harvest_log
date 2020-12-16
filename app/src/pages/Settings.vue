@@ -1,6 +1,15 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
-        <h1>Global Settings</h1>
+        <h1>{{ $t('global') }} {{ $t('settings') }}</h1>
+        <!--
+        how to use quasar-language-pack build ins in own components:
+        {{ $q.lang.label.close }}
+        https://github.com/quasarframework/quasar/blob/dev/ui/lang/de.js
+
+        App Internationalization (I18n) How To Use:
+        {{ $t('mykey1') }}
+        https://quasar.dev/options/app-internationalization#How-to-use
+        -->
         <section>
             <q-btn
                 round
@@ -53,6 +62,9 @@
                 @click="removeAll()"
             /><br>
         </section>
+        <section>
+            <langSelect />
+        </section>
         <settingsSerial />
         <!-- <section>
             <q-input
@@ -92,7 +104,18 @@ import {
 } from 'feathers-vuex'
 // import { mapBindIDItems } from '../store/mapBindIDItems.js'
 import debugSection from 'components/debugSection'
+import langSelect from 'components/langSelect'
 import settingsSerial from 'components/settingsSerial'
+
+// Detecting Locale
+// https://quasar.dev/options/quasar-language-packs#Detecting-Locale
+// https://quasar.dev/options/app-internationalization#Detecting-Locale
+// get browser lang:
+// this.$q.lang.getLocale()
+// get selected lang
+// this.$q.lang.isoName
+// or
+// this.$i18n.locale
 
 export default {
     data () {
@@ -201,6 +224,7 @@ export default {
     ],
     components: {
         debugSection,
+        langSelect,
         settingsSerial
     },
     name: 'PageSettings'

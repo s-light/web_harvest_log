@@ -25,6 +25,7 @@ module.exports = function (/* ctx */) {
             'axios',
             'vuex',
             'i18n',
+            // 'quasar-lang-pack',
             'VueCompositionApi'
         ],
 
@@ -77,6 +78,16 @@ module.exports = function (/* ctx */) {
                     test: /\.(js|vue)$/,
                     loader: 'eslint-loader',
                     exclude: /node_modules/
+                })
+
+                // https://quasar.dev/options/app-internationalization#Setting-up-Translation-Blocks-in-your-SFCs
+                cfg.module.rules.push({
+                    resourceQuery: /blockType=i18n/,
+                    type: 'javascript/auto',
+                    use: [
+                        { loader: '@kazupon/vue-i18n-loader' },
+                        { loader: 'yaml-loader' }
+                    ]
                 })
             }
         },
