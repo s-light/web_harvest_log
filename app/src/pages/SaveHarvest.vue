@@ -1,15 +1,17 @@
 <template>
     <q-page class="fit column no-wrap justify-center items-center content-center">
-        <section
-            class="q-mt-md"
-            style="min-width: 50vw"
-        >
+        <section class="q-mt-md">
+            <div id="weight_display" class="">
+                total weight: {{ totalWeight | formatWeight }} {{ scaleUnit }}
+                {{ currentWeight | formatWeight }} {{ scaleUnit }}
+            </div>
             <q-input
                 filled
                 label="Weight"
                 hint="Mask: #.##"
                 v-model="currentWeight"
                 @keyup.enter="save()"
+                size="2em"
             >
                 <template #append>
                     {{ scaleUnit }}
@@ -18,13 +20,24 @@
         </section>
         <section>
             <q-btn
-                round
                 v-ripple
-                dense
-                flat
-                icon="send"
+                :label="$t('save')"
+                icon="mdi-database-plus"
+                size="30mm"
+                stack
+                :disable="scaleStable"
                 @click="save()"
             />
+            <!-- icons:
+            send
+            mdi-content-save
+            mdi-content-save-move
+            mdi-database-check
+            mdi-database-plus
+            mdi-database-arrow-down
+            mdi-check-bold
+            -->
+
         </section>
         <section style="font-size:0.8em;">
             <debugSection label="crateSelected" :obj="crateSelected"/>
@@ -68,6 +81,7 @@ export default {
                 this.crateSelected.tareWeight
             ) {
                 result -= this.crateSelected.tareWeight
+                result = result.toFixed(2)
             }
             return result
         },
@@ -80,16 +94,37 @@ export default {
             'totalWeight',
             'scaleStable',
             'scaleUnit'
-        ])
+        ]),
         // ]),
         // crateParams () {
         //     return { query: {} }
         // }
+        lang: function () {
+            // return this.$i18n.locale
+            return this.$q.lang.isoName
+        }
     },
     mixins: [
         // makeFindMixin({ service: 'crate' })
     ],
     filters: {
+        formatWeight (value) {
+            return value.toLocaleString(
+                'de',
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )
+            // const weight = value.toLocaleString(
+            //     'de',
+            //     {
+            //         minimumFractionDigits: 2,
+            //         maximumFractionDigits: 2
+            //     }
+            // )
+            // return `${weight} ${this.scaleUnit}`
+        }
     },
     components: {
         // BtnToggleGrid,
@@ -97,3 +132,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+/* #weight_display {
+    background-color:
+} */
+</style>

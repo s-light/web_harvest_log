@@ -5,6 +5,7 @@ export default {
     failed: 'Action failed',
     success: 'Action was successful',
     global: 'Global',
+    save: 'Save',
     setting: 'Setting',
     settings: 'Settings'
 }
