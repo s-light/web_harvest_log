@@ -89,13 +89,27 @@ export default {
         handleCropSelect: function () {
             if (this.cropSelected) {
                 // update lastUsed timestamp
+                // const data = {
+                //     lastUsed: new Date()
+                // }
+                // this.cropSelected.patch(data)
                 this.cropSelected.patch()
                 // give a short delay so the selection of the button is visible
                 setTimeout(() => {
                     // handle routing
                     if (this.cropSelected.placesCount() > 1) {
+                        // console.log('select_place')
+                        this.placeSelected = {}
                         this.$router.push('select_place')
                     } else {
+                        const crop = this.cropSelected
+                        // console.log('crop.placesList', crop.placesList())
+                        // console.log('crop.placesList[0]', crop.placesList()[0])
+                        if (crop.placesList()[0]) {
+                            this.placeSelected = crop.placesList()[0]
+                        } else {
+                            this.placeSelected = {}
+                        }
                         this.$router.push('save_harvest')
                     }
                 }, 200)
@@ -107,7 +121,8 @@ export default {
             'btnSize',
             'btnSpace',
             'cropSelected',
-            'cropFilterSelected'
+            'cropFilterSelected',
+            'placeSelected'
         ]),
         cropParams () {
             // default query = list all

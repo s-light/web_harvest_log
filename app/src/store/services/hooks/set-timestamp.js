@@ -5,9 +5,9 @@
 export default name => {
     return async context => {
         // https://docs.feathersjs.com/guides/basics/hooks.html#hook-functions
-        if (!context.data[name]) {
-            context.data[name] = new Date()
-        }
+        context.data[name] = new Date()
+        // if (!context.data[name]) {
+        // }
         return context
     }
 }

@@ -30,10 +30,8 @@ class Crop extends BaseModel {
         if (this.places) {
             let places = []
             if (typeof this.places === 'number') {
-                if (this.places > 1) {
-                    for (let i = 1; i <= this.places; i++) {
-                        places.push(i)
-                    }
+                for (let i = 1; i <= this.places; i++) {
+                    places.push(i)
                 }
             } else if (Array.isArray(this.places)) {
                 places = this.places
@@ -75,8 +73,8 @@ feathersClient.service(servicePath).hooks({
         all: [],
         find: [],
         get: [],
-        create: [],
-        update: [],
+        create: [setTimestamp('lastUsed')],
+        update: [setTimestamp('lastUsed')],
         patch: [setTimestamp('lastUsed')],
         remove: []
     },

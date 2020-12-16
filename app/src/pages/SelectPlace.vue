@@ -47,19 +47,14 @@ export default {
             'cropSelected',
             'placeSelected'
         ]),
-        btnSizeUnit () {
-            return this.btnSize + 'mm'
-        },
-        btnSpaceUnit () {
-            return this.btnSpace + 'mm'
-        },
         place () {
             let result = []
             const crop = this.cropSelected
-            // console.log('crop', crop)
+            console.log('crop', crop)
             if (crop && crop.places) {
-                // console.log('crop.places', crop.places)
+                console.log('crop.places', crop.places)
                 result = crop.placesList()
+                console.log('result', result)
             }
             return result
         }

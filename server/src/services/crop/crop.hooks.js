@@ -6,8 +6,8 @@ module.exports = {
         all: [],
         find: [],
         get: [],
-        create: [],
-        update: [],
+        create: [setTimestamp('lastUsed')],
+        update: [setTimestamp('lastUsed')],
         patch: [setTimestamp('lastUsed')],
         remove: []
     },

@@ -67,11 +67,13 @@ export default {
     props: {
         value: {
             type: Object,
-            required: false
+            required: false,
+            default: () => { return undefined }
         },
         options: {
             type: Array,
-            required: true
+            required: false,
+            default: () => { return [] }
         },
         // key: {
         //     this does not work :-(
