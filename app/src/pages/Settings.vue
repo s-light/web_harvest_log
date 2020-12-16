@@ -61,6 +61,12 @@
                 icon="mdi-database-export"
                 @click="removeAll()"
             /><br>
+            <q-btn
+                v-ripple
+                label="start Scale Demo Generator "
+                icon="mdi-database-export"
+                @click="startScaleDemo()"
+            /><br>
         </section>
         <section>
             <langSelect />
@@ -214,6 +220,29 @@ export default {
                     })
                 })
             console.groupEnd()
+        },
+        startScaleDemo: function () {
+            // this.$FeathersVuex.api.Serial
+            // if (!model.demoHandler) {
+            //     model.demoHandler = new ScaleDemoGenerator(model.store)
+            // }
+            // model.demoHandler.start()
+            // model.store.commit('localconfig/setScaleUnit', 'kg')
+            this.$store.dispatch('localconfig/startScaleDemo').then(response => {
+                console.log('startScaleDemo: ', response)
+                this.$q.notify({
+                    color: 'positive',
+                    message: 'startScaleDemo done.',
+                    icon: 'info'
+                })
+            }).catch(error => {
+                console.error('startScaleDemo:', error)
+                this.$q.notify({
+                    color: 'negative',
+                    message: 'startScaleDemo failed.',
+                    icon: 'report_problem'
+                })
+            })
         }
     },
     created: function () {

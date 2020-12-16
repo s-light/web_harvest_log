@@ -17,17 +17,20 @@ import {
     // useFind,
     useGet
 } from 'feathers-vuex'
-import { models } from '../feathers-client'
+import {
+// import feathersClient, {
+    models
+} from '../feathers-client'
 
-function capitalizeFirstLetter (string) {
+export function capitalizeFirstLetter (string) {
     // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
     return string.charAt(0).toUpperCase() + string.slice(1)
 }
-function decapitalizeFirstLetter (string) {
+export function decapitalizeFirstLetter (string) {
     return string.charAt(0).toLowerCase() + string.slice(1)
 }
 
-function servicePath2modelClassName (servicePath) {
+export function servicePath2modelClassName (servicePath) {
     let modelParts = servicePath.split('-')
     modelParts = modelParts.map(item => { return capitalizeFirstLetter(item) })
     // console.log('modelParts', modelParts)
@@ -95,7 +98,8 @@ export const mapBindIDItems = function (servicePath, entryNames) {
             reactiveBase.gcList[item.id] = item
         }
     }).catch((error) => {
-        console.error(error.message, error)
+        // console.error(error.message, error)
+        console.error(error.type, error.message)
     })
 
     // ------------------------------------------
@@ -111,13 +115,23 @@ export const mapBindIDItems = function (servicePath, entryNames) {
         // check if item exists
         if (!gcItem) {
             // create new item
-            gcItem = new ModelClass({
+            const data = {
                 id: entryName,
                 _id: entryName,
                 value: null
-            })
+            }
+            gcItem = new ModelClass(data)
+            // gcItem.create().catch((error) => {
+            //     console.log('mapBindIDItems: create - ' + error.message, error)
+            // })
             gcItem.create().catch((error) => {
-                console.error('mapBindIDItems: create - ' + error.message, error)
+                console.log('mapBindIDItems: create - ', error.type, error.message)
+                // console.log('gcItem', gcItem)
+                // console.log('ModelClass', ModelClass)
+                // console.log('ModelClass.store.commit', ModelClass.store.commit)
+                // console.log(`ModelClass.store.commit '${ModelClass.store.commit}'`)
+                console.log('manually commit mutation *addItem*')
+                ModelClass.store.commit(servicePath + '/addItem', data)
             })
         }
         const gcItemClone = gcItem.clone()

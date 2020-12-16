@@ -4,7 +4,7 @@ import feathersClient, {
     BaseModel
 } from '../../feathers-client'
 
-import { ScaleDemoGenerator } from '../scale_demo'
+// import { ScaleDemoGenerator } from '../scale_demo'
 
 // import { store } from '../index'
 
@@ -84,6 +84,7 @@ class Serial extends BaseModel {
     //     return super.update(id, data, params)
     // }
 }
+
 const servicePath = 'serial'
 const servicePlugin = makeServicePlugin({
     Model: Serial,
@@ -107,26 +108,47 @@ const servicePlugin = makeServicePlugin({
                     model.store.commit('localconfig/setScaleUnit', result.scaleUnit)
                 }
             } else if (item.id === 'connected' && model.store) {
-                // console.log('model', model)
+                console.log('model', model)
                 // console.log('item', item)
                 // console.log('store', store)
                 console.log('this', this)
+                console.log('item.value', item.value)
                 if (item.value) {
-                    // serial is connected
-                    this.demoHandler.stop()
+                    console.log('connected!')
                 } else {
-                    // serial disconnected
-                    // start demo
-                    if (!this.demoHandler) {
-                        this.demoHandler = new ScaleDemoGenerator(model.store)
-                    }
-                    this.demoHandler.start()
-                    model.store.commit('localconfig/setScaleUnit', 'kg')
+                    console.log('disconnected!')
+                    this.$store.dispatch('localconfig/startScaleDemo').then(response => {
+                        console.log('startScaleDemo: ', response)
+                        this.$q.notify({
+                            color: 'positive',
+                            message: 'startScaleDemo done.',
+                            icon: 'info'
+                        })
+                    }).catch(error => {
+                        console.error('startScaleDemo:', error)
+                        this.$q.notify({
+                            color: 'negative',
+                            message: 'startScaleDemo failed.',
+                            icon: 'report_problem'
+                        })
+                    })
                 }
             }
             return true
         }
     },
+    // extend ({ store, module }) {
+    //     // Listen to other parts of the store
+    //     // store.watch(/* truncated */)
+    //     console.log('store', store)
+    //     console.log('module', module)
+    //     return {
+    //         state: {},
+    //         getters: {},
+    //         mutations: {},
+    //         actions: {}
+    //     }
+    // },
     debug: true
 })
 

@@ -1,3 +1,5 @@
+// import { ScaleDemoGenerator } from '../scale_demo'
+
 export default function () {
     return {
         btnSize: 30,
@@ -9,5 +11,6 @@ export default function () {
         totalWeight: '0',
         scaleStable: false,
         scaleUnit: 'kg'
+        // scaleDemoHandler: new ScaleDemoGenerator()
     }
 }
