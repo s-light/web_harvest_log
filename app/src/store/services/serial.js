@@ -5,7 +5,6 @@ import feathersClient, {
 } from '../../feathers-client'
 
 import { ScaleDemoGenerator } from '../scale_demo'
-// import ScaleDemoGenerator from '../scale_demo'
 
 // import { store } from '../index'
 
