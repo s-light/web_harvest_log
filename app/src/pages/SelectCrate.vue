@@ -31,7 +31,7 @@ export default {
         next: function () {
             setTimeout(() => {
                 this.$router.push('select_crop')
-            }, 100)
+            }, 200)
         }
     },
     filters: {

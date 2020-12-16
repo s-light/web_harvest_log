@@ -35,7 +35,7 @@ export default {
         next: function () {
             setTimeout(() => {
                 this.$router.push('save_harvest')
-            }, 100)
+            }, 200)
         }
     },
     filters: {

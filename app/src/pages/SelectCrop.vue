@@ -98,7 +98,7 @@ export default {
                     } else {
                         this.$router.push('save_harvest')
                     }
-                }, 100)
+                }, 200)
             }
         }
     },
