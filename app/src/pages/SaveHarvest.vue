@@ -2,9 +2,10 @@
     <q-page class="fit column no-wrap justify-center items-center content-center">
         <section class="q-mt-md">
             <div id="weight_display" class="">
-                total weight: {{ totalWeight | formatWeight }} {{ scaleUnit }}
-                {{ currentWeight | formatWeight }} {{ scaleUnit }}
+                total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
+                {{ currentWeight | formatWeight(lang) }} {{ scaleUnit }}
             </div>
+            '{{ lang }}'
             <q-input
                 filled
                 label="Weight"
@@ -108,22 +109,19 @@ export default {
         // makeFindMixin({ service: 'crate' })
     ],
     filters: {
-        formatWeight (value) {
-            return value.toLocaleString(
-                'de',
+        formatWeight (value, lang = 'de') {
+            console.log('value', value)
+            console.log('lang', lang)
+            // return value.toLocaleString(
+            const result = value.toLocaleString(
+                lang,
                 {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 }
             )
-            // const weight = value.toLocaleString(
-            //     'de',
-            //     {
-            //         minimumFractionDigits: 2,
-            //         maximumFractionDigits: 2
-            //     }
-            // )
-            // return `${weight} ${this.scaleUnit}`
+            console.log('result', result)
+            return result
         }
     },
     components: {
