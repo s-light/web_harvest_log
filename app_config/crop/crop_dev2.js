@@ -3,7 +3,7 @@ module.exports = [
         _id: 'dev_Tomato',
         text: 'Tomato',
         image: 'images_dev/fruit/213975_tomato-coloured.svg',
-        places: 0,
+        places: 2,
         fill_check: {
             Box_35: {
                 min: 100,
@@ -27,6 +27,14 @@ module.exports = [
         image: 'images_dev/fruit/213975_tomato-coloured.svg',
         places: 3,
         tags: ['fruit', 'red'],
+        description: ''
+    },
+    {
+        _id: 'dev_TomatoCocktail_special',
+        text: 'Tomato special Cocktail colored mix',
+        image: 'images_dev/fruit/213975_tomato-coloured.svg',
+        places: 3,
+        tags: ['fruit', 'rainbow'],
         description: ''
     },
     {

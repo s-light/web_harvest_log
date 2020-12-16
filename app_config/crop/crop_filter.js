@@ -1,9 +1,21 @@
 module.exports = [
     {
-        _id: '0_recent',
-        text: 'recently used',
+        _id: '0_all',
+        text: 'all',
         query: {
-            _$limit: 3,
+            _$sort: {
+                _id: 1
+            }
+        },
+        // icon: 'mdi-database-search-outline',
+        icon: 'mdi-star-face',
+        description: ''
+    },
+    {
+        _id: '1_recent',
+        text: 'recent',
+        query: {
+            _$limit: 5,
             _$sort: {
                 lastUsed: -1
             }

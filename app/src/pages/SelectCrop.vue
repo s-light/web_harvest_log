@@ -1,6 +1,5 @@
 <template>
     <q-page class="fit">
-        <!-- <debugSection label="crop_selected" :obj="cropSelected"/> -->
         <!-- <debugSection label="crop" :obj="crop"/> -->
         <!-- <debugSection label="btnSizeUnit" :obj="btnSizeUnit"/> -->
         <section
@@ -9,6 +8,12 @@
                 maxHeight:'100vh',
             }"
         >
+            <!-- <section>
+                <debugSection label="cropFilterSelected" :obj="cropFilterSelected"/>
+                <debugSection label="cropParams" :obj="cropParams"/>
+                <debugSection label="xXcropParams" :obj="xXcropParams"/>
+                <debugSection label="crop" :obj="crop" style="font-size:0.5em"/>
+            </section> -->
             <btn-toggle-grid
                 :style="{
                     flex:'column',
@@ -96,14 +101,20 @@ export default {
             'cropSelected',
             'cropFilterSelected'
         ]),
-        btnSizeUnit () {
-            return this.btnSize + 'mm'
-        },
-        btnSpaceUnit () {
-            return this.btnSpace + 'mm'
-        },
         cropParams () {
-            return { query: this.cropFilterSelected.queryFixed }
+            // default query = list all
+            const result = {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
+            const filter = this.cropFilterSelected
+            if (filter && filter.getQueryFixed) {
+                result.query = filter.getQueryFixed()
+            }
+            return result
         },
         cropFilterParams () {
             return {

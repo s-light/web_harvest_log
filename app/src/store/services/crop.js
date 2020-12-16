@@ -3,6 +3,7 @@ import feathersClient, {
     makeServicePlugin,
     BaseModel
 } from '../../feathers-client'
+import setTimestamp from './hooks/set-timestamp'
 
 class Crop extends BaseModel {
     // constructor(data, options) {
@@ -16,8 +17,8 @@ class Crop extends BaseModel {
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            name: '',
             _id: '',
+            text: '',
             icon: '',
             image: '',
             description: ''
@@ -76,7 +77,7 @@ feathersClient.service(servicePath).hooks({
         get: [],
         create: [],
         update: [],
-        patch: [],
+        patch: [setTimestamp('lastUsed')],
         remove: []
     },
     after: {
