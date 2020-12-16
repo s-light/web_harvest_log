@@ -4,6 +4,9 @@ import feathersClient, {
     BaseModel
 } from '../../feathers-client'
 
+// import { ScaleDemoGenerator } from './scale_demo'
+// import ScaleDemoGenerator from './scale_demo'
+
 // import { store } from '../index'
 
 // import { handleMessage } from '../../../serial.js'
@@ -59,8 +62,10 @@ function handleMessage (message) {
 }
 
 class Serial extends BaseModel {
-    // constructor(data, options) {
+    // constructor (data, options) {
     //     super(data, options)
+    //     console.log('Serial Class this', this)
+    //     this.demoHandler = ScaleDemoGenerator(this.store)
     // }
 
     // Required for $FeathersVuex plugin to work after production transpile.
@@ -102,6 +107,23 @@ const servicePlugin = makeServicePlugin({
                 if (result.scaleUnit) {
                     model.store.commit('localconfig/setScaleUnit', result.scaleUnit)
                 }
+            } else if (item.id === 'connected' && model.store) {
+                // console.log('model', model)
+                // console.log('item', item)
+                // console.log('store', store)
+                console.log('this', this)
+                // if (item.value) {
+                //     // serial is connected
+                //     this.demoHandler.stop()
+                // } else {
+                //     // serial disconnected
+                //     // start demo
+                //     if (!this.demoHandler) {
+                //         // this.demoHandler = new ScaleDemoGenerator(model.store)
+                //     }
+                //     this.demoHandler.start()
+                //     model.store.commit('localconfig/setScaleUnit', 'kg')
+                // }
             }
             return true
         }
