@@ -35,8 +35,8 @@ module.exports = [
         _id: 'Box_3.5',
         text: 'Box 3.5',
         tareWeight: 1.700,
-        icon: 'mdi-bag-personal',
-        image: '',
+        icon: '',
+        image: 'images_dev/crate.svg',
         description: ''
     },
     {

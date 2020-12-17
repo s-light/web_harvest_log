@@ -28,3 +28,6 @@ export function setScaleStable (state, value) {
 export function setScaleUnit (state, value) {
     state.scaleUnit = value
 }
+export function setDevMode (state, value) {
+    state.devMode = value
+}

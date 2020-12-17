@@ -110,8 +110,8 @@ export default {
     ],
     filters: {
         formatWeight (value, lang = 'de') {
-            console.log('value', value)
-            console.log('lang', lang)
+            // console.log('value', value)
+            // console.log('lang', lang)
             // return value.toLocaleString(
             const result = value.toLocaleString(
                 lang,
@@ -120,7 +120,7 @@ export default {
                     maximumFractionDigits: 2
                 }
             )
-            console.log('result', result)
+            // console.log('result', result)
             return result
         }
     },

@@ -25,7 +25,6 @@ export const childrenWizard = [
         title: 'Select Crate',
         icon: 'aspect_ratio',
         path: 'select_crate',
-        name: 'wizard',
         component: () => import('pages/SelectCrate.vue')
     },
     {
@@ -75,33 +74,35 @@ export const childrenDev = [
     }
 ]
 
-const routes = [
-    // {
-    //     path: '/dev/',
-    //     name: 'develop',
-    //     component: () => import('layouts/DevLayout.vue'),
-    //     children: [
-    //         ...childrenCommon,
-    //         ...childrenWizard,
-    //         ...childrenDev
-    //     ]
-    // },
-    {
-        path: '/',
-        component: () => import('layouts/WizardLayout.vue'),
-        children: [
-            ...childrenCommon,
-            ...childrenWizard,
-            ...childrenDev
-        ]
-    },
+const routes = function ({ store }) {
+    return [
+        // {
+        //     path: '/dev/',
+        //     name: 'develop',
+        //     component: () => import('layouts/DevLayout.vue'),
+        //     children: [
+        //         ...childrenCommon,
+        //         ...childrenWizard,
+        //         ...childrenDev
+        //     ]
+        // },
+        {
+            path: '/',
+            component: () => import('layouts/WizardLayout.vue'),
+            children: [
+                ...childrenCommon,
+                ...childrenWizard,
+                ...childrenDev
+            ]
+        },
 
-    // Always leave this as last one,
-    // but you can also remove it
-    {
-        path: '*',
-        component: () => import('pages/Error404.vue')
-    }
-]
+        // Always leave this as last one,
+        // but you can also remove it
+        {
+            path: '*',
+            component: () => import('pages/Error404.vue')
+        }
+    ]
+}
 
 export default routes

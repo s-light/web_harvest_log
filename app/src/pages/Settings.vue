@@ -17,6 +17,7 @@
                 icon="mdi-lightbulb-on-outline"
                 @click="$q.dark.toggle()"
             />
+            <langSelect />
         </section>
         <section>
             <q-btn
@@ -69,17 +70,13 @@
             /><br>
         </section>
         <section>
-            <langSelect />
-        </section>
-        <settingsSerial />
-        <!-- <section>
-            <q-input
-                filled
-                label="pos"
-                type="number"
-                v-model.number="pos"
-                debounce="500"
+            <q-toggle
+                size="lg"
+                v-model="devMode"
+                label="Dev Mode"
             />
+        </section>
+        <section>
             <q-input
                 filled
                 label="button size (mm)"
@@ -94,7 +91,8 @@
                 v-model.number="btnSpace"
                 debounce="500"
             />
-        </section> -->
+        </section>
+        <settingsSerial />
         <!-- <debugSection label="globalConfig" :obj="globalConfig"/> -->
         <!-- <debugSection label="serialDevice" :obj="serialDevice"/> -->
         <!-- <debugSection label="btnSpace" :obj="btnSpace"/> -->
@@ -108,6 +106,7 @@ import {
     // useGet,
     makeFindMixin
 } from 'feathers-vuex'
+import { mapBind } from '../store/mapBind.js'
 // import { mapBindIDItems } from '../store/mapBindIDItems.js'
 import debugSection from 'components/debugSection'
 import langSelect from 'components/langSelect'
@@ -131,6 +130,11 @@ export default {
     },
     computed: {
         // ...mapBindIDItems('global-config', ['serialDevice', 'pos', 'btnSize', 'btnSpace']),
+        ...mapBind('localconfig', [
+            'btnSize',
+            'btnSpace',
+            'devMode'
+        ]),
         globalConfigParams () {
             return { query: {} }
         }

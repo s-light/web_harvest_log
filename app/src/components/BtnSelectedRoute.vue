@@ -1,64 +1,112 @@
 <template>
-    <div class="fit row wrap justify-around items-center content-center">
-        <!-- <div class="shadow-10">
-            value {{ value }} <br>
-            options {{ options }} <br>
-            activeClass {{ activeClass }} <br>
-        </div> -->
-        <q-btn
-            @click=""
+    <!-- @click="handleClick($event)" -->
+    <!-- '{{ $route.path }} - {{ routeTarget }}' -->
+    <q-btn
+        stack
+        :class="$route.path.includes(routeTarget) ? activeClass : ''"
+        :title="item._id"
+        :style="btnStyle"
+        :to="routeTarget"
+        exact
+    >
+        <!-- :style="{width: '100%', height: '100%'}" -->
+        <q-img
+            v-if="item.image"
+            :src="imageBaseURL + item.image"
+            contain
+            :ratio="1"
+            :size="size"
+        />
+        <q-icon
+            v-else-if="item.icon || placeholderIcon"
+            :size="size"
+            :name="item.icon ? item.icon : placeholderIcon"
+        />
+        <div
+            :style="{ 'font-size': fontSize, 'line-height':'100%' }"
         >
-            <q-icon
-                v-if="item.icon"
-                :size="size"
-                :name="item.icon"
-            />
-            <q-img
-                v-else-if="item.image_url"
-                :src="item.image_url"
-                spinner-color="white"
-                :style="img_style"
-            />
-            <div>{{ item.label }}</div>
-        </q-btn>
-    </div>
+            {{ textPrepand }} {{ item.text }}
+        </div>
+    </q-btn>
 </template>
 
 <script>
 export default {
-    name: 'BtnToggleGrid',
+    name: 'BtnSelectedRoute',
     data () {
         return {
-            // things
         }
     },
     methods: {
-        //
+        // handleClick: function (event) {
+        //     // if (this.routeTarget) {
+        //     //     this.$router.push(this.routeTarget)
+        //     // }
+        //     this.$emit('click', event)
+        // }
     },
     computed: {
-        img_style: function () {
-            // `this` points to the vm instance
-            return 'width:' + this.size + '; height:' + this.size + ';'
+        btnStyle: function () {
+            return {
+                // margin: this.space,
+                // 'min-width': this.size,
+                // 'min-height': this.size
+                width: '100%',
+                height: '100%'
+                // overflow: 'hidden'
+            }
         }
     },
     props: {
-        value: {
-            type: String,
-            required: true
+        item: {
+            // type: Object,
+            required: false,
+            default: () => { return undefined }
         },
-        options: {
-            type: Array,
-            required: true
+        imageBaseURL: {
+            type: String,
+            required: false,
+            default: 'http://localhost:3030/api/'
         },
         size: {
             type: String,
             required: false,
-            default: 'text-orange'
+            default: '30mm'
+        },
+        space: {
+            type: String,
+            required: false,
+            default: '5mm'
+        },
+        fontSize: {
+            type: String,
+            required: false,
+            default: '1em'
         },
         activeClass: {
             type: String,
             required: false,
             default: 'text-orange'
+        },
+        routeTarget: {
+            type: String,
+            required: false,
+            default: null
+        },
+        // square: {
+        //     type: Boolean,
+        //     required: false,
+        //     default: true
+        // },
+        placeholderIcon: {
+            type: String,
+            required: false,
+            default: 'aspect_ratio'
+        },
+        textPrepand: {
+            type: String,
+            required: false,
+            default: ''
         }
     }
 }

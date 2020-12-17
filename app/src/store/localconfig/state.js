@@ -10,7 +10,8 @@ export default function () {
         placeSelected: {},
         totalWeight: '0',
         scaleStable: false,
-        scaleUnit: 'kg'
+        scaleUnit: 'kg',
         // scaleDemoHandler: new ScaleDemoGenerator()
+        devMode: false
     }
 }
