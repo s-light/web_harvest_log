@@ -2,12 +2,12 @@
     <!-- <q-page class="flex flex-center"> -->
     <q-page class="fit column no-wrap justify-center items-center content-center">
         <section class="q-pa-md row justify-center">
-            <h1>Quasar with FeathersJS and vuex</h1>
+            <h1>Web Harvest Log</h1>
         </section>
         <section>
             <q-btn
                 v-ripple
-                label="open this in a new window"
+                label="open this in a new minimal window"
                 icon="mdi-dock-window"
                 @click="openInNewWindow()"
             />

@@ -1,35 +1,30 @@
 <template>
     <q-layout view="lHh Lpr lFf">
-        <q-btn
-            flat
-            dense
-            round
-            icon="menu"
-            aria-label="Menu"
-            @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
         <q-drawer
             v-model="leftDrawerOpen"
             show-if-above
             bordered
+            :width="180"
         >
             <EssentialNavigation />
             <q-list>
                 <EssentialLink
-                    v-for="link in childrenWizard"
-                    :key="link.title"
-                    v-bind="link"
+                    v-for="item in childrenWizard"
+                    :key="item.title"
+                    v-bind="item"
                 />
                 <EssentialLink
-                    v-for="link in childrenDev"
-                    :key="link.title"
-                    v-bind="link"
+                    v-for="item in childrenDev"
+                    :key="item.title"
+                    v-bind="item"
                 />
             </q-list>
         </q-drawer>
         <q-page-container>
             <router-view />
+            <!-- <transition name="fade" :duration="5000">
+                <router-view />
+            </transition> -->
         </q-page-container>
     </q-layout>
 </template>
@@ -40,14 +35,17 @@ import EssentialNavigation from 'components/EssentialNavigation.vue'
 import { childrenWizard, childrenDev } from '../router/routes'
 
 export default {
-    name: 'MainLayout',
+    name: 'WizardLayout',
     components: { EssentialNavigation, EssentialLink },
     data () {
         return {
             leftDrawerOpen: false,
-            childrenWizard: childrenWizard,
-            childrenDev: childrenDev
+            childrenDev: childrenDev,
+            childrenWizard: childrenWizard
         }
+    },
+    created () {
+        // console.log('this', this)
     }
 }
 </script>

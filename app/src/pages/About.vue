@@ -4,18 +4,19 @@
         style="align-items: center;"
     >
         <section>
-            <h4>Quasar Tests</h4>
+            <h4>Web Harvest Log</h4>
             <p>
-                this is a collection of tests with and for the Quasara framework.<br>
-                find the source repository at <br>
+                local web based ui for tracking harvest weights.<br>
+                find the project repository at <br>
                 <a
                     target="_blank"
-                    href="https://github.com/s-light/quasar_test"
+                    :href="projectUrl"
                 >
-                    https://github.com/s-light/nodejs_websocket_serial_test
+                    {{ projectUrl }}
                 </a>
             </p>
-
+        </section>
+        <section>
             <h4>Fonts</h4>
             <p>
                 list of extra fonts.<br>
@@ -56,20 +57,6 @@
                 </a>
             </div>
             <div>
-                <h5>Office Code Pro</h5>
-                <p>
-                    This Font Software is licensed under the SIL Open Font License, Version 1.1 <br>
-                    Copyright © 2015 Nathan Rutzky ( www.nath.co ) <br>
-                    Copyright © 2015 Adobe Systems ( www.adobe.com ) <br>
-                </p>
-                <a
-                    target="_blank"
-                    href="https://github.com/nathco/Office-Code-Pro"
-                >
-                    Source
-                </a>
-            </div>
-            <div>
                 <h5>Overpass</h5>
                 <p>
                     Copyright 2016 Red Hat, Inc.,<br>
@@ -97,6 +84,7 @@ export default {
     name: 'About',
     data () {
         return {
+            projectUrl: 'https://github.com/s-light/quasar_with_featherjs/'
         }
     }
 }
