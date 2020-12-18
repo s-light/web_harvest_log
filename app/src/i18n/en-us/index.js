@@ -6,6 +6,8 @@ export default {
     success: 'Action was successful',
     global: 'Global',
     save: 'Save',
+    scale: 'scale',
+    weight: 'weight',
     setting: 'Setting',
     settings: 'Settings'
 }

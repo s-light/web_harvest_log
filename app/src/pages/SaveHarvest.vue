@@ -1,64 +1,107 @@
 <template>
-    <q-page class="fit column no-wrap justify-center items-center content-center">
-        <section class="q-mt-md">
-            <div id="weight_display" class="">
-                total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
-                {{ currentWeight | formatWeight(lang) }} {{ scaleUnit }}
+    <q-page class="fit">
+        <section class="fit column no-wrap justify-between items-stretch content-stretch">
+            <div class="q-mt-md">
+                <!-- <div id="weight_display" class="">
+                    total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
+                </div> -->
+                <!-- '{{ lang }}' -->
+                <!-- hint="Mask: #.##" -->
+                <!-- input-style="height: 50px;" -->
+                <q-input
+                    v-model="currentWeight"
+                    @keyup.enter="save()"
+                    class="weight_display"
+                    input-class="text-right"
+                    filled
+                    hide-bottom-space
+                    item-aligned
+                    label-slot
+                    debounce="500"
+                >
+                    <template v-slot:label>
+                        <div class="row justify-between items-start content-start" style="font-size:2em; line-height:2em">
+                            <div style="">
+                                {{ $t('weight') }}
+                            </div>
+                            <div style="font-size: 0.8em">
+                                {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }} {{ $t('scale') }} -
+                                Tare: {{ crateSelected.tareWeight | formatWeight(lang) }} {{ scaleUnit }}
+                            </div>
+                        </div>
+                    </template>
+                    <template #append>
+                        {{ scaleUnit }}
+                    </template>
+                </q-input>
             </div>
-            '{{ lang }}'
-            <q-input
-                filled
-                label="Weight"
-                hint="Mask: #.##"
-                v-model="currentWeight"
-                @keyup.enter="save()"
-                size="2em"
-            >
-                <template #append>
-                    {{ scaleUnit }}
-                </template>
-            </q-input>
+            <section class="row justify-between items-stretch content-stretch">
+                <div style="flex: 1 1 auto; padding:1em;">
+                    <q-list>
+                        <q-item
+                            v-for="item in harvest"
+                            :key="item._id"
+                        >
+                            <q-item-section avatar>
+                                <q-avatar rounded>
+                                    <img :src="imageBaseURL + item.crop.image">
+                                </q-avatar>
+                            </q-item-section>
+                            <q-item-section>
+                                {{ item.crop.text }} <br>
+                                {{ item.place.text }} |
+                                {{item.weight}} {{item.scaleUnit}}
+                                <!-- {{ item.createdAt | formatdate() }} -->
+                                {{ item.createdAt | toLocal(lang) }}
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                    <!-- <debugSection label="harvest" :obj="harvest"/> -->
+                </div>
+                <q-btn
+                    :label="$t('save')"
+                    :disable="!scaleStable"
+                    @click="save()"
+                    icon="mdi-database-plus"
+                    :ripple="{ early: true, color: 'orange'}"
+                    stack
+                    class=""
+                    style="width:80mm; height:80mm; flex: 0 1 auto; margin-right: 0.2em;"
+                    size="20mm"
+                />
+                <!-- :style="btnStyle" -->
+                <!-- size="30mm" -->
+                <!-- icons:
+                send
+                mdi-content-save
+                mdi-content-save-move
+                mdi-database-check
+                mdi-database-plus
+                mdi-database-arrow-down
+                mdi-check-bold
+                -->
+            </section>
         </section>
-        <section>
-            <q-btn
-                v-ripple
-                :label="$t('save')"
-                icon="mdi-database-plus"
-                size="30mm"
-                stack
-                :disable="scaleStable"
-                @click="save()"
-            />
-            <!-- icons:
-            send
-            mdi-content-save
-            mdi-content-save-move
-            mdi-database-check
-            mdi-database-plus
-            mdi-database-arrow-down
-            mdi-check-bold
-            -->
-
-        </section>
-        <section style="font-size:0.8em;">
+        <!-- <section style="font-size:0.8em;">
             <debugSection label="crateSelected" :obj="crateSelected"/>
             <debugSection label="cropSelected" :obj="cropSelected"/>
             <debugSection label="placeSelected" :obj="placeSelected"/>
-        </section>
+        </section> -->
     </q-page>
 </template>
 
 <script>
-// import { makeFindMixin } from 'feathers-vuex'
+import { date } from 'quasar'
+import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-import DebugSection from 'components/debugSection'
+// import DebugSection from 'components/debugSection'
 // import BtnToggleGrid from 'components/BtnToggleGrid.vue'
 
 export default {
     name: 'PageSaveHarvest',
     data () {
         return {
-            // totalWeight: '-'
+            imageBaseURL: 'http://localhost:3030/api/'
         }
     },
     methods: {
@@ -68,8 +111,34 @@ export default {
             console.log('cropSelected', this.cropSelected)
             console.log('placeSelected', this.placeSelected)
             console.log('totalWeight', this.totalWeight)
+            console.log('currentWeight', this.currentWeight)
             console.log('scaleStable', this.scaleStable)
             console.log('scaleUnit', this.scaleUnit)
+            // check if all requirements are fine
+            if (
+                this.crateSelected._id &&
+                this.cropSelected._id &&
+                this.placeSelected._id &&
+                this.scaleStable
+            ) {
+                const Harvest = this.$FeathersVuex.api.Harvest
+                const entry = new Harvest({
+                    crate: this.crateSelected,
+                    crop: this.cropSelected,
+                    place: this.placeSelected,
+                    weight: this.currentWeight,
+                    scaleUnit: this.scaleUnit,
+                    createdAt: new Date()
+                })
+                entry.save()
+            } else {
+                this.$q.notify({
+                    color: 'negative',
+                    message: 'Please Check that all requirements are filled.',
+                    icon: 'report_problem'
+                })
+            }
+
             console.groupEnd()
         }
     },
@@ -97,16 +166,29 @@ export default {
             'scaleUnit'
         ]),
         // ]),
-        // crateParams () {
-        //     return { query: {} }
-        // }
+        harvestParams () {
+            return {
+                query: {
+                    $limit: 5,
+                    $sort: {
+                        createdAt: -1
+                    }
+                }
+            }
+        },
+        // btnStyle: function () {
+        //     return {
+        //         width: '100%',
+        //         height: '100%'
+        //     }
+        // },
         lang: function () {
             // return this.$i18n.locale
             return this.$q.lang.isoName
         }
     },
     mixins: [
-        // makeFindMixin({ service: 'crate' })
+        makeFindMixin({ service: 'harvest' })
     ],
     filters: {
         formatWeight (value, lang = 'de') {
@@ -122,17 +204,25 @@ export default {
             )
             // console.log('result', result)
             return result
+        },
+        formatdate (value, format = 'HH:mm:ss DD.MM.YYYY') {
+            // 'YYYY-MM-DDTHH:mm:ss.SSSZ'
+            return date.formatDate(new Date(value), format)
+        },
+        toLocal (value, lang = 'de') {
+            return new Date(value).toLocaleString(lang)
         }
     },
     components: {
         // BtnToggleGrid,
-        DebugSection
+        // DebugSection
     }
 }
 </script>
 
 <style scoped>
-/* #weight_display {
-    background-color:
-} */
+.weight_display {
+    font-size: 12em;
+}
+/* all other styles are in the global space - otherwise they do not work! */
 </style>

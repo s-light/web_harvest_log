@@ -3,6 +3,7 @@ import feathersClient, {
     makeServicePlugin,
     BaseModel
 } from '../../feathers-client'
+import setTimestamp from './hooks/set-timestamp'
 
 class Harvest extends BaseModel {
     // constructor(data, options) {
@@ -16,13 +17,11 @@ class Harvest extends BaseModel {
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            crop: '',
-            crate: '',
-            place: '',
-            tareWeight: '',
-            rawWeight: '',
+            crop: {},
+            crate: {},
+            place: {},
             weight: '',
-            savedAt: '',
+            createdAt: '',
             comment: ''
         }
     }
@@ -41,7 +40,7 @@ feathersClient.service(servicePath).hooks({
         all: [],
         find: [],
         get: [],
-        create: [],
+        create: [setTimestamp('createdAt')],
         update: [],
         patch: [],
         remove: []
