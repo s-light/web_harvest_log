@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///app.css"],"names":[],"mappings":"AAAA,mBAAmB;;AAEnB;IACI,aAAa;AACjB;AACA;CACC,YAAY;CACZ,gBAAgB;AACjB","file":"css/app.397e5050.css","sourcesContent":["/* app global css */\n\n.weight_display .q-field__control {\n    height: 1.4em;\n}\n.weight_display .q-field__marginal {\n\theight: auto;\n\tfont-size: 0.5em;\n}\n"],"sourceRoot":""}

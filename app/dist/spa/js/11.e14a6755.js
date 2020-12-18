@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{"8b24":function(e,a,n){"use strict";n.r(a);var t={name:"PageIndex"},s=n("2877"),l=n("9989"),o=n("eebe"),r=n.n(o),c=Object(s.a)(t,(function(){var e=this.$createElement,a=this._self._c||e;return a("q-page",{staticClass:"flex flex-center"},[a("img",{attrs:{alt:"Quasar logo",src:n("d3d6")}})])}),[],!1,null,null,null);a.default=c.exports;r()(c,"components",{QPage:l.a})},d3d6:function(e,a,n){e.exports=n.p+"img/quasar-logo-full.68ae1645.svg"}}]);
-//# sourceMappingURL=11.e14a6755.js.map
