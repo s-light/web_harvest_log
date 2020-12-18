@@ -58,7 +58,21 @@ class Management extends BaseModel {
                 // paginate: false,
                 // https://docs.feathersjs.com/api/databases/querying.html#equality
                 query: {
-                    timeframe: timeframe
+                    // timeframe: timeframe
+                    $sort: {
+                        createdAt: -1
+                    },
+                    $select: [
+                        'createdAt',
+                        // 'crate',
+                        // 'crop',
+                        // 'place',
+                        'cropText',
+                        'placeText',
+                        'weight',
+                        'crateTareWeight',
+                        'scaleUnit'
+                    ]
                 }
             }
         )

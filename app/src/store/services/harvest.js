@@ -17,12 +17,15 @@ class Harvest extends BaseModel {
     // static instanceDefaults(data, { store, models }) {
     static instanceDefaults () {
         return {
-            crop: {},
             crate: {},
+            crop: {},
             place: {},
-            weight: '',
-            createdAt: '',
-            comment: ''
+            crateTareWeight: 0,
+            cropText: '',
+            placeText: '',
+            weight: 0,
+            createdAt: null
+            // comment: ''
         }
     }
 }

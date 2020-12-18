@@ -4,6 +4,7 @@ module.exports = [
         text: 'Sun',
         icon: 'mdi-white-balance-sunny',
         image: '',
+        places: 1,
         tags: ['weather', 'day'],
         description: ''
     },
@@ -12,6 +13,7 @@ module.exports = [
         text: 'Moon',
         icon: 'mdi-weather-night',
         image: '',
+        places: 1,
         tags: ['weather', 'day'],
         description: ''
     },
@@ -20,6 +22,7 @@ module.exports = [
         text: 'Flower',
         icon: 'mdi-flower-tulip',
         image: '',
+        places: 1,
         tags: ['flower'],
         description: ''
     },
@@ -28,6 +31,7 @@ module.exports = [
         text: 'Cloud',
         icon: 'mdi-weather-cloudy',
         image: '',
+        places: 1,
         tags: ['weather', 'air'],
         description: ''
     },
@@ -36,6 +40,7 @@ module.exports = [
         text: 'Bird',
         icon: 'mdi-bird',
         image: '',
+        places: 1,
         tags: ['animal', 'air'],
         description: ''
     },
@@ -44,6 +49,7 @@ module.exports = [
         text: 'Bicycle',
         icon: 'mdi-bicycle',
         image: '',
+        places: 1,
         tags: ['object', 'metal'],
         description: ''
     },
@@ -52,6 +58,7 @@ module.exports = [
         text: 'Book',
         icon: 'mdi-book-open-variant',
         image: '',
+        places: 1,
         tags: ['object', 'paper'],
         description: ''
     },
@@ -60,6 +67,7 @@ module.exports = [
         text: 'Time',
         icon: 'mdi-clock-time-four-outline',
         image: '',
+        places: 1,
         tags: ['object', 'time'],
         description: ''
     },
@@ -68,6 +76,7 @@ module.exports = [
         text: 'Alarm',
         icon: 'mdi-alarm-note',
         image: '',
+        places: 1,
         tags: ['object', 'time'],
         description: ''
     },

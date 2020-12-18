@@ -112,6 +112,7 @@ module.exports = [
     {
         _id: 'dev_leaf-greens',
         text: 'leaf-greens',
+        places: 1,
         tags: ['leaf'],
         image: 'images_dev/313740_leafy-green-vegetable_mod.svg',
         description: ''
@@ -119,6 +120,7 @@ module.exports = [
     {
         _id: 'dev_flower',
         text: 'flower',
+        places: 1,
         tags: ['flower'],
         image: 'images_dev/214593_Paisley_Flower-02.svg',
         description: ''

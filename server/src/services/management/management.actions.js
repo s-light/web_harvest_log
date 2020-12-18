@@ -33,6 +33,7 @@ async function exportCSV (service, servicePath, params) {
     console.log('timeframe', timeframe);
 
     const dbResult = await service.find(params);
+    // const dbResult = await service.find({ query: {}});
     console.log('dbResult', dbResult);
     let dbData = dbResult;
     // if result is paginated we get a object with the entries in 'data'

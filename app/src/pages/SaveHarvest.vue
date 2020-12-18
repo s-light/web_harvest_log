@@ -17,8 +17,8 @@
                     hide-bottom-space
                     item-aligned
                     label-slot
-                    debounce="500"
                 >
+                <!-- debounce="500" -->
                     <template v-slot:label>
                         <div class="row justify-between items-start content-start" style="font-size:2em; line-height:2em">
                             <div style="">
@@ -107,13 +107,13 @@ export default {
     methods: {
         save: function () {
             console.group('save harvest log entry')
-            console.log('crateSelected', this.crateSelected)
-            console.log('cropSelected', this.cropSelected)
-            console.log('placeSelected', this.placeSelected)
-            console.log('totalWeight', this.totalWeight)
-            console.log('currentWeight', this.currentWeight)
-            console.log('scaleStable', this.scaleStable)
-            console.log('scaleUnit', this.scaleUnit)
+            // console.log('crateSelected', this.crateSelected)
+            // console.log('cropSelected', this.cropSelected)
+            // console.log('placeSelected', this.placeSelected)
+            // console.log('totalWeight', this.totalWeight)
+            // console.log('currentWeight', this.currentWeight)
+            // console.log('scaleStable', this.scaleStable)
+            // console.log('scaleUnit', this.scaleUnit)
             // check if all requirements are fine
             if (
                 this.crateSelected._id &&
@@ -126,6 +126,9 @@ export default {
                     crate: this.crateSelected,
                     crop: this.cropSelected,
                     place: this.placeSelected,
+                    crateTareWeight: this.crateSelected.tareWeight,
+                    cropText: this.cropSelected.text,
+                    placeText: this.placeSelected.text,
                     weight: this.currentWeight,
                     scaleUnit: this.scaleUnit,
                     createdAt: new Date()
@@ -145,13 +148,16 @@ export default {
     computed: {
         currentWeight: function () {
             let result = this.totalWeight
-            if (
-                !isNaN(result) &&
-                this.crateSelected &&
-                this.crateSelected.tareWeight
-            ) {
-                result -= this.crateSelected.tareWeight
-                result = result.toFixed(2)
+            if (result && !isNaN(result)) {
+                if (
+                    this.crateSelected &&
+                    this.crateSelected.tareWeight
+                ) {
+                    result -= this.crateSelected.tareWeight
+                    result = result.toFixed(2)
+                }
+            } else {
+                result = 0
             }
             return result
         },
@@ -184,7 +190,11 @@ export default {
         // },
         lang: function () {
             // return this.$i18n.locale
-            return this.$q.lang.isoName
+            let result = this.$q.lang.isoName
+            if (!result) {
+                result = 'de'
+            }
+            return result
         }
     },
     mixins: [
