@@ -34,7 +34,7 @@ User=pi
 # base directory
 WorkingDirectory=/home/pi/web_harvest_log/server
 # commandline
-ExecStart=yarn start
+ExecStart=/home/pi/.npm-global/bin/yarn start
 # redirect standard output to
 StandardOutput=null
 # if process exits (with fail or success) restart it.
