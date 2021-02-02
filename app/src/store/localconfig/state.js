@@ -2,8 +2,6 @@
 
 export default function () {
     return {
-        btnSize: 30,
-        btnSpace: 3,
         cropSelected: {},
         cropFilterSelected: {},
         crateSelected: {},
@@ -12,6 +10,8 @@ export default function () {
         scaleStable: false,
         scaleUnit: 'kg',
         // scaleDemoHandler: new ScaleDemoGenerator()
+        btnSize: 30,
+        btnSpace: 3,
         devMode: false
     }
 }

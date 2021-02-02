@@ -64,14 +64,14 @@ class Management extends BaseModel {
                     },
                     $select: [
                         'createdAt',
-                        // 'crate',
-                        // 'crop',
-                        // 'place',
                         'cropText',
                         'placeText',
                         'weight',
                         'crateTareWeight',
                         'scaleUnit'
+                        // 'crate',
+                        // 'crop',
+                        // 'place',
                     ]
                 }
             }
