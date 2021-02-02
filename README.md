@@ -39,6 +39,9 @@ then have a look at the file and the sub folders to change to your needs.
 for development and testing have a look at [setup.md](setup.md)
 
 ## ToDo
-- ToDo: extend Usage information!!
+- add systemd autostart
+- add server restart button
+- add server reimport button
+- extend Usage information!!
 - research or create image set
     - [Karl Urban Wild-Flowers](https://openclipart.org/search/?p=2&query=Karl%20Urban)
