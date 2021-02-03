@@ -175,7 +175,7 @@ export default {
         harvestParams () {
             return {
                 query: {
-                    $limit: 5,
+                    $limit: 15,
                     $sort: {
                         createdAt: -1
                     }

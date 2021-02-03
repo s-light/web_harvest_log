@@ -34,7 +34,7 @@
                 push
                 rounded
                 stack
-                :size="btnSize/2 + 'mm'"
+                :size="btnSize/1.0 + 'mm'"
                 fontSize="1.2em"
                 :space="0 + 'mm'"
             />

@@ -58,7 +58,7 @@
             /> -->
             <q-btn
                 v-ripple
-                label="remove database files"
+                label="remove config database entries"
                 icon="mdi-database-export"
                 @click="removeAll()"
             /><br>
@@ -107,7 +107,7 @@ import {
     makeFindMixin
 } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-// import { mapBindIDItems } from '../store/mapBindIDItems.js'
+import { servicePath2servicePathName } from '../store/mapBindIDItems.js'
 import debugSection from 'components/debugSection'
 import langSelect from 'components/langSelect'
 import settingsSerial from 'components/settingsSerial'
@@ -137,6 +137,33 @@ export default {
         ]),
         globalConfigParams () {
             return { query: {} }
+        },
+        crateParams () {
+            return {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
+        },
+        cropParams () {
+            return {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
+        },
+        cropFilterParams () {
+            return {
+                query: {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+            }
         }
     },
     methods: {
@@ -146,9 +173,12 @@ export default {
             this.serverImport('crop-filter')
         },
         removeAll: function () {
-            this.removeDBFile('crate')
-            this.removeDBFile('crop')
-            this.removeDBFile('crop-filter')
+            // this.removeDBFile('crate')
+            // this.removeDBFile('crop')
+            // this.removeDBFile('crop-filter')
+            this.removeDB('crate')
+            this.removeDB('crop')
+            this.removeDB('crop-filter')
         },
         serverExportToCSV: function (servicePath, timeframe) {
             console.group('serverExportToCSV')
@@ -225,6 +255,28 @@ export default {
                 })
             console.groupEnd()
         },
+        removeDB: function (servicePath) {
+            console.group('removeDB', servicePath)
+            this.$q.notify({
+                color: 'info',
+                message: `remove all entries from ${servicePath}. Processing now.`,
+                icon: 'info'
+            })
+            const servicePathName = servicePath2servicePathName(servicePath)
+            const serviceStore = this.[servicePathName]
+            // console.log(this)
+            console.log('serviceStore', serviceStore)
+            for (var entry of serviceStore) {
+                console.log(entry)
+                entry.remove()
+            }
+            this.$q.notify({
+                color: 'positive',
+                message: `${servicePath} done.`,
+                icon: 'info'
+            })
+            console.groupEnd()
+        },
         startScaleDemo: function () {
             // this.$FeathersVuex.api.Serial
             // if (!model.demoHandler) {
@@ -253,7 +305,10 @@ export default {
         // return mapBindIDItems('global-config', ['serialDevice', 'pos', 'btnSize', 'btnSpace'])
     },
     mixins: [
-        makeFindMixin({ service: 'global-config' })
+        makeFindMixin({ service: 'global-config' }),
+        makeFindMixin({ service: 'crate' }),
+        makeFindMixin({ service: 'crop' }),
+        makeFindMixin({ service: 'crop-filter' })
     ],
     components: {
         debugSection,

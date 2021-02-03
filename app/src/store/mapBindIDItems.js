@@ -38,6 +38,12 @@ export function servicePath2modelClassName (servicePath) {
     return modelClassName
 }
 
+export function servicePath2servicePathName (servicePath) {
+    const modelClassName = servicePath2modelClassName(servicePath)
+    const servicePathName = decapitalizeFirstLetter(modelClassName)
+    return servicePathName
+}
+
 export const findList = async function (servicePath) {
     const modelClassName = servicePath2modelClassName(servicePath)
     const ModelClass = models.api[modelClassName]

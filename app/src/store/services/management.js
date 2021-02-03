@@ -88,13 +88,24 @@ class Management extends BaseModel {
     }
 
     static removeDBFile (servicePath) {
-        console.log('serverExportAsCSV')
+        console.log('removeDBFile')
         return this.sendAction(
             'remove-db-file',
             servicePath,
             {}
         )
     }
+
+    // static removeDB (servicePath) {
+    //     console.log('removeDB')
+    //     const service = this.app.services[servicePath]
+    //     console.log('service', service)
+    //     // return this.sendAction(
+    //     //     'remove-db-file',
+    //     //     servicePath,
+    //     //     {}
+    //     // )
+    // }
 }
 
 const servicePath = 'management'
