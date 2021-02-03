@@ -23983,7 +23983,7 @@ input[type='search']::-webkit-search-decoration {
   border: 0;
   vertical-align: middle;
   padding: 0;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.715em;
   text-decoration: none;
   color: inherit;
@@ -25704,7 +25704,7 @@ body.q-ios-padding .q-dialog__inner > div {
   right: 0;
 }
 .q-field {
-  font-size: 14px;
+  font-size: 20px;
 }
 .q-field ::-ms-clear,
 .q-field ::-ms-reveal {
@@ -28291,7 +28291,7 @@ body.desktop .q-table > tbody > tr:not(.q-tr--no-hover):hover > td:not(.q-td--no
   font-size: 24px;
 }
 .q-tab__label {
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.715em;
   font-weight: 500;
 }
@@ -29111,7 +29111,7 @@ body.desktop .q-toggle--dense:not(.disabled):hover .q-toggle__thumb:before {
   flex: 1 1 0%;
   min-width: 1px;
   max-width: 100%;
-  font-size: 21px;
+  font-size: 27px;
   font-weight: normal;
   letter-spacing: 0.01em;
   padding: 0 12px;
@@ -29123,7 +29123,7 @@ body.desktop .q-toggle--dense:not(.disabled):hover .q-toggle__thumb:before {
   padding-right: 0;
 }
 .q-tooltip--style {
-  font-size: 10px;
+  font-size: 16px;
   color: #fafafa;
   background: #757575;
   border-radius: 4px;
@@ -29139,7 +29139,7 @@ body.desktop .q-toggle--dense:not(.disabled):hover .q-toggle__thumb:before {
 }
 @media (max-width: 599px) {
   .q-tooltip {
-    font-size: 14px;
+    font-size: 20px;
     padding: 8px 16px;
   }
 }
@@ -34232,7 +34232,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-smoothing: antialiased;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 20px;
 }
 h1 {
   font-size: 6rem;
@@ -35427,6 +35427,6 @@ body.body--dark {
     opacity: 0.5;
   }
 }
+/*# sourceMappingURL=node_modules/quasar/dist/quasar.css.map */
 
-
-/*# sourceMappingURL=vendor.ee898305.css.map*/
+/*# sourceMappingURL=vendor.204214e1.css.map*/
