@@ -77,22 +77,31 @@ async function importFromFile (service, servicePath, params) {
     // console.log('servicePath', servicePath);
     // console.log('params', params);
     // console.log('this', this);
-    // console.log('app_config', app_config);
-    // console.log('app_config[servicePath]', app_config[servicePath]);
-    // const data = app_config[servicePath];
+    // console.log('config', config);
+    // console.log('config[servicePath]', config[servicePath]);
+    // const data = config[servicePath];
     // console.log('data', data);
-    let app_config = {};
+    let config = {};
     try {
-        app_config = await require('../../../../app_config/index.js');
+        delete require.cache['../../../../config/app_config.js'];
+        config = await require('../../../../config/app_config.js');
+        console.log('found config/app_config.js');
     } catch (e) {
+        // console.log('require config/app.js: ', e);
         if (e.code === 'MODULE_NOT_FOUND') {
-            // this means we need to fallback to the dev file
-            app_config = require('../../../../app_config/index_dev.js');
+            try {
+                delete require.cache['../../../../config/app_config_template.js'];
+                // this means we need to fallback to the dev file
+                config = require('../../../../config/app_config_template.js');
+                console.log('found config/app_config_template.js');
+            } catch (e) {
+                console.log('require config/app_config_template.js: ', e);
+            }
         }
     }
-    const serviceEntries = app_config[servicePath];
+    const serviceEntries = config[servicePath];
     if (serviceEntries) {
-        for (const entry of app_config[servicePath]) {
+        for (const entry of config[servicePath]) {
             console.log(entry._id);
             // console.log(entry);
             // if (!entry.id) {
@@ -121,7 +130,7 @@ async function importFromFile (service, servicePath, params) {
     } else {
         console.groupEnd();
         throw {
-            message: 'importFromFile: service \'' + servicePath + '\' not found in app_config.'
+            message: 'importFromFile: service \'' + servicePath + '\' not found in config.'
         };
     }
 

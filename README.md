@@ -15,7 +15,7 @@ have a look at the [online preview](https://s-light.github.io/web_harvest_log/ap
 
 ## configuration
 change `port` and `baudRate` to fit your scale and operating system:
-`app_config/serial.js`
+`config/serial.js`
 ```
 module.exports = {
     retryDelay: 10000,
@@ -24,15 +24,15 @@ module.exports = {
 }
 ```
 
-change the initial app_config database files to fit your needs:
-copy or rename `app_config/index_template.js` to `app_config/index.js`
+change the initial config database files to fit your needs:
+copy or rename `config/index_template.js` to `config/index.js`
 then have a look at the file and the sub folders to change to your needs.
 
 ## Usage
 - start server `server/$  yarn start`
 - open webbrowser at [`localhost:3030`](http://localhost:3030)
 - click on the settings symbol
-- click on `import app_config from files`
+- click on `import config from files`
 - this fills / adds to the database
 - happy harvesting ;-)
 

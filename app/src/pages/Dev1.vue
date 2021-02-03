@@ -80,7 +80,7 @@ export default {
     methods: {
         globalConfigLoadFromServer: function () {
             console.group('globalConfigLoadFromServer')
-            this.$axios.get('/app_config/crops/crop.json')
+            this.$axios.get('/config/crops/crop.json')
                 .then((response) => {
                     // this.data = response.data
                     console.log('response.data', response.data)

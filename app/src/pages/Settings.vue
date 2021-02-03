@@ -34,7 +34,7 @@
             /><br> -->
             <q-btn
                 v-ripple
-                label="import app_config from files"
+                label="import config from files"
                 icon="mdi-database-export"
                 @click="importAll()"
             /><br>

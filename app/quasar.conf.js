@@ -8,7 +8,7 @@
 /* eslint-env node */
 
 // const path = require('path')
-// console.log('path', path.join(__dirname, '../app_config/'))
+// console.log('path', path.join(__dirname, '../config/'))
 
 module.exports = function (/* ctx */) {
     return {
@@ -97,7 +97,7 @@ module.exports = function (/* ctx */) {
             open: false, // opens browser window automatically
             port: 8080,
             https: false
-            // contentBase: path.join(__dirname, '../app_config/'),
+            // contentBase: path.join(__dirname, '../config/'),
             // contentBasePublicPath: '/api/'
             // https://webpack.js.org/configuration/dev-server/#devserverproxy
             // proxy: {

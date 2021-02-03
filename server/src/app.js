@@ -34,7 +34,7 @@ app.use(favicon(path.join(app.get('publicApp'), 'favicon.ico')));
 // app.use('/', express.static(app.get('publicConfig')));
 app.use('/', express.static(app.get('publicApp')));
 app.use('/api/', express.static(app.get('publicConfig')));
-// "public": "../../app_config",
+// "public": "../../config",
 // console.log('__dirname + /public', __dirname + '/public');
 
 // Set up Plugins and providers

@@ -2,7 +2,7 @@
   "host": "localhost",
   "port": 3030,
   "public": "../public/",
-  "publicConfig": "../../app_config/",
+  "publicConfig": "../../config/",
   "publicApp": "../../app/dist/spa/",
   "paginate": {
     "default": 100,
