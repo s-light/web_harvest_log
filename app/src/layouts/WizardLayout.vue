@@ -5,8 +5,9 @@
             show-if-above
             bordered
             elevated
-            :width="150"
+            :width="300"
         >
+        <!-- :width="btnSpace * 50" -->
         <!-- <nav
             class="col-auto column no-wrap justify-start item-stretch content-stretch "
             :style="{'overflow-y':'auto', 'max-height':'100vh', 'border-right': 'solid', 'max-width':btnSize*1.5 + 'mm'}"

@@ -273,6 +273,7 @@ export default {
             this.$q.notify({
                 color: 'positive',
                 message: `${servicePath} done.`,
+                // timeout: 30500,
                 icon: 'info'
             })
             console.groupEnd()
