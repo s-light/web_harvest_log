@@ -15,7 +15,7 @@ module.exports = [
         _id: '1_recent',
         text: 'recent',
         query: {
-            _$limit: 5,
+            _$limit: 12,
             _$sort: {
                 lastUsed: -1
             }

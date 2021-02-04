@@ -10,7 +10,7 @@ export default function () {
         scaleStable: false,
         scaleUnit: 'kg',
         // scaleDemoHandler: new ScaleDemoGenerator()
-        btnSize: 45,
+        btnSize: 42,
         btnSpace: 3,
         devMode: false
     }
