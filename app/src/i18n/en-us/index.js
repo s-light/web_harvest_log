@@ -1,9 +1,10 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
     failed: 'Action failed',
     success: 'Action was successful',
+    // recent: 'recent',
+    crate: 'crate',
+    crop: 'crop',
+    place: 'place',
     global: 'Global',
     save: 'Save',
     scale: 'scale',

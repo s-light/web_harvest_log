@@ -20,7 +20,7 @@
                     :size="btnSize + 'mm'"
                     :space="btnSpace + 'mm'"
                     placeholderIcon="aspect_ratio"
-                    textPrepand="crate "
+                    :textPrepand="$t('crate') "
                 />
                 <BtnSelectedRoute
                     :item="cropSelected"
@@ -28,7 +28,7 @@
                     :size="btnSize + 'mm'"
                     :space="btnSpace + 'mm'"
                     placeholderIcon="local_florist"
-                    textPrepand="crop "
+                    :textPrepand="$t('crop') "
                 />
                 <BtnSelectedRoute
                     :item="placeSelected"
@@ -36,7 +36,7 @@
                     :size="btnSize/2 + 'mm'"
                     :space="btnSpace + 'mm'"
                     placeholderIcon="place"
-                    textPrepand="place "
+                    :textPrepand="$t('place') "
                 />
                 <BtnSelectedRoute
                     item="{}"
@@ -44,7 +44,7 @@
                     :size="btnSize/2 + 'mm'"
                     :space="btnSpace + 'mm'"
                     placeholderIcon="mdi-database-plus"
-                    textPrepand="save"
+                    :textPrepand="$t('save')"
                 />
             </section>
             <q-list v-if="devMode">
