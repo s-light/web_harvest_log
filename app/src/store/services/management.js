@@ -96,6 +96,24 @@ class Management extends BaseModel {
         )
     }
 
+    static serverShutdown (servicePath) {
+        console.log('serverShutdown')
+        return this.sendAction(
+            'server-shutdown',
+            servicePath,
+            {}
+        )
+    }
+
+    static gitPull (servicePath) {
+        console.log('gitPull')
+        return this.sendAction(
+            'git-pull',
+            servicePath,
+            {}
+        )
+    }
+
     // static removeDB (servicePath) {
     //     console.log('removeDB')
     //     const service = this.app.services[servicePath]

@@ -8,6 +8,8 @@ module.exports.actions = {
     'export-cvs': exportCSV,
     'import-from-file': importFromFile,
     'remove-db-file': removeDBFile,
+    'shutdown-server': serverShutdown,
+    'git-pull': gitPull,
 };
 
 // eslint-disable-next-line no-unused-vars
@@ -162,4 +164,30 @@ async function removeDBFile (service, servicePath, params) {
         }
     });
     console.groupEnd();
+}
+
+// eslint-disable-next-line no-unused-vars
+async function serverShutdown (service, servicePath, params) {
+    console.group('serverShutdown');
+    // console.log('service', service);
+    // console.log('servicePath', servicePath);
+    // console.log('params', params);
+
+    console.log('todo! ');
+
+    console.groupEnd();
+    throw 'Not Implemented in Server.';
+}
+
+// eslint-disable-next-line no-unused-vars
+async function gitPull (service, servicePath, params) {
+    console.group('gitPull');
+    // console.log('service', service);
+    // console.log('servicePath', servicePath);
+    // console.log('params', params);
+
+    console.log('todo! ');
+
+    console.groupEnd();
+    throw 'Not Implemented in Server.';
 }

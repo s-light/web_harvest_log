@@ -64,6 +64,18 @@
             /><br>
             <q-btn
                 v-ripple
+                label="shutdown server"
+                icon="mdi-database-export"
+                @click="serverShutdown()"
+            /><br>
+            <q-btn
+                v-ripple
+                label="pull software updates"
+                icon="mdi-database-export"
+                @click="gitPull()"
+            /><br>
+            <q-btn
+                v-ripple
                 label="start Scale Demo Generator "
                 icon="mdi-database-export"
                 @click="startScaleDemo()"
@@ -276,6 +288,56 @@ export default {
                 // timeout: 30500,
                 icon: 'info'
             })
+            console.groupEnd()
+        },
+        serverShutdown: function () {
+            console.group('serverShutdown')
+            this.$q.notify({
+                color: 'info',
+                message: 'shutting down server. Processing now.',
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.serverShutdown('Management')
+                .then(response => {
+                    console.log('serverShutdown: ', response)
+                    this.$q.notify({
+                        color: 'positive',
+                        message: 'shutdown initiated.',
+                        icon: 'info'
+                    })
+                }).catch(error => {
+                    console.error('serverShutdown:', error)
+                    this.$q.notify({
+                        color: 'negative',
+                        message: 'shutdown failed.',
+                        icon: 'report_problem'
+                    })
+                })
+            console.groupEnd()
+        },
+        gitPull: function () {
+            console.group('gitPull')
+            this.$q.notify({
+                color: 'info',
+                message: 'pull software updates',
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.gitPull('Management')
+                .then(response => {
+                    console.log('gitPull: ', response)
+                    this.$q.notify({
+                        color: 'positive',
+                        message: 'shutdown initiated.',
+                        icon: 'info'
+                    })
+                }).catch(error => {
+                    console.error('gitPull:', error)
+                    this.$q.notify({
+                        color: 'negative',
+                        message: 'shutdown failed.',
+                        icon: 'report_problem'
+                    })
+                })
             console.groupEnd()
         },
         startScaleDemo: function () {

@@ -5,15 +5,18 @@
             <h1>Web Harvest Log</h1>
         </section>
         <section>
-            <q-btn
+            <!-- <q-btn
                 v-ripple
                 label="open this in a new minimal window"
                 icon="mdi-dock-window"
                 @click="openInNewWindow()"
+            /> -->
+            <q-btn
+                v-ripple
+                label="shutdown system"
+                icon="mdi-dock-window"
+                @click="shutdown()"
             />
-        </section>
-        <section>
-            <a :href="url">repository</a>
         </section>
     </q-page>
 </template>
@@ -44,6 +47,31 @@ export default {
             } else {
                 this.windowObjectReference.focus()
             };
+        },
+        shutdown: function () {
+            console.group('serverShutdown')
+            this.$q.notify({
+                color: 'info',
+                message: 'shutting down server. Processing now.',
+                icon: 'info'
+            })
+            this.$FeathersVuex.api.Management.serverShutdown('Management')
+                .then(response => {
+                    console.log('serverShutdown: ', response)
+                    this.$q.notify({
+                        color: 'positive',
+                        message: 'shutdown initiated.',
+                        icon: 'info'
+                    })
+                }).catch(error => {
+                    console.error('serverShutdown:', error)
+                    this.$q.notify({
+                        color: 'negative',
+                        message: 'shutdown failed.',
+                        icon: 'report_problem'
+                    })
+                })
+            console.groupEnd()
         }
     },
     name: 'PageIndex'
