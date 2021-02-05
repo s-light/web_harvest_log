@@ -96,12 +96,14 @@ class Management extends BaseModel {
         )
     }
 
-    static serverShutdown () {
+    static serverSystemAction (action) {
         console.log('serverShutdown')
         return this.sendAction(
             'server-shutdown',
             'management',
-            {}
+            {
+                action: action
+            }
         )
     }
 

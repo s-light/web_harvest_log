@@ -9,7 +9,7 @@ module.exports.actions = {
     'export-cvs': exportCSV,
     'import-from-file': importFromFile,
     'remove-db-file': removeDBFile,
-    'server-shutdown': serverShutdown,
+    'server-system-action': serverSystemAction,
     'git-pull': gitPull,
 };
 
@@ -168,12 +168,22 @@ async function removeDBFile (service, servicePath, params) {
 }
 
 // eslint-disable-next-line no-unused-vars
-async function serverShutdown (service, servicePath, params) {
-    console.group('serverShutdown');
+async function serverSystemAction (service, servicePath, params) {
+    console.group('serverSystemAction');
     // console.log('service', service);
     // console.log('servicePath', servicePath);
-    // console.log('params', params);
-    const result = shell.exec('sudo shutdown -h now');
+    console.log('params', params);
+    let result = '---';
+    switch (params.action) {
+    case 'shutdown':
+        result = shell.exec('sudo shutdown -h now');
+        break;
+    case 'reboot':
+        result = shell.exec('sudo reboot');
+        break;
+    default:
+        result = `action '${params.action}' not found.`;
+    }
     console.groupEnd();
     return result;
 }

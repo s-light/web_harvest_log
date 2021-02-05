@@ -15,13 +15,17 @@
                 v-ripple
                 label="shutdown system"
                 icon="mdi-dock-window"
-                @click="serverShutdown()"
+                @click="serverSystemAction('shutdown')"
             />
         </section>
     </q-page>
 </template>
 
 <script>
+import {
+    serverSystemAction
+} from '../management_func.js'
+
 export default {
     data () {
         return {
@@ -30,49 +34,25 @@ export default {
         }
     },
     methods: {
-        openInNewWindow () {
-            // https://developer.mozilla.org/en-US/docs/Web/API/Window/open
-            if (this.windowObjectReference == null || this.windowObjectReference.closed) {
-                this.windowObjectReference = window.open(
-                    window.location,
-                    'Harvest Log',
-                    `
-                        resizable=yes,
-                        scrollbars=yes,
-                        menubar=no,
-                        toolbar=no,
-                        locationr=no,
-                        status=no
-                    `)
-            } else {
-                this.windowObjectReference.focus()
-            };
-        },
-        serverShutdown: function () {
-            console.group('serverShutdown')
-            this.$q.notify({
-                color: 'info',
-                message: 'shutting down server. Processing now.',
-                icon: 'info'
-            })
-            this.$FeathersVuex.api.Management.serverShutdown()
-                .then(response => {
-                    console.log('serverShutdown: ', response)
-                    this.$q.notify({
-                        color: 'positive',
-                        message: `shutdown initiated. '${response}'`,
-                        icon: 'info'
-                    })
-                }).catch(error => {
-                    console.error('serverShutdown:', error)
-                    this.$q.notify({
-                        color: 'negative',
-                        message: `shutdown failed. '${error}'`,
-                        icon: 'report_problem'
-                    })
-                })
-            console.groupEnd()
-        }
+        serverSystemAction: serverSystemAction
+        // openInNewWindow () {
+        //     // https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+        //     if (this.windowObjectReference == null || this.windowObjectReference.closed) {
+        //         this.windowObjectReference = window.open(
+        //             window.location,
+        //             'Harvest Log',
+        //             `
+        //                 resizable=yes,
+        //                 scrollbars=yes,
+        //                 menubar=no,
+        //                 toolbar=no,
+        //                 locationr=no,
+        //                 status=no
+        //             `)
+        //     } else {
+        //         this.windowObjectReference.focus()
+        //     };
+        // }
     },
     name: 'PageIndex'
 }
