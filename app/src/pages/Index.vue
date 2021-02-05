@@ -15,7 +15,7 @@
                 v-ripple
                 label="shutdown system"
                 icon="mdi-dock-window"
-                @click="shutdown()"
+                @click="serverShutdown()"
             />
         </section>
     </q-page>
@@ -48,26 +48,26 @@ export default {
                 this.windowObjectReference.focus()
             };
         },
-        shutdown: function () {
+        serverShutdown: function () {
             console.group('serverShutdown')
             this.$q.notify({
                 color: 'info',
                 message: 'shutting down server. Processing now.',
                 icon: 'info'
             })
-            this.$FeathersVuex.api.Management.serverShutdown('Management')
+            this.$FeathersVuex.api.Management.serverShutdown()
                 .then(response => {
                     console.log('serverShutdown: ', response)
                     this.$q.notify({
                         color: 'positive',
-                        message: 'shutdown initiated.',
+                        message: `shutdown initiated. '${response}'`,
                         icon: 'info'
                     })
                 }).catch(error => {
                     console.error('serverShutdown:', error)
                     this.$q.notify({
                         color: 'negative',
-                        message: 'shutdown failed.',
+                        message: `shutdown failed. '${error}'`,
                         icon: 'report_problem'
                     })
                 })
