@@ -297,19 +297,19 @@ export default {
                 message: 'shutting down server. Processing now.',
                 icon: 'info'
             })
-            this.$FeathersVuex.api.Management.serverShutdown('Management')
+            this.$FeathersVuex.api.Management.serverShutdown()
                 .then(response => {
                     console.log('serverShutdown: ', response)
                     this.$q.notify({
                         color: 'positive',
-                        message: 'shutdown initiated.',
+                        message: `shutdown initiated. '${response}'`,
                         icon: 'info'
                     })
                 }).catch(error => {
                     console.error('serverShutdown:', error)
                     this.$q.notify({
                         color: 'negative',
-                        message: 'shutdown failed.',
+                        message: `shutdown failed. '${error}'`,
                         icon: 'report_problem'
                     })
                 })
@@ -322,19 +322,19 @@ export default {
                 message: 'pull software updates',
                 icon: 'info'
             })
-            this.$FeathersVuex.api.Management.gitPull('Management')
+            this.$FeathersVuex.api.Management.gitPull()
                 .then(response => {
                     console.log('gitPull: ', response)
                     this.$q.notify({
                         color: 'positive',
-                        message: 'shutdown initiated.',
+                        message: `gitPull successfull. '${response}'`,
                         icon: 'info'
                     })
                 }).catch(error => {
                     console.error('gitPull:', error)
                     this.$q.notify({
                         color: 'negative',
-                        message: 'shutdown failed.',
+                        message: `gitPull failed. '${error}'`,
                         icon: 'report_problem'
                     })
                 })

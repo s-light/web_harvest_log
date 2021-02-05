@@ -13,6 +13,9 @@ exports.Management = class Management {
         //     'export-cvs': this.exportCSV,
         //     'import-from-file': this.importFromFile,
         // };
+        // if (this.options.service) {
+        //
+        // }
     }
 
     setup(app) {

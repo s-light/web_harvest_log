@@ -1,3 +1,4 @@
+const shell = require('shelljs');
 
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +9,7 @@ module.exports.actions = {
     'export-cvs': exportCSV,
     'import-from-file': importFromFile,
     'remove-db-file': removeDBFile,
-    'shutdown-server': serverShutdown,
+    'server-shutdown': serverShutdown,
     'git-pull': gitPull,
 };
 
@@ -172,11 +173,9 @@ async function serverShutdown (service, servicePath, params) {
     // console.log('service', service);
     // console.log('servicePath', servicePath);
     // console.log('params', params);
-
-    console.log('todo! ');
-
+    const result = shell.exec('sudo shutdown -h now');
     console.groupEnd();
-    throw 'Not Implemented in Server.';
+    return result;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -187,7 +186,9 @@ async function gitPull (service, servicePath, params) {
     // console.log('params', params);
 
     console.log('todo! ');
+    const result = shell.exec('git log -1');
 
     console.groupEnd();
-    throw 'Not Implemented in Server.';
+    // throw 'Not Implemented in Server.';
+    return result;
 }

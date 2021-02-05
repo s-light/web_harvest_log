@@ -96,20 +96,20 @@ class Management extends BaseModel {
         )
     }
 
-    static serverShutdown (servicePath) {
+    static serverShutdown () {
         console.log('serverShutdown')
         return this.sendAction(
             'server-shutdown',
-            servicePath,
+            'management',
             {}
         )
     }
 
-    static gitPull (servicePath) {
+    static gitPull () {
         console.log('gitPull')
         return this.sendAction(
             'git-pull',
-            servicePath,
+            'management',
             {}
         )
     }
