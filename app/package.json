@@ -1,6 +1,6 @@
 {
   "name": "web_harvest_log",
-  "version": "0.0.1",
+  "version": "0.0.42",
   "description": "a simple logging web app to track your harvest details",
   "productName": "Harvest Log",
   "author": "s-light <git@s-light.eu>",

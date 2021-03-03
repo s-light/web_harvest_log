@@ -6,6 +6,9 @@
         <section>
             <h4>Web Harvest Log</h4>
             <p>
+                version: v{{ version }}
+            </p>
+            <p>
                 local web based ui for tracking harvest weights.<br>
                 find the project repository at <br>
                 <a
@@ -80,10 +83,13 @@
 </style>
 
 <script>
+import { version } from '../../package.json'
+
 export default {
     name: 'About',
     data () {
         return {
+            version: version,
             projectUrl: 'https://github.com/s-light/quasar_with_featherjs/'
         }
     }

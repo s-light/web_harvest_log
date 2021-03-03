@@ -197,7 +197,10 @@ async function gitPull (service, servicePath, params) {
 
     // console.log('todo! ');
     // const result = shell.exec('git log -1');
-    const result = shell.exec('git pull');
+    const result = [];
+    result.push(shell.exec('git pull'));
+    // result.push(shell.cd('./server'));
+    result.push(shell.exec('yarn'));
 
     console.groupEnd();
     // throw 'Not Implemented in Server.';

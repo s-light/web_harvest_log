@@ -17,6 +17,12 @@
                 icon="mdi-lightbulb-on-outline"
                 @click="$q.dark.toggle()"
             />
+             <q-btn
+                flat
+                round
+                @click="$q.dark.toggle()"
+                :icon="$q.dark.isActive ? 'brightness_2' : 'brightness_5'"
+            />
             <langSelect />
         </section>
         <section>
