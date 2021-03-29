@@ -18,10 +18,15 @@
                 @click="serverSystemAction('shutdown')"
             />
         </section>
+        <section>
+            {{ time | formatdate("HH:mm:ss") }}<br>
+            {{ time | formatdate("DD.MM.YYYY") }}
+        </section>
     </q-page>
 </template>
 
 <script>
+import { date } from 'quasar'
 import {
     serverSystemAction
 } from '../management_func.js'
@@ -30,11 +35,12 @@ export default {
     data () {
         return {
             url: 'https://github.com/s-light/quasar_with_featherjs/',
-            windowObjectReference: null
+            windowObjectReference: null,
+            time: new Date()
         }
     },
     methods: {
-        serverSystemAction: serverSystemAction
+        serverSystemAction: serverSystemAction,
         // openInNewWindow () {
         //     // https://developer.mozilla.org/en-US/docs/Web/API/Window/open
         //     if (this.windowObjectReference == null || this.windowObjectReference.closed) {
@@ -53,6 +59,21 @@ export default {
         //         this.windowObjectReference.focus()
         //     };
         // }
+        updateTime () {
+            this.time = new Date()
+        }
+    },
+    filters: {
+        formatdate (value, format = 'HH:mm:ss DD.MM.YYYY') {
+            // 'YYYY-MM-DDTHH:mm:ss.SSSZ'
+            return date.formatDate(new Date(value), format)
+        },
+        toLocal (value, lang = 'de') {
+            return new Date(value).toLocaleString(lang)
+        }
+    },
+    mounted () {
+        setInterval(this.updateTime, 1000)
     },
     name: 'PageIndex'
 }
