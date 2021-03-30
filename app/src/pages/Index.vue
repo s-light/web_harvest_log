@@ -13,7 +13,7 @@
             /> -->
             <q-btn
                 v-ripple
-                label="shutdown system"
+                :label="$t('shutdown_system')"
                 icon="mdi-dock-window"
                 @click="serverSystemAction('shutdown')"
             />

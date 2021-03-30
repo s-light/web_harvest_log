@@ -1,6 +1,8 @@
 export default {
+    // action
     failed: 'Aktion fehlgeschlagen',
     success: 'Aktion erfolgreich',
+    // main
     // recent: 'recent',
     crate: 'Kiste',
     crop: 'Gemüse',
@@ -10,5 +12,18 @@ export default {
     scale: 'Waage',
     weight: 'Gewicht',
     setting: 'Einstellung',
-    settings: 'Einstellungen'
+    settings: 'Einstellungen',
+    //
+    debug: 'Fehler suchen',
+    developer: 'Entwickler',
+    information: 'Informationen',
+    for: 'für',
+    system: 'System',
+    // updates
+    pull_updates: 'Hole Software Aktualisierungen',
+    // management
+    shutdown_system: 'System herunterfahren',
+    reboot_system: 'System neu starten',
+    //
+    the_end: 'Das Ende'
 }

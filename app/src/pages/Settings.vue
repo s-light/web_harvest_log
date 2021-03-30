@@ -70,13 +70,13 @@
             /><br>
             <q-btn
                 v-ripple
-                label="shutdown server"
+                :label="$t('shutdown_system')"
                 icon="mdi-database-export"
                 @click="serverSystemAction('shutdown')"
             /><br>
             <q-btn
                 v-ripple
-                label="reboot server"
+                :label="$t('reboot_system')"
                 icon="mdi-database-export"
                 @click="serverSystemAction('reboot')"
             /><br>
@@ -89,22 +89,20 @@
             <br>
         </section>
         <section>
-            <q-btn
-                v-ripple
-                :label="$t('debug')"
-                icon="mdi-database-export"
-                @click="startScaleDemo()"
-            />
-
             <router-link
                 :to="childrenDebug[0].path"
                 exact
                 v-slot="{ href, route, navigate, isExactActive}"
             >
                 <template>
+                    <!--
+                    :label="`${$t('shutdown')} ${$t('system')}`"
+                    :label="$t('debug')"
+                    -->
                     <q-btn
                         clickable
                         v-ripple
+                        :label="`${$t('information')} ${$t('for')} ${$t('developer')}`"
                         :icon="childrenDebug[0].icon"
                         @click="navigate"
                         :class="isExactActive ? 'q-item q-router-link--active' : 'q-item'"
