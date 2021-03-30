@@ -19,7 +19,7 @@
             @click="$emit('input', item); $emit('click', $event)"
             :class="item._id === value._id ? activeClass : ''"
             stack
-            :title="item._id"
+            :title="$t(item._id)"
             :style="{ margin: space}"
         >
             <q-icon
@@ -36,7 +36,7 @@
             <div
                 :style="{ 'font-size': fontSize, 'line-height':'100%' }"
             >
-                {{ item.text }}
+                {{ $t(item.text) }}
             </div>
         </q-btn>
     </div>

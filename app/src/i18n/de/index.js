@@ -3,7 +3,10 @@ export default {
     failed: 'Aktion fehlgeschlagen',
     success: 'Aktion erfolgreich',
     // main
-    // recent: 'recent',
+    recent: 'kürzlich',
+    custom: 'benutzerdefiniert',
+    nothing: 'nichts',
+    Box: 'Kiste',
     crate: 'Kiste',
     crop: 'Gemüse',
     place: 'Satz',

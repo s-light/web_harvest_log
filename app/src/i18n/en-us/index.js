@@ -3,7 +3,10 @@ export default {
     failed: 'Action failed',
     success: 'Action was successful',
     // main
-    // recent: 'recent',
+    recent: 'recent',
+    custom: 'custom',
+    nothing: 'nothing',
+    Box: 'Box',
     crate: 'crate',
     crop: 'crop',
     place: 'place',

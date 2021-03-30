@@ -1,7 +1,7 @@
 module.exports = [
     {
         _id: '0_Nothing',
-        text: 'Nothing',
+        text: 'nothing',
         tareWeight: 0,
         icon: 'mdi-tray',
         image: '',
