@@ -38,8 +38,6 @@ export default {
             }, 200)
         }
     },
-    filters: {
-    },
     computed: {
         ...mapBind('localconfig', [
             'btnSize',

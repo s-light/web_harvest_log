@@ -86,54 +86,46 @@
                 icon="mdi-database-export"
                 @click="gitPull()"
             /><br>
+            <br>
+        </section>
+        <section>
             <q-btn
                 v-ripple
-                label="start Scale Demo Generator "
+                :label="$t('debug')"
                 icon="mdi-database-export"
                 @click="startScaleDemo()"
-            /><br>
-        </section>
-        <section>
-            <q-toggle
-                size="lg"
-                v-model="devMode"
-                label="Dev Mode"
             />
+
+            <router-link
+                :to="childrenDebug[0].path"
+                exact
+                v-slot="{ href, route, navigate, isExactActive}"
+            >
+                <template>
+                    <q-btn
+                        clickable
+                        v-ripple
+                        :icon="childrenDebug[0].icon"
+                        @click="navigate"
+                        :class="isExactActive ? 'q-item q-router-link--active' : 'q-item'"
+                    />
+                </template>
+            </router-link>
+
         </section>
-        <section>
-            <q-input
-                filled
-                label="button size (mm)"
-                type="number"
-                v-model.number="btnSize"
-                debounce="500"
-            />
-            <q-input
-                filled
-                label="button spaceing (mm)"
-                type="number"
-                v-model.number="btnSpace"
-                debounce="500"
-            />
-        </section>
-        <settingsSerial />
-        <!-- <debugSection label="globalConfig" :obj="globalConfig"/> -->
-        <!-- <debugSection label="serialDevice" :obj="serialDevice"/> -->
-        <!-- <debugSection label="btnSpace" :obj="btnSpace"/> -->
-        <debugSection label="testthing" :obj="testthing"/>
+
     </q-page>
 </template>
 
 <script>
+import { childrenDebug } from '../router/routes'
 import {
     // useFind,
     // useGet,
     makeFindMixin
 } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
-import debugSection from 'components/debugSection'
 import langSelect from 'components/langSelect'
-import settingsSerial from 'components/settingsSerial'
 import {
     importAll,
     removeAll,
@@ -159,6 +151,7 @@ import {
 export default {
     data () {
         return {
+            childrenDebug,
             testthing: 'hello world'
         }
     },
@@ -221,9 +214,7 @@ export default {
         makeFindMixin({ service: 'crop-filter' })
     ],
     components: {
-        debugSection,
-        langSelect,
-        settingsSerial
+        langSelect
     },
     name: 'PageSettings'
 }

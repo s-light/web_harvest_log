@@ -20,6 +20,15 @@ export const childrenCommon = [
     }
 ]
 
+export const childrenDebug = [
+    {
+        title: 'Debug',
+        icon: 'mdi-bug',
+        path: 'debug',
+        component: () => import('pages/Debug.vue')
+    }
+]
+
 export const childrenWizard = [
     {
         title: 'Select Crate',
@@ -91,6 +100,7 @@ const routes = function ({ store }) {
             component: () => import('layouts/WizardLayout.vue'),
             children: [
                 ...childrenCommon,
+                ...childrenDebug,
                 ...childrenWizard,
                 ...childrenDev
             ]

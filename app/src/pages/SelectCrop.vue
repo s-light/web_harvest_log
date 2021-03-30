@@ -83,8 +83,6 @@ export default {
             test: 'car'
         }
     },
-    filters: {
-    },
     methods: {
         handleCropSelect: function () {
             if (this.cropSelected) {
