@@ -2,6 +2,10 @@ module.exports = [
     {
         _id: '0_all',
         text: 'all',
+        // text: {
+        //     'en': 'all',
+        //     'de': 'Alle'
+        // },
         query: {
             _$sort: {
                 _id: 1
@@ -14,6 +18,10 @@ module.exports = [
     {
         _id: '1_recent',
         text: 'recent',
+        // text: {
+        //     'en': 'recent',
+        //     'de': 'kürzlich'
+        // },
         query: {
             _$limit: 12,
             _$sort: {

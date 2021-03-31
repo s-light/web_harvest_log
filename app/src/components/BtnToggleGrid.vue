@@ -13,13 +13,16 @@
             options {{ options }} <br>
             activeClass {{ activeClass }} <br>
         </div> -->
+        <!--
+            :title="$t(item._id)"
+        -->
         <q-btn
             v-for="item in options"
             :key="item._id"
             @click="$emit('input', item); $emit('click', $event)"
             :class="item._id === value._id ? activeClass : ''"
             stack
-            :title="$t(item._id)"
+            :title="item._id"
             :style="{ margin: space}"
         >
             <q-icon
@@ -36,7 +39,8 @@
             <div
                 :style="{ 'font-size': fontSize, 'line-height':'100%' }"
             >
-                {{ $t(item.text) }}
+                <!-- {{ $t(item.text) }} -->
+                {{ item.text }}
             </div>
         </q-btn>
     </div>

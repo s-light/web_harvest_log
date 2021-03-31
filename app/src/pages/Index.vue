@@ -4,6 +4,14 @@
         <section class="q-pa-md row justify-center">
             <h1>Web Harvest Log</h1>
         </section>
+        <section class="text-center">
+            <h1>
+                {{ time | formatdate("HH:mm:ss") }}
+            </h1>
+            <h1>
+                {{ time | formatdate("DD.MM.YYYY") }}
+            </h1>
+        </section>
         <section>
             <!-- <q-btn
                 v-ripple
@@ -17,10 +25,6 @@
                 icon="mdi-dock-window"
                 @click="serverSystemAction('shutdown')"
             />
-        </section>
-        <section>
-            {{ time | formatdate("HH:mm:ss") }}<br>
-            {{ time | formatdate("DD.MM.YYYY") }}
         </section>
     </q-page>
 </template>
