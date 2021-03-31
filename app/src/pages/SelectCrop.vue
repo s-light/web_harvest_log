@@ -147,17 +147,19 @@ export default {
             }
         }
     },
-    mounted () {
-        console.log('this.cropFilterSelected', this.cropFilterSelected)
-        console.log('this.cropFilter', this.cropFilter)
-        // console.log('this.cropFilter.length', this.cropFilter.length)
-        if (
-            this.cropFilter &&
-            this.cropFilter.length > 0 &&
-            this.cropFilterSelected &&
-            !('_id' in this.cropFilterSelected)
-        ) {
-            this.cropFilterSelected = this.cropFilter[0]
+    watch: {
+        cropFilter: function (newCropfilter, oldCropfilter) {
+            console.log('this.cropFilterSelected', this.cropFilterSelected)
+            console.log('this.cropFilter', this.cropFilter)
+            console.log('newCropfilter', newCropfilter)
+            if (
+                this.cropFilter &&
+                this.cropFilter.length > 0 &&
+                this.cropFilterSelected &&
+                !('_id' in this.cropFilterSelected)
+            ) {
+                this.cropFilterSelected = this.cropFilter[0]
+            }
         }
     },
     mixins: [

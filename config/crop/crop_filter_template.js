@@ -23,7 +23,7 @@ module.exports = [
         //     'de': 'kürzlich'
         // },
         query: {
-            _$limit: 12,
+            _$limit: 10,
             _$sort: {
                 lastUsed: -1
             }
