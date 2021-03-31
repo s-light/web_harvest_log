@@ -1,12 +1,15 @@
-// https://quasar.dev/options/quasar-language-packs#Dynamical-(non-SSR)
-import Quasar from 'quasar'
+// https://quasar.dev/options/quasar-language-packs#dynamical-non-ssr-
+import { LocalStorage, Quasar } from 'quasar'
+//
+export default async ({ app, store }) => {
+    // console.log('Quasar', Quasar)
+    // console.log('app', app)
 
-export default async ({ store }) => {
     // get language
     let locale = 'en-us'
-    if (Quasar.LocalStorage.has('language')) {
+    if (LocalStorage.has('language')) {
         try {
-            locale = Quasar.LocalStorage.getItem('language')
+            locale = LocalStorage.getItem('language')
         } catch (e) {
             // data wasn't successfully read due to a Web Storage API error
             console.error(e)
@@ -24,5 +27,6 @@ export default async ({ store }) => {
     } catch (err) {
         // Requested Quasar Language Pack does not exist,
         // let's not break the app, so catching error
+        console.error(err)
     }
 }

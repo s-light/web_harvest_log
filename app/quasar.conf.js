@@ -26,7 +26,7 @@ module.exports = function (/* ctx */) {
             'axios',
             'vuex',
             'i18n',
-            // 'quasar-lang-pack',
+            'quasar-lang-pack',
             'VueCompositionApi'
         ],
 

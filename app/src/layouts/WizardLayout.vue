@@ -5,7 +5,7 @@
             show-if-above
             bordered
             elevated
-            :width="200"
+            :width="220"
         >
         <!-- :width="btnSpace * 50" -->
         <!-- <nav
