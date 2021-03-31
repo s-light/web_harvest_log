@@ -2,11 +2,12 @@ export default {
     // action
     failed: 'Aktion fehlgeschlagen',
     success: 'Aktion erfolgreich',
-    // main
+    // common words
     recent: 'kürzlich',
     custom: 'benutzerdefiniert',
     nothing: 'nichts',
     Box: 'Kiste',
+    // main
     crate: 'Kiste',
     crop: 'Gemüse',
     place: 'Satz',

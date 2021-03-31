@@ -1,13 +1,22 @@
 // https://quasar.dev/options/quasar-language-packs#Dynamical-(non-SSR)
 import Quasar from 'quasar'
 
-export default async () => {
-    const langIso = 'de' // ... some logic to determine it (use Cookies Plugin?)
+export default async ({ store }) => {
+    // get language
+    let locale = 'en-us'
+    if (Quasar.LocalStorage.has('language')) {
+        try {
+            locale = Quasar.LocalStorage.getItem('language')
+        } catch (e) {
+            // data wasn't successfully read due to a Web Storage API error
+            console.error(e)
+        }
+    }
 
     try {
         await import(
             /* webpackInclude: /(de|en-us)\.js$/ */
-            'quasar/lang/' + langIso
+            'quasar/lang/' + locale
         )
             .then(lang => {
                 Quasar.lang.set(lang.default)

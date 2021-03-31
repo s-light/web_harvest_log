@@ -19,9 +19,13 @@ https://quasar.dev/options/app-internationalization#Create-language-switcher
 </template>
 
 <script>
+import { LocalStorage } from 'quasar'
 import languages from 'quasar/lang/index.json'
 const appLanguages = languages.filter(lang =>
-    ['de', 'en-us'].includes(lang.isoName)
+    [
+        'de',
+        'en-us'
+    ].includes(lang.isoName)
 )
 
 export default {
@@ -34,14 +38,23 @@ export default {
     },
     watch: {
         lang (lang) {
-            // dynamic import, so loading on demand only
+            // dynamic import quasar language pack
             import(
                 /* webpackInclude: /(de|en-us)\.js$/ */
                 'quasar/lang/' + lang
             ).then(lang => {
                 this.$q.lang.set(lang.default)
             })
+
+            // set i18n to same language
             this.$i18n.locale = lang
+
+            // save language setting
+            try {
+                LocalStorage.set('language', lang)
+            } catch (e) {
+                console.error(e)
+            }
         }
     },
     created () {
