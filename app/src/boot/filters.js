@@ -15,7 +15,11 @@ export default ({ Vue }) => {
     Vue.filter('formatWeight', function (value, lang = 'de') {
         // console.log('value', value)
         // console.log('lang', lang)
-        // return value.toLocaleString(
+        if (isNaN(value)) {
+            value = 0.0
+        }
+        // convert to float
+        value = value * 1.0
         const result = value.toLocaleString(
             lang,
             {
@@ -23,7 +27,7 @@ export default ({ Vue }) => {
                 maximumFractionDigits: 2
             }
         )
-        // console.log('result', result)
+        // console.log('formatWeight result', result)
         return result
     })
 

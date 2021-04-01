@@ -42,11 +42,6 @@ export default {
         return {
         }
     },
-    // mounted () {
-    //     if (!this.sizeImage) {
-    //         this.sizeImage = this.size
-    //     }
-    // },
     methods: {
         // handleClick: function (event) {
         //     // if (this.routeTarget) {
@@ -83,11 +78,6 @@ export default {
             required: false,
             default: '30mm'
         },
-        // sizeImage: {
-        //     type: String,
-        //     required: false,
-        //     default: undefined
-        // },
         space: {
             type: String,
             required: false,

@@ -1,41 +1,62 @@
 <template>
     <q-page class="fit">
-        <section class="fit column no-wrap justify-between items-stretch content-stretch">
-            <div class="q-mt-md">
-                <!-- <div id="weight_display" class="">
-                    total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
-                </div> -->
-                <!-- '{{ lang }}' -->
-                <!-- hint="Mask: #.##" -->
-                <!-- input-style="height: 50px;" -->
-                <q-input
-                    v-model="currentWeight"
-                    @keyup.enter="save()"
-                    class="weight_display"
-                    input-class="text-right"
-                    filled
-                    hide-bottom-space
-                    item-aligned
-                    label-slot
-                >
-                <!-- debounce="500" -->
-                    <template v-slot:label>
-                        <div class="row justify-between items-start content-start" style="font-size:2em; line-height:2em">
-                            <div style="">
-                                {{ $t('weight') }}
+        <section class="fit row no-wrap justify-between items-stretch content-stretch">
+            <section class="fit column no-wrap justify-between items-stretch content-stretch">
+                <div class="q-mt-md">
+                    <!-- <div id="weight_display" class="">
+                        total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
+                    </div> -->
+                    <!-- '{{ lang }}' -->
+                    <!-- hint="Mask: #.##" -->
+                    <!-- input-style="height: 50px;" -->
+                    <!-- debounce="500" -->
+                    <q-input
+                        v-model="currentWeight"
+                        @keyup.enter="save()"
+                        class="weight_display"
+                        input-class="text-right"
+                        filled
+                        hide-bottom-space
+                        item-aligned
+                        label-slot
+                    >
+                        <template v-slot:label>
+                            <div class="row justify-between items-start content-start" style="font-size:2em; line-height:2em">
+                                <div style="">
+                                    {{ $t('weight') }}
+                                </div>
+                                <div style="font-size: 0.8em">
+                                    {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }} {{ $t('scale') }} -
+                                    Tare: {{ crateSelected.tareWeight | formatWeight(lang) }} {{ scaleUnit }}
+                                </div>
                             </div>
-                            <div style="font-size: 0.8em">
-                                {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }} {{ $t('scale') }} -
-                                Tare: {{ crateSelected.tareWeight | formatWeight(lang) }} {{ scaleUnit }}
-                            </div>
-                        </div>
-                    </template>
-                    <template #append>
-                        {{ scaleUnit }}
-                    </template>
-                </q-input>
-            </div>
-            <section class="row justify-between items-stretch content-stretch">
+                        </template>
+                        <template #append>
+                            {{ scaleUnit }}
+                        </template>
+                    </q-input>
+                </div>
+                <section class="fit column no-wrap justify-between items-stretch content-stretch">
+                    <q-btn
+                        :label="$t('save')"
+                        :disable="!scaleStable"
+                        @click="save()"
+                        icon="mdi-database-plus"
+                        :ripple="{ early: true, color: 'orange'}"
+                        stack
+                        class=""
+                        style="width:80mm; height:80mm; flex: 0 1 auto; margin-right: 0.2em;"
+                        size="20mm"
+                    />
+                    <keypad/>
+                </section>
+            </section>
+            <!--
+            -->
+            <section
+                class="row justify-between items-stretch content-stretch"
+                style="width: 35em;"
+            >
                 <div style="flex: 1 1 auto; padding:1em;">
                     <q-list>
                         <q-item
@@ -58,17 +79,6 @@
                     </q-list>
                     <!-- <debugSection label="harvest" :obj="harvest"/> -->
                 </div>
-                <q-btn
-                    :label="$t('save')"
-                    :disable="!scaleStable"
-                    @click="save()"
-                    icon="mdi-database-plus"
-                    :ripple="{ early: true, color: 'orange'}"
-                    stack
-                    class=""
-                    style="width:80mm; height:80mm; flex: 0 1 auto; margin-right: 0.2em;"
-                    size="20mm"
-                />
                 <!-- :style="btnStyle" -->
                 <!-- size="30mm" -->
                 <!-- icons:
@@ -91,11 +101,10 @@
 </template>
 
 <script>
-import { date } from 'quasar'
 import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
 // import DebugSection from 'components/debugSection'
-// import BtnToggleGrid from 'components/BtnToggleGrid.vue'
+import keypad from 'components/keypad.vue'
 
 export default {
     name: 'PageSaveHarvest',
@@ -157,8 +166,10 @@ export default {
                     result = result.toFixed(2)
                 }
             } else {
-                result = 0
+                result = 0.0
             }
+            // force float
+            // result = result * 1.0
             return result
         },
         ...mapBind('localconfig', [
@@ -175,7 +186,7 @@ export default {
         harvestParams () {
             return {
                 query: {
-                    $limit: 15,
+                    $limit: 20,
                     $sort: {
                         createdAt: -1
                     }
@@ -200,31 +211,8 @@ export default {
     mixins: [
         makeFindMixin({ service: 'harvest' })
     ],
-    filters: {
-        formatWeight (value, lang = 'de') {
-            // console.log('value', value)
-            // console.log('lang', lang)
-            // return value.toLocaleString(
-            const result = value.toLocaleString(
-                lang,
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            )
-            // console.log('result', result)
-            return result
-        },
-        formatdate (value, format = 'HH:mm:ss DD.MM.YYYY') {
-            // 'YYYY-MM-DDTHH:mm:ss.SSSZ'
-            return date.formatDate(new Date(value), format)
-        },
-        toLocal (value, lang = 'de') {
-            return new Date(value).toLocaleString(lang)
-        }
-    },
     components: {
-        // BtnToggleGrid,
+        keypad
         // DebugSection
     }
 }
