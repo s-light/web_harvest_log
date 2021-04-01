@@ -22,10 +22,15 @@
             :size="size"
             :name="item.icon ? item.icon : placeholderIcon"
         />
-        <div
-            :style="{ 'font-size': fontSize, 'line-height':'100%' }"
-        >
-            {{ textPrepand }} {{ item.text }}
+        <div class="">
+            <div
+                :style="{ 'font-size': fontSize, 'line-height':'100%' }"
+            >
+                {{ textPrepand }} {{ item.text }}
+            </div>
+            <div>
+                {{ textAppend }}
+            </div>
         </div>
     </q-btn>
 </template>
@@ -37,6 +42,11 @@ export default {
         return {
         }
     },
+    // mounted () {
+    //     if (!this.sizeImage) {
+    //         this.sizeImage = this.size
+    //     }
+    // },
     methods: {
         // handleClick: function (event) {
         //     // if (this.routeTarget) {
@@ -73,6 +83,11 @@ export default {
             required: false,
             default: '30mm'
         },
+        // sizeImage: {
+        //     type: String,
+        //     required: false,
+        //     default: undefined
+        // },
         space: {
             type: String,
             required: false,
@@ -104,6 +119,11 @@ export default {
             default: 'aspect_ratio'
         },
         textPrepand: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        textAppend: {
             type: String,
             required: false,
             default: ''

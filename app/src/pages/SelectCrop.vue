@@ -101,8 +101,9 @@ export default {
                         this.$router.push('select_place')
                     } else {
                         const crop = this.cropSelected
-                        // console.log('crop.placesList', crop.placesList())
-                        // console.log('crop.placesList[0]', crop.placesList()[0])
+                        console.log('crop', crop)
+                        console.log('crop.placesList', crop.placesList())
+                        console.log('crop.placesList[0]', crop.placesList()[0])
                         if (crop.placesList()[0]) {
                             this.placeSelected = crop.placesList()[0]
                         } else {

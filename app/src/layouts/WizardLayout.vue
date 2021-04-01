@@ -33,11 +33,16 @@
                 <BtnSelectedRoute
                     :item="placeSelected"
                     routeTarget="select_place"
-                    :size="btnSize/2 + 'mm'"
+                    :size="btnSize/4 + 'mm'"
                     :space="btnSpace + 'mm'"
                     placeholderIcon="place"
-                    :textPrepand="$t('place') "
+                    :textAppend="$t('place') "
+                    fontSize="5em"
                 />
+                <!--
+                :sizeImage="btnSize/4 + 'mm'"
+                :textPrepand="$t('place') "
+                -->
                 <BtnSelectedRoute
                     item="{}"
                     routeTarget="save_harvest"

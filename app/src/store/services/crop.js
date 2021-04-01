@@ -26,6 +26,7 @@ class Crop extends BaseModel {
     }
 
     placesList () {
+        console.log('PING')
         const result = []
         if (this.places) {
             let places = []
@@ -43,6 +44,12 @@ class Crop extends BaseModel {
                     icon: 'mdi-map-marker'
                 })
             }
+        } else {
+            result.push({
+                _id: 0,
+                text: '0',
+                icon: 'mdi-map-marker'
+            })
         }
         return result
     }
