@@ -62,10 +62,11 @@
                         style="min-width:50mm; min-height:50mm; margin: 0.2em;"
                         size="20mm"
                     />
-                    <keypad
+                    <!-- <keypad
+                        v-model="currentWeight"
                         class="col"
-                        style="min-width:50mm; min-height:50mm; margin: 0.2em;"
-                    />
+                        style="margin: 0.2em;"
+                    /> -->
                 </section>
             </section>
             <!--
@@ -121,7 +122,7 @@
 import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
 // import DebugSection from 'components/debugSection'
-import keypad from 'components/keypad.vue'
+// import keypad from 'components/keypad.vue'
 
 export default {
     name: 'PageSaveHarvest',
@@ -186,19 +187,24 @@ export default {
                         this.crateSelected.tareWeight
                     ) {
                         result -= this.crateSelected.tareWeight
-                        result = result.toFixed(2)
+                        // result = result.toFixed(2)
                     }
                 } else {
                     result = 0.0
                 }
                 // force float
                 // result = result * 1.0
+                console.log('currentWeight.get result', result)
+                result = this.$options.filters.formatWeight(result)
+                console.log('currentWeight.get result', result)
                 return result
             },
             // setter
             set: function (newValue) {
-                // console.log('newValue', newValue)
+                console.log('currentWeight.set newValue', newValue)
+                newValue = newValue.replace(',', '.')
                 let result = parseFloat(newValue)
+                console.log('currentWeight.set result', result)
                 if (
                     this.crateSelected &&
                     this.crateSelected.tareWeight
@@ -206,6 +212,7 @@ export default {
                     result += this.crateSelected.tareWeight
                     result = result.toFixed(2)
                 }
+                console.log('currentWeight.set result', result)
                 this.totalWeight = result
             }
         },
@@ -249,7 +256,7 @@ export default {
         makeFindMixin({ service: 'harvest' })
     ],
     components: {
-        keypad
+        // keypad
         // DebugSection
     }
 }
