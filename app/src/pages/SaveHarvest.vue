@@ -1,17 +1,19 @@
 <template>
     <q-page class="fit">
-        <section class="fit row no-wrap justify-between items-stretch content-stretch">
-            <section class="fit column no-wrap justify-between items-stretch content-stretch">
+        <section class="row no-wrap justify-evenly items-stretch content-stretch">
+            <section class="column no-wrap justify-evenly items-stretch content-stretch">
                 <div class="q-mt-md">
                     <!-- <div id="weight_display" class="">
                         total weight: {{ totalWeight | formatWeight(lang) }} {{ scaleUnit }}
                     </div> -->
-                    <!-- '{{ lang }}' -->
-                    <!-- hint="Mask: #.##" -->
-                    <!-- input-style="height: 50px;" -->
-                    <!-- debounce="500" -->
+                    <!--
+                        '{{ lang }}'
+                        hint="Mask: #.##"
+                        input-style="height: 50px;"
+                    -->
                     <q-input
                         v-model="currentWeight"
+                        debounce="500"
                         @keyup.enter="save()"
                         class="weight_display"
                         input-class="text-right"
@@ -21,7 +23,10 @@
                         label-slot
                     >
                         <template v-slot:label>
-                            <div class="row justify-between items-start content-start" style="font-size:2em; line-height:2em">
+                            <div
+                                class="row justify-between items-start content-start"
+                                style="font-size:2em; line-height:2em"
+                            >
                                 <div style="">
                                     {{ $t('weight') }}
                                 </div>
@@ -31,33 +36,45 @@
                                 </div>
                             </div>
                         </template>
-                        <template #append>
+                        <template
+                            #append
+                            style="font-size:1em;"
+                        >
                             {{ scaleUnit }}
                         </template>
                     </q-input>
                 </div>
-                <section class="fit column no-wrap justify-between items-stretch content-stretch">
+
+                <section
+                    class="col-grow row no-wrap justify-evenly items-stretch content-stretch"
+                >
+                    <!--
+                        :disable="!scaleStable"
+                        style="width:90mm; height:90mm; flex: 0 1 auto; margin-right: 0.2em;"
+                    -->
                     <q-btn
                         :label="$t('save')"
-                        :disable="!scaleStable"
                         @click="save()"
                         icon="mdi-database-plus"
                         :ripple="{ early: true, color: 'orange'}"
                         stack
-                        class=""
-                        style="width:80mm; height:80mm; flex: 0 1 auto; margin-right: 0.2em;"
+                        class="col"
+                        style="min-width:50mm; min-height:50mm; margin: 0.2em;"
                         size="20mm"
                     />
-                    <keypad/>
+                    <keypad
+                        class="col"
+                        style="min-width:50mm; min-height:50mm; margin: 0.2em;"
+                    />
                 </section>
             </section>
             <!--
             -->
             <section
                 class="row justify-between items-stretch content-stretch"
-                style="width: 35em;"
+                style="min-width: 28em; overflowY: scroll; max-height: 100vh;"
             >
-                <div style="flex: 1 1 auto; padding:1em;">
+                <!-- <div style="flex: 1 1 auto; padding:1em;"> -->
                     <q-list>
                         <q-item
                             v-for="item in harvest"
@@ -78,7 +95,7 @@
                         </q-item>
                     </q-list>
                     <!-- <debugSection label="harvest" :obj="harvest"/> -->
-                </div>
+                <!-- </div> -->
                 <!-- :style="btnStyle" -->
                 <!-- size="30mm" -->
                 <!-- icons:
@@ -123,12 +140,16 @@ export default {
             // console.log('currentWeight', this.currentWeight)
             // console.log('scaleStable', this.scaleStable)
             // console.log('scaleUnit', this.scaleUnit)
+            console.log('this.crateSelected._id', this.crateSelected._id)
+            console.log('this.cropSelected._id', this.cropSelected._id)
+            console.log('this.placeSelected._id', this.placeSelected._id)
             // check if all requirements are fine
             if (
                 this.crateSelected._id &&
                 this.cropSelected._id &&
-                this.placeSelected._id &&
-                this.scaleStable
+                !isNaN(this.placeSelected._id)
+                // this.placeSelected._id &&
+                // this.scaleStable
             ) {
                 const Harvest = this.$FeathersVuex.api.Harvest
                 const entry = new Harvest({
@@ -155,22 +176,38 @@ export default {
         }
     },
     computed: {
-        currentWeight: function () {
-            let result = this.totalWeight
-            if (result && !isNaN(result)) {
+        currentWeight: {
+            // getter
+            get: function () {
+                let result = this.totalWeight
+                if (result && !isNaN(result)) {
+                    if (
+                        this.crateSelected &&
+                        this.crateSelected.tareWeight
+                    ) {
+                        result -= this.crateSelected.tareWeight
+                        result = result.toFixed(2)
+                    }
+                } else {
+                    result = 0.0
+                }
+                // force float
+                // result = result * 1.0
+                return result
+            },
+            // setter
+            set: function (newValue) {
+                // console.log('newValue', newValue)
+                let result = parseFloat(newValue)
                 if (
                     this.crateSelected &&
                     this.crateSelected.tareWeight
                 ) {
-                    result -= this.crateSelected.tareWeight
+                    result += this.crateSelected.tareWeight
                     result = result.toFixed(2)
                 }
-            } else {
-                result = 0.0
+                this.totalWeight = result
             }
-            // force float
-            // result = result * 1.0
-            return result
         },
         ...mapBind('localconfig', [
             'btnSize',
@@ -220,7 +257,7 @@ export default {
 
 <style scoped>
 .weight_display {
-    font-size: 12em;
+    font-size: 16em;
 }
 /* all other styles are in the global space - otherwise they do not work! */
 </style>

@@ -26,7 +26,7 @@ class Crop extends BaseModel {
     }
 
     placesList () {
-        console.log('PING')
+        // console.log('PING')
         const result = []
         if (this.places) {
             let places = []
