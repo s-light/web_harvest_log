@@ -1,0 +1,50 @@
+/* app global css */
+
+
+body {
+	line-height: 1.5;
+	font-size: 20px;
+}
+
+.q-btn {
+	font-size: 20px;
+    line-height: 2em;
+}
+
+.q-field {
+	font-size: 30px;
+}
+
+.q-field__label {
+	font-size: 20px;
+	line-height: 26px;
+}
+
+.q-field__control {
+	height: 70px;
+}
+
+.q-field--auto-height.q-field--labeled .q-field__control-container {
+	padding-top: 34px;
+	padding-bottom: 10px;
+}
+
+.q-notification {
+	font-size: 20px;
+}
+
+
+.weight_display .q-field__control {
+    height: 1.4em;
+}
+.weight_display .q-field__marginal {
+	height: auto;
+	font-size: 0.5em;
+}
+
+.q-field__append.q-field__marginal.row.no-wrap.items-center {
+    font-size: 0.3em;
+}
+
+
+/*# sourceMappingURL=app.d5bdcc5d.css.map*/
