@@ -135,7 +135,7 @@ function serverSystemAction(action) {
     message: `initiated server system action '${action}'`,
     icon: 'info'
   });
-  this.$FeathersVuex.api.Management.serverShutdown().then(response => {
+  this.$FeathersVuex.api.Management.serverSystemAction(action).then(response => {
     console.log('serverSystemAction: ', response);
     this.$q.notify({
       color: 'positive',
@@ -143,7 +143,7 @@ function serverSystemAction(action) {
       icon: 'info'
     });
   }).catch(error => {
-    console.error('serverShutdown:', error);
+    console.error('serverSystemAction:', error);
     this.$q.notify({
       color: 'negative',
       message: `'${action}' failed. '${error}'`,
@@ -528,4 +528,4 @@ const mapBindIDItems = function (servicePath, entryNames) {
 /***/ })
 
 }]);
-//# sourceMappingURL=13.775ca2e2.js.map
+//# sourceMappingURL=13.9d97efed.js.map

@@ -1,15 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
-
-/***/ "49c4":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_2_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_2_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_2_2_node_modules_quasar_app_lib_webpack_loader_auto_import_client_js_kebab_node_modules_vue_loader_lib_index_js_vue_loader_options_debugSection_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c266");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_2_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_2_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_2_2_node_modules_quasar_app_lib_webpack_loader_auto_import_client_js_kebab_node_modules_vue_loader_lib_index_js_vue_loader_options_debugSection_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_2_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_2_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_2_2_node_modules_quasar_app_lib_webpack_loader_auto_import_client_js_kebab_node_modules_vue_loader_lib_index_js_vue_loader_options_debugSection_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
 
 /***/ "644c":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -146,7 +135,7 @@ function serverSystemAction(action) {
     message: `initiated server system action '${action}'`,
     icon: 'info'
   });
-  this.$FeathersVuex.api.Management.serverShutdown().then(response => {
+  this.$FeathersVuex.api.Management.serverSystemAction(action).then(response => {
     console.log('serverSystemAction: ', response);
     this.$q.notify({
       color: 'positive',
@@ -154,7 +143,7 @@ function serverSystemAction(action) {
       icon: 'info'
     });
   }).catch(error => {
-    console.error('serverShutdown:', error);
+    console.error('serverSystemAction:', error);
     this.$q.notify({
       color: 'negative',
       message: `'${action}' failed. '${error}'`,
@@ -270,114 +259,31 @@ const mapBind = function (base, params) {
 
 /***/ }),
 
-/***/ "91e5":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/debugSection.vue?vue&type=template&id=b2731162&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"debug"},[_c('label',[_vm._v(_vm._s(_vm.label))]),_c('pre',[_vm._v(_vm._s(_vm._f("pretty")(_vm.obj)))])])}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/debugSection.vue?vue&type=template&id=b2731162&
-
-// CONCATENATED MODULE: ./node_modules/@quasar/app/lib/webpack/loader.transform-quasar-imports.js!./node_modules/babel-loader/lib??ref--2-0!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/debugSection.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ var debugSectionvue_type_script_lang_js_ = ({
-  // name: 'debugSection',
-  props: {
-    obj: {
-      // type: [Object, Array, String, Num    ],
-      default: function () {
-        return {};
-      }
-    },
-    label: {
-      type: String,
-      default: ''
-    }
-  },
-
-  data() {
-    return {};
-  },
-
-  filters: {
-    pretty: function (value) {
-      let valueJson = value;
-
-      try {
-        valueJson = JSON.parse(value);
-      } catch (e) {// console.log(value, e)
-      }
-
-      return JSON.stringify(valueJson, null, 4);
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/components/debugSection.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_debugSectionvue_type_script_lang_js_ = (debugSectionvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/debugSection.vue?vue&type=style&index=0&media=screen&lang=css&
-var debugSectionvue_type_style_index_0_media_screen_lang_css_ = __webpack_require__("49c4");
-
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
-// CONCATENATED MODULE: ./src/components/debugSection.vue
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  components_debugSectionvue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var debugSection = __webpack_exports__["a"] = (component.exports);
-
-/***/ }),
-
-/***/ "9bd8":
+/***/ "b41f":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/Debug.vue?vue&type=template&id=387aa791&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('q-page',{staticClass:"fit column no-wrap justify-center items-center content-center"},[_c('h1',[_vm._v(_vm._s(_vm.$t('debug')))]),_c('debugSection',{attrs:{"label":"platform","obj":this.$q.platform}}),_c('section'),_c('section',[_c('q-toggle',{attrs:{"size":"lg","label":"Dev Mode"},model:{value:(_vm.devMode),callback:function ($$v) {_vm.devMode=$$v},expression:"devMode"}})],1),_c('section',[_c('q-input',{attrs:{"filled":"","label":"button size (mm)","type":"number","debounce":"500"},model:{value:(_vm.btnSize),callback:function ($$v) {_vm.btnSize=_vm._n($$v)},expression:"btnSize"}}),_c('q-input',{attrs:{"filled":"","label":"button spaceing (mm)","type":"number","debounce":"500"},model:{value:(_vm.btnSpace),callback:function ($$v) {_vm.btnSpace=_vm._n($$v)},expression:"btnSpace"}})],1),_c('settingsSerial'),_c('debugSection',{attrs:{"label":"testthing","obj":_vm.testthing}})],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/Settings.vue?vue&type=template&id=5b5a1ff1&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('q-page',{staticClass:"fit column no-wrap justify-center items-center content-center"},[_c('h1',[_vm._v(_vm._s(_vm.$t('global'))+" "+_vm._s(_vm.$t('settings')))]),_c('section',[_c('q-btn',{attrs:{"round":"","color":_vm.$q.dark.isActive ? 'blue' : 'black',"icon":"mdi-lightbulb-on-outline"},on:{"click":function($event){return _vm.$q.dark.toggle()}}}),_c('q-btn',{attrs:{"flat":"","round":"","icon":_vm.$q.dark.isActive ? 'brightness_2' : 'brightness_5'},on:{"click":function($event){return _vm.$q.dark.toggle()}}}),_c('langSelect')],1),_c('section',[_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":"export harvest to csv on server","icon":"mdi-database-export"},on:{"click":function($event){return _vm.serverExportToCSV('harvest', 'current_day')}}}),_c('br'),_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":"import config from files","icon":"mdi-database-export"},on:{"click":function($event){return _vm.importAll()}}}),_c('br'),_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":"remove config database entries","icon":"mdi-database-export"},on:{"click":function($event){return _vm.removeAll()}}}),_c('br'),_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":_vm.$t('shutdown_system'),"icon":"mdi-database-export"},on:{"click":function($event){return _vm.serverSystemAction('shutdown')}}}),_c('br'),_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":_vm.$t('reboot_system'),"icon":"mdi-database-export"},on:{"click":function($event){return _vm.serverSystemAction('reboot')}}}),_c('br'),_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],attrs:{"label":"pull software updates","icon":"mdi-database-export"},on:{"click":function($event){return _vm.gitPull()}}}),_c('br'),_c('br')],1),_c('section',[_c('router-link',{attrs:{"to":_vm.childrenDebug[0].path,"exact":""},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+var href = ref.href;
+var route = ref.route;
+var navigate = ref.navigate;
+var isExactActive = ref.isExactActive;
+return [[_c('q-btn',{directives:[{name:"ripple",rawName:"v-ripple"}],class:isExactActive ? 'q-item q-router-link--active' : 'q-item',attrs:{"clickable":"","label":((_vm.$t('information')) + " " + (_vm.$t('for')) + " " + (_vm.$t('developer'))),"icon":_vm.childrenDebug[0].icon},on:{"click":navigate}})]]}}])})],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/pages/Debug.vue?vue&type=template&id=387aa791&
+// CONCATENATED MODULE: ./src/pages/Settings.vue?vue&type=template&id=5b5a1ff1&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/objectSpread2.js
 var objectSpread2 = __webpack_require__("ded3");
 var objectSpread2_default = /*#__PURE__*/__webpack_require__.n(objectSpread2);
+
+// EXTERNAL MODULE: ./src/router/routes.js
+var routes = __webpack_require__("d046");
 
 // EXTERNAL MODULE: ./node_modules/feathers-vuex/dist/index.js + 25 modules
 var dist = __webpack_require__("9e62");
@@ -385,20 +291,23 @@ var dist = __webpack_require__("9e62");
 // EXTERNAL MODULE: ./src/store/mapBind.js
 var mapBind = __webpack_require__("8b93");
 
-// EXTERNAL MODULE: ./src/components/debugSection.vue + 4 modules
-var debugSection = __webpack_require__("91e5");
-
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/settingsSerial.vue?vue&type=template&id=c4e13048&
-var settingsSerialvue_type_template_id_c4e13048_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('q-page',{staticClass:"fit column no-wrap justify-center items-center content-center"},[_c('section',[_c('h2',[_vm._v("Serial Settings")]),_c('q-select',{staticClass:"q-mr-md",attrs:{"rounded":"","outlined":"","label":"Device","option-label":function (item) { return item.comName; },"option-value":function (item) { return item; },"options":_vm.deviceList},scopedSlots:_vm._u([{key:"option",fn:function(scope){return [_c('q-item',_vm._g(_vm._b({},'q-item',scope.itemProps,false),scope.itemEvents),[_c('q-item-section',[_c('q-item-label',[_vm._v("\n                            "+_vm._s(scope.opt.comName)+"\n                        ")]),_c('q-item-label',{attrs:{"caption":""}},[_vm._v("\n                            "+_vm._s(scope.opt.pnpId)+"\n                        ")]),_c('q-item-label',{attrs:{"caption":""}},[_vm._v("\n                            "+_vm._s(scope.opt.manufacturer)+"\n                        ")]),_c('q-item-label',{attrs:{"caption":""}},[_vm._v("\n                            vendorId:"+_vm._s(scope.opt.vendorId)+"\n                        ")]),_c('q-item-label',{attrs:{"caption":""}},[_vm._v("\n                            productId:"+_vm._s(scope.opt.productId)+"\n                        ")]),_c('q-item-label',{attrs:{"caption":""}},[_vm._v("\n                            serialNumber:"+_vm._s(scope.opt.serialNumber)+"\n                        ")])],1)],1)]}},{key:"no-option",fn:function(){return [_c('q-item',[_c('q-item-section',[_vm._v("\n                        No Devices\n                    ")])],1)]},proxy:true},{key:"append",fn:function(){return [_c('q-btn',{attrs:{"flat":"","round":"","dense":"","hint":"search devices","icon":"refresh"},on:{"click":function($event){return _vm.updateSerialDeviceList()}},scopedSlots:_vm._u([{key:"loading",fn:function(){return [_c('q-spinner-radio')]},proxy:true}])})]},proxy:true}]),model:{value:(_vm.deviceSelected),callback:function ($$v) {_vm.deviceSelected=$$v},expression:"deviceSelected"}}),_c('q-btn',{style:({opacity: (_vm.deviceSelected ? 'inherit' : '0.05')}),attrs:{"rounded":"","icon":_vm.connected ? 'phonelink_off' : 'phonelink',"label":_vm.connected ? 'disconnect' : 'connect',"disable":!_vm.deviceSelected},on:{"click":function($event){return _vm.connect()}},scopedSlots:_vm._u([{key:"loading",fn:function(){return [_c('q-spinner-gears')]},proxy:true},{key:"after",fn:function(){return [_c('q-icon',{attrs:{"name":"close"}})]},proxy:true}])}),_c('debugSection',{attrs:{"label":"list","obj":_vm.list}}),_c('debugSection',{attrs:{"label":"port","obj":_vm.port}}),_c('debugSection',{attrs:{"label":"baudRate","obj":_vm.baudRate}}),_c('debugSection',{attrs:{"label":"serial","obj":_vm.serial}})],1)])}
-var settingsSerialvue_type_template_id_c4e13048_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/langSelect.vue?vue&type=template&id=5ddbc17d&
+var langSelectvue_type_template_id_5ddbc17d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('q-select',{staticClass:"q-mr-md",attrs:{"rounded":"","outlined":"","label":"Quasar Language","emit-value":"","options":_vm.langOptions,"map-options":""},model:{value:(_vm.lang),callback:function ($$v) {_vm.lang=$$v},expression:"lang"}})}
+var langSelectvue_type_template_id_5ddbc17d_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/settingsSerial.vue?vue&type=template&id=c4e13048&
+// CONCATENATED MODULE: ./src/components/langSelect.vue?vue&type=template&id=5ddbc17d&
 
-// EXTERNAL MODULE: ./src/store/mapBindIDItems.js
-var mapBindIDItems = __webpack_require__("b489");
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
+var es_promise = __webpack_require__("e6cf");
 
-// CONCATENATED MODULE: ./node_modules/@quasar/app/lib/webpack/loader.transform-quasar-imports.js!./node_modules/babel-loader/lib??ref--2-0!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/settingsSerial.vue?vue&type=script&lang=js&
+// EXTERNAL MODULE: ./node_modules/quasar/src/plugins/LocalStorage.js + 1 modules
+var LocalStorage = __webpack_require__("18d6");
+
+// EXTERNAL MODULE: ./node_modules/quasar/lang/index.json
+var quasar_lang = __webpack_require__("a6d8");
+
+// CONCATENATED MODULE: ./node_modules/@quasar/app/lib/webpack/loader.transform-quasar-imports.js!./node_modules/babel-loader/lib??ref--2-0!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/components/langSelect.vue?vue&type=script&lang=js&
 
 //
 //
@@ -420,191 +329,58 @@ var mapBindIDItems = __webpack_require__("b489");
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+;
 
+const appLanguages = quasar_lang.filter(lang => ['de', 'en-us'].includes(lang.isoName));
+/* harmony default export */ var langSelectvue_type_script_lang_js_ = ({
+  name: 'langSelect',
 
-
-const dummyResponder = {
-  vendorId: -1,
-  productId: -1,
-  comName: '/dummyResponder/0',
-  pnpId: -1,
-  locationId: -1,
-  serialNumber: '42',
-  manufacturer: 's-light.eu',
-  product: 'dummyResponder',
-  release: undefined,
-  interface: undefined,
-  usagePage: undefined,
-  usage: undefined
-};
-/* harmony default export */ var settingsSerialvue_type_script_lang_js_ = ({
   data() {
     return {
-      deviceSelected: {},
-      deviceList: [dummyResponder]
+      lang: this.$q.lang.isoName,
+      langI18n: this.$i18n.locale
     };
   },
 
-  components: {
-    DebugSection: debugSection["a" /* default */]
-  },
-  mixins: [Object(dist["b" /* makeFindMixin */])({
-    service: 'serial'
-  })],
-  computed: objectSpread2_default()({
-    serialParams() {
-      return {
-        query: {}
-      };
+  watch: {
+    lang(lang) {
+      // dynamic import quasar language pack
+      __webpack_require__("302e")("./" + lang).then(lang => {
+        this.$q.lang.set(lang.default);
+      }); // set i18n to same language
+
+      this.$i18n.locale = lang; // save language setting
+
+      try {
+        LocalStorage["a" /* default */].set('language', lang);
+      } catch (e) {
+        console.error(e);
+      }
     }
 
-  }, Object(mapBindIDItems["a" /* mapBindIDItems */])('serial', ['list', 'port', 'baudRate', 'connected'])),
-  methods: {
-    updateSerialDeviceList: function () {
-      console.group('serverExportToCSV');
-      const servicePath = 'serial';
-      this.$q.notify({
-        color: 'info',
-        message: `update ${servicePath} device list. Processing now.`,
-        icon: 'info'
-      });
-      this.$FeathersVuex.api.Management.updateSerialDeviceList().then(response => {
-        console.log('updateSerialDeviceList: ', response);
-        this.$q.notify({
-          color: 'positive',
-          message: `${servicePath} done.`,
-          icon: 'info'
-        });
-      }).catch(error => {
-        console.error('updateSerialDeviceList:', error);
-        this.$q.notify({
-          color: 'negative',
-          message: `${servicePath} update failed.`,
-          icon: 'report_problem'
-        });
-      });
-      console.groupEnd();
-    },
-    connect: function () {
-      console.log('deviceSelected', this.deviceSelected);
-    }
   },
-  mounted: function () {
-    // console.group('mounted..')
-    this.deviceSelected = this.deviceList[0]; // console.groupEnd()
-  },
-  name: 'SettingsSerial'
+
+  created() {
+    this.langOptions = appLanguages.map(lang => ({
+      label: lang.nativeName,
+      value: lang.isoName
+    }));
+  }
+
 });
-// CONCATENATED MODULE: ./src/components/settingsSerial.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_settingsSerialvue_type_script_lang_js_ = (settingsSerialvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/langSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_langSelectvue_type_script_lang_js_ = (langSelectvue_type_script_lang_js_); 
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 var componentNormalizer = __webpack_require__("2877");
 
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/page/QPage.js
-var QPage = __webpack_require__("9989");
-
 // EXTERNAL MODULE: ./node_modules/quasar/src/components/select/QSelect.js + 11 modules
 var QSelect = __webpack_require__("ddd8");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/item/QItem.js + 1 modules
-var QItem = __webpack_require__("66e5");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/item/QItemSection.js
-var QItemSection = __webpack_require__("4074");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/item/QItemLabel.js
-var QItemLabel = __webpack_require__("0170");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/btn/QBtn.js + 2 modules
-var QBtn = __webpack_require__("9c40");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/spinner/QSpinnerRadio.js
-var QSpinnerRadio = __webpack_require__("9569");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/spinner/QSpinnerGears.js
-var QSpinnerGears = __webpack_require__("cf57");
-
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/icon/QIcon.js
-var QIcon = __webpack_require__("0016");
 
 // EXTERNAL MODULE: ./node_modules/@quasar/app/lib/webpack/runtime.auto-import.js
 var runtime_auto_import = __webpack_require__("eebe");
 var runtime_auto_import_default = /*#__PURE__*/__webpack_require__.n(runtime_auto_import);
 
-// CONCATENATED MODULE: ./src/components/settingsSerial.vue
+// CONCATENATED MODULE: ./src/components/langSelect.vue
 
 
 
@@ -613,9 +389,9 @@ var runtime_auto_import_default = /*#__PURE__*/__webpack_require__.n(runtime_aut
 /* normalize component */
 
 var component = Object(componentNormalizer["a" /* default */])(
-  components_settingsSerialvue_type_script_lang_js_,
-  settingsSerialvue_type_template_id_c4e13048_render,
-  settingsSerialvue_type_template_id_c4e13048_staticRenderFns,
+  components_langSelectvue_type_script_lang_js_,
+  langSelectvue_type_template_id_5ddbc17d_render,
+  langSelectvue_type_template_id_5ddbc17d_staticRenderFns,
   false,
   null,
   null,
@@ -623,24 +399,96 @@ var component = Object(componentNormalizer["a" /* default */])(
   
 )
 
-/* harmony default export */ var settingsSerial = (component.exports);
+/* harmony default export */ var langSelect = (component.exports);
 
 
-
-
-
-
-
-
-
-
-runtime_auto_import_default()(component, 'components', {QPage: QPage["a" /* default */],QSelect: QSelect["a" /* default */],QItem: QItem["a" /* default */],QItemSection: QItemSection["a" /* default */],QItemLabel: QItemLabel["a" /* default */],QBtn: QBtn["a" /* default */],QSpinnerRadio: QSpinnerRadio["a" /* default */],QSpinnerGears: QSpinnerGears["a" /* default */],QIcon: QIcon["a" /* default */]});
+runtime_auto_import_default()(component, 'components', {QSelect: QSelect["a" /* default */]});
 
 // EXTERNAL MODULE: ./src/management_func.js
 var management_func = __webpack_require__("644c");
 
-// CONCATENATED MODULE: ./node_modules/@quasar/app/lib/webpack/loader.transform-quasar-imports.js!./node_modules/babel-loader/lib??ref--2-0!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/Debug.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/@quasar/app/lib/webpack/loader.transform-quasar-imports.js!./node_modules/babel-loader/lib??ref--2-0!./node_modules/@quasar/app/lib/webpack/loader.auto-import-client.js?kebab!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/Settings.vue?vue&type=script&lang=js&
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -692,9 +540,10 @@ var management_func = __webpack_require__("644c");
 // or
 // this.$i18n.locale
 
-/* harmony default export */ var Debugvue_type_script_lang_js_ = ({
+/* harmony default export */ var Settingsvue_type_script_lang_js_ = ({
   data() {
     return {
+      childrenDebug: routes["b" /* childrenDebug */],
       testthing: 'hello world'
     };
   },
@@ -760,20 +609,25 @@ var management_func = __webpack_require__("644c");
     service: 'crop-filter'
   })],
   components: {
-    debugSection: debugSection["a" /* default */],
-    settingsSerial: settingsSerial
+    langSelect: langSelect
   },
-  name: 'PageDebug'
+  name: 'PageSettings'
 });
-// CONCATENATED MODULE: ./src/pages/Debug.vue?vue&type=script&lang=js&
- /* harmony default export */ var pages_Debugvue_type_script_lang_js_ = (Debugvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/toggle/QToggle.js + 3 modules
-var QToggle = __webpack_require__("9564");
+// CONCATENATED MODULE: ./src/pages/Settings.vue?vue&type=script&lang=js&
+ /* harmony default export */ var pages_Settingsvue_type_script_lang_js_ = (Settingsvue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./node_modules/quasar/src/components/page/QPage.js
+var QPage = __webpack_require__("9989");
 
-// EXTERNAL MODULE: ./node_modules/quasar/src/components/input/QInput.js + 2 modules
-var QInput = __webpack_require__("27f9");
+// EXTERNAL MODULE: ./node_modules/quasar/src/components/btn/QBtn.js + 2 modules
+var QBtn = __webpack_require__("9c40");
 
-// CONCATENATED MODULE: ./src/pages/Debug.vue
+// EXTERNAL MODULE: ./node_modules/quasar/src/components/item/QItem.js + 1 modules
+var QItem = __webpack_require__("66e5");
+
+// EXTERNAL MODULE: ./node_modules/quasar/src/directives/Ripple.js + 1 modules
+var Ripple = __webpack_require__("714f");
+
+// CONCATENATED MODULE: ./src/pages/Settings.vue
 
 
 
@@ -781,8 +635,8 @@ var QInput = __webpack_require__("27f9");
 
 /* normalize component */
 
-var Debug_component = Object(componentNormalizer["a" /* default */])(
-  pages_Debugvue_type_script_lang_js_,
+var Settings_component = Object(componentNormalizer["a" /* default */])(
+  pages_Settingsvue_type_script_lang_js_,
   render,
   staticRenderFns,
   false,
@@ -792,12 +646,12 @@ var Debug_component = Object(componentNormalizer["a" /* default */])(
   
 )
 
-/* harmony default export */ var Debug = __webpack_exports__["default"] = (Debug_component.exports);
+/* harmony default export */ var Settings = __webpack_exports__["default"] = (Settings_component.exports);
 
 
 
 
-runtime_auto_import_default()(Debug_component, 'components', {QPage: QPage["a" /* default */],QToggle: QToggle["a" /* default */],QInput: QInput["a" /* default */]});
+runtime_auto_import_default()(Settings_component, 'components', {QPage: QPage["a" /* default */],QBtn: QBtn["a" /* default */],QItem: QItem["a" /* default */]});runtime_auto_import_default()(Settings_component, 'directives', {Ripple: Ripple["a" /* default */]});
 
 
 /***/ }),
@@ -972,14 +826,7 @@ const mapBindIDItems = function (servicePath, entryNames) {
   return result;
 };
 
-/***/ }),
-
-/***/ "c266":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
 /***/ })
 
 }]);
-//# sourceMappingURL=2.3d38064e.js.map
+//# sourceMappingURL=8.6837912a.js.map

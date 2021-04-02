@@ -69,7 +69,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + "." + {"2":"3d38064e","3":"adc6afd1","4":"559f8cd5","5":"357ecc6a","6":"b9c5a3e6","7":"2f3f2c55","8":"790c47d9","9":"ffb8065f","10":"c16459a2","11":"0a286043","12":"5d883aad","13":"775ca2e2","14":"1dc2f3d7","15":"195eba7b"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + "." + {"2":"e71a5f05","3":"a1774ea9","4":"0a067c3e","5":"dccfd034","6":"e0dfd56c","7":"e2529e17","8":"6837912a","9":"ffb8065f","10":"c16459a2","11":"0a286043","12":"5d883aad","13":"9d97efed","14":"1dc2f3d7","15":"195eba7b"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -107,7 +107,7 @@
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "css/" + ({}[chunkId]||chunkId) + "." + {"2":"5919b8fa","3":"fc8d1444","4":"5919b8fa","5":"5919b8fa","6":"5919b8fa","7":"793e61c1","8":"31d6cfe0","9":"31d6cfe0","10":"31d6cfe0","11":"31d6cfe0","12":"31d6cfe0","13":"31d6cfe0","14":"31d6cfe0","15":"31d6cfe0"}[chunkId] + ".css";
+/******/ 				var href = "css/" + ({}[chunkId]||chunkId) + "." + {"2":"5919b8fa","3":"5919b8fa","4":"5919b8fa","5":"5919b8fa","6":"793e61c1","7":"27887066","8":"31d6cfe0","9":"31d6cfe0","10":"31d6cfe0","11":"31d6cfe0","12":"31d6cfe0","13":"31d6cfe0","14":"31d6cfe0","15":"31d6cfe0"}[chunkId] + ".css";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -1862,8 +1862,8 @@ class Management extends _feathers_client__WEBPACK_IMPORTED_MODULE_1__[/* BaseMo
   }
 
   static serverSystemAction(action) {
-    console.log('serverShutdown');
-    return this.sendAction('server-shutdown', 'management', {
+    console.log('serverSystemAction');
+    return this.sendAction('server-system-action', 'management', {
       action: action
     });
   }
@@ -2057,18 +2057,18 @@ const childrenWizard = [{
   title: 'Save Harvest',
   icon: 'save_alt',
   path: 'save_harvest',
-  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "dff9"))
+  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, "dff9"))
 }];
 const childrenDev = [{
   title: 'Dev0',
   icon: 'code',
   path: 'dev0',
-  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, "a4ed"))
+  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, "a4ed"))
 }, {
   title: 'Dev1',
   icon: 'code',
   path: 'dev1',
-  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, "2399"))
+  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "2399"))
 }, {
   title: 'Dev2Layout',
   icon: 'code',
@@ -2078,7 +2078,7 @@ const childrenDev = [{
   title: 'DevList',
   icon: 'code',
   path: 'dev_list',
-  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, "9287"))
+  component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, "9287"))
 }];
 
 const routes = function ({
@@ -2096,7 +2096,7 @@ const routes = function ({
   // },
   {
     path: '/',
-    component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, "1114")),
+    component: () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, "1114")),
     children: [...childrenCommon, ...childrenDebug, ...childrenWizard, ...childrenDev]
   }, // Always leave this as last one,
   // but you can also remove it
@@ -2186,4 +2186,4 @@ _feathers_client__WEBPACK_IMPORTED_MODULE_1__[/* default */ "c"].service(service
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.e4519c70.js.map
+//# sourceMappingURL=app.4969d3e8.js.map
