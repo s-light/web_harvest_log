@@ -194,17 +194,17 @@ export default {
                 }
                 // force float
                 // result = result * 1.0
-                console.log('currentWeight.get result', result)
+                // console.log('currentWeight.get result', result)
                 result = this.$options.filters.formatWeight(result)
-                console.log('currentWeight.get result', result)
+                // console.log('currentWeight.get result', result)
                 return result
             },
             // setter
             set: function (newValue) {
-                console.log('currentWeight.set newValue', newValue)
+                // console.log('currentWeight.set newValue', newValue)
                 newValue = newValue.replace(',', '.')
                 let result = parseFloat(newValue)
-                console.log('currentWeight.set result', result)
+                // console.log('currentWeight.set result', result)
                 if (
                     this.crateSelected &&
                     this.crateSelected.tareWeight
@@ -212,7 +212,7 @@ export default {
                     result += this.crateSelected.tareWeight
                     result = result.toFixed(2)
                 }
-                console.log('currentWeight.set result', result)
+                // console.log('currentWeight.set result', result)
                 this.totalWeight = result
             }
         },
