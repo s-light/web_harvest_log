@@ -34,7 +34,7 @@
                 push
                 rounded
                 stack
-                :size="btnSize/1.0 + 'mm'"
+                :size="btnSizeFilter/1.0 + 'mm'"
                 fontSize="1.2em"
                 :space="0 + 'mm'"
             />
@@ -118,6 +118,7 @@ export default {
     computed: {
         ...mapBind('localconfig', [
             'btnSize',
+            'btnSizeFilter',
             'btnSpace',
             'cropSelected',
             'cropFilterSelected',

@@ -62,9 +62,9 @@ export default {
                 { column: this.vertical },
                 { row: !this.vertical },
                 'wrap',
-                // 'justify-around',
+                'justify-evenly',
                 'content-start',
-                'items-center'
+                'items-stretch'
             ]
         }
     },

@@ -21,6 +21,13 @@
             />
             <q-input
                 filled
+                label="button filter size (mm)"
+                type="number"
+                v-model.number="btnSizeFilter"
+                debounce="500"
+            />
+            <q-input
+                filled
                 label="button spaceing (mm)"
                 type="number"
                 v-model.number="btnSpace"
@@ -76,6 +83,7 @@ export default {
         // ...mapBindIDItems('global-config', ['serialDevice', 'pos', 'btnSize', 'btnSpace']),
         ...mapBind('localconfig', [
             'btnSize',
+            'btnSizeFilter',
             'btnSpace',
             'devMode'
         ]),

@@ -11,6 +11,7 @@ export default function () {
         scaleUnit: 'kg',
         // scaleDemoHandler: new ScaleDemoGenerator()
         btnSize: 42,
+        btnSizeFilter: 27,
         btnSpace: 3,
         devMode: false
     }

@@ -4,6 +4,9 @@ export function someMutation (/* state */) {
 export function setBtnSize (state, value) {
     state.btnSize = value
 }
+export function setBtnSizeFilter (state, value) {
+    state.btnSizeFilter = value
+}
 export function setBtnSpace (state, value) {
     state.btnSpace = value
 }
