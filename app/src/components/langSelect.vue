@@ -9,7 +9,7 @@ https://quasar.dev/options/app-internationalization#Create-language-switcher
     <q-select
         rounded
         outlined
-        class="q-mr-md"
+        class=""
         label="Quasar Language"
         v-model="lang"
         emit-value

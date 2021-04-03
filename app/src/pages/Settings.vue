@@ -10,89 +10,93 @@
         {{ $t('mykey1') }}
         https://quasar.dev/options/app-internationalization#How-to-use
         -->
-        <section>
+        <section class="text-center">
             <q-btn
                 round
                 :color="$q.dark.isActive ? 'blue' : 'black'"
                 icon="mdi-lightbulb-on-outline"
                 @click="$q.dark.toggle()"
+                class="q-my-md"
+                style="margin-right:0;"
             />
-             <q-btn
-                flat
-                round
-                @click="$q.dark.toggle()"
-                :icon="$q.dark.isActive ? 'brightness_2' : 'brightness_5'"
+            <langSelect
+                class="q-my-md"
+                style="min-width:8em;"
             />
-            <langSelect />
         </section>
         <section>
-            <q-btn
-                v-ripple
-                label="export harvest to csv on server"
-                icon="mdi-database-export"
-                @click="serverExportToCSV('harvest', 'current_day')"
-            /><br>
             <!-- <q-btn
                 v-ripple
-                label="import global-config from file"
-                icon="mdi-database-export"
-                @click="serverImport('global-config')"
+                :label="$t('sync_with_cloud')"
+                icon="mdi-cloud-sync-outline"
+                @click="serverSystemAction('sync_with_cloud')"
             /><br> -->
             <q-btn
                 v-ripple
-                label="import config from files"
+                :label="$t('database_harvest_export_csv')"
                 icon="mdi-database-export"
+                @click="serverExportToCSV('harvest', 'current_day')"
+            /><br>
+            <q-btn
+                v-ripple
+                :label="$t('copy_csv_to_usb')"
+                icon="mdi-usb-flash-drive"
+                @click="serverSystemAction('copyCSVtoUSB')"
+            /><br>
+            <q-toggle
+                size="xl"
+                v-model="databaseManagementOptionsShow"
+                :label="$t('database_management_options_show')"
+            /><br>
+            <q-btn
+                v-if="databaseManagementOptionsShow"
+                v-ripple
+                :label="$t('database_config_import_all')"
+                icon="mdi-database-import"
                 @click="importAll()"
             /><br>
-            <!-- <q-btn
-                v-ripple
-                label="import crop from file"
-                icon="mdi-database-export"
-                @click="serverImport('crop')"
-            /><br>
             <q-btn
+                v-if="databaseManagementOptionsShow"
                 v-ripple
-                label="import cropFilter from file"
-                icon="mdi-database-export"
-                @click="serverImport('crop-filter')"
-            /><br>
-            <q-btn
-                v-ripple
-                label="import crate from file"
-                icon="mdi-database-export"
-                @click="serverImport('crate')"
-            /> -->
-            <q-btn
-                v-ripple
-                label="remove config database entries"
-                icon="mdi-database-export"
+                :label="$t('database_config_clean')"
+                icon="mdi-database-remove"
                 @click="removeAll()"
             /><br>
             <q-btn
+                v-if="databaseManagementOptionsShow"
                 v-ripple
-                :label="$t('shutdown_system')"
-                icon="mdi-database-export"
-                @click="serverSystemAction('shutdown')"
+                :label="$t('copy_config_from_usb')"
+                icon="mdi-usb-flash-drive"
+                @click="serverSystemAction('copyConfigFromUSB')"
+            /><br>
+
+            <br>
+
+            <q-btn
+                v-ripple
+                :label="$t('pull_updates')"
+                icon="mdi-progress-download"
+                @click="gitPull()"
             /><br>
             <q-btn
                 v-ripple
                 :label="$t('reboot_system')"
-                icon="mdi-database-export"
+                icon="mdi-restart"
                 @click="serverSystemAction('reboot')"
             /><br>
             <q-btn
                 v-ripple
-                label="pull software updates"
-                icon="mdi-database-export"
-                @click="gitPull()"
+                :label="$t('shutdown_system')"
+                icon="mdi-power"
+                @click="serverSystemAction('shutdown')"
             /><br>
+
             <br>
-        </section>
-        <section>
+
             <router-link
                 :to="childrenDebug[0].path"
                 exact
-                v-slot="{ href, route, navigate, isExactActive}"
+                v-slot="{ href, route, navigate}"
             >
                 <template>
                     <!--
@@ -105,10 +109,11 @@
                         :label="`${$t('information')} ${$t('for')} ${$t('developer')}`"
                         :icon="childrenDebug[0].icon"
                         @click="navigate"
-                        :class="isExactActive ? 'q-item q-router-link--active' : 'q-item'"
                     />
                 </template>
             </router-link>
+        </section>
+        <section>
 
         </section>
 
@@ -128,12 +133,8 @@ import {
     importAll,
     removeAll,
     serverExportToCSV,
-    serverImport,
-    removeDBFile,
-    removeDB,
     serverSystemAction,
-    gitPull,
-    startScaleDemo
+    gitPull
 } from '../management_func.js'
 
 // Detecting Locale
@@ -150,6 +151,7 @@ export default {
     data () {
         return {
             childrenDebug,
+            databaseManagementOptionsShow: false,
             testthing: 'hello world'
         }
     },
@@ -195,12 +197,8 @@ export default {
         importAll: importAll,
         removeAll: removeAll,
         serverExportToCSV: serverExportToCSV,
-        serverImport: serverImport,
-        removeDBFile: removeDBFile,
-        removeDB: removeDB,
         serverSystemAction: serverSystemAction,
-        gitPull: gitPull,
-        startScaleDemo: startScaleDemo
+        gitPull: gitPull
     },
     created: function () {
         // return mapBindIDItems('global-config', ['serialDevice', 'pos', 'btnSize', 'btnSpace'])

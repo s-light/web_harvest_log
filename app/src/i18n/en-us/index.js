@@ -28,6 +28,12 @@ export default {
     // management
     shutdown_system: 'shutdown system',
     reboot_system: 'reboot system',
+    database_harvest_export_csv: 'export harvest to csv on server',
+    database_config_import_all: 'import all configs from files',
+    database_config_clean: 'remove config database entries',
+    database_management_options_show: 'show database management options',
+    copy_csv_to_usb: 'copy csv files to usb stick',
+    copy_config_from_usb: 'copy configuration files from usb stick to server',
     //
-    the_end: 'Das Ende'
+    the_end: 'the end'
 }

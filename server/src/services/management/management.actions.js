@@ -181,6 +181,14 @@ async function serverSystemAction (service, servicePath, params) {
     case 'reboot':
         result = shell.exec('sudo reboot');
         break;
+    case 'copyCSVtoUSB':
+        // result = shell.exec('sudo reboot');
+        result = `action '${params.action}' not implemented yet..`;
+        break;
+    case 'copyConfigFromUSB':
+        // result = shell.exec('sudo reboot');
+        result = `action '${params.action}' not implemented yet..`;
+        break;
     default:
         result = `action '${params.action}' not found.`;
     }
