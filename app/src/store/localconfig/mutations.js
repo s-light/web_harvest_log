@@ -10,6 +10,10 @@ export function setBtnSizeFilter (state, value) {
 export function setBtnSpace (state, value) {
     state.btnSpace = value
 }
+export function setKeypadVisible (state, value) {
+    state.keypadVisible = value
+}
+
 export function setCropSelected (state, value) {
     state.cropSelected = value
 }
@@ -22,6 +26,7 @@ export function setCrateSelected (state, value) {
 export function setPlaceSelected (state, value) {
     state.placeSelected = value
 }
+
 export function setTotalWeight (state, value) {
     state.totalWeight = value
 }
@@ -31,6 +36,7 @@ export function setScaleStable (state, value) {
 export function setScaleUnit (state, value) {
     state.scaleUnit = value
 }
+
 export function setDevMode (state, value) {
     state.devMode = value
 }

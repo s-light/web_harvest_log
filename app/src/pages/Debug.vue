@@ -7,6 +7,11 @@
         <section>
             <q-toggle
                 size="lg"
+                v-model="keypadVisible"
+                label="Experimental Keypad"
+            />
+            <q-toggle
+                size="lg"
                 v-model="devMode"
                 label="Dev Mode"
             />
@@ -85,6 +90,7 @@ export default {
             'btnSize',
             'btnSizeFilter',
             'btnSpace',
+            'keypadVisible',
             'devMode'
         ]),
         globalConfigParams () {

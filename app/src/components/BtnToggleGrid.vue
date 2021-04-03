@@ -33,7 +33,7 @@
             <q-img
                 v-else-if="item.image"
                 :src="imageBaseURL + item.image"
-                :style="{width: size, height: size}"
+                :style="{width: size, height: size, margin: '0.2em 0'}"
                 contain
             />
             <div

@@ -9,13 +9,17 @@
         :to="routeTarget"
         exact
     >
-        <!-- :style="{width: '100%', height: '100%'}" -->
+        <!--
+            :style="{width: '100%', height: '100%'}"
+            :style="{width: size, height: size, margin: '1em 0'}"
+        -->
         <q-img
             v-if="item.image"
             :src="imageBaseURL + item.image"
             contain
             :ratio="1"
             :size="size"
+            :style="{margin: '1em 0'}"
         />
         <q-icon
             v-else-if="item.icon || placeholderIcon"

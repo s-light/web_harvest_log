@@ -62,11 +62,12 @@
                         style="min-width:50mm; min-height:50mm; margin: 0.2em;"
                         size="20mm"
                     />
-                    <!-- <keypad
+                    <keypad
+                        v-if="keypadVisible"
                         v-model="currentWeight"
                         class="col"
                         style="margin: 0.2em;"
-                    /> -->
+                    />
                 </section>
             </section>
             <!--
@@ -122,7 +123,7 @@
 import { makeFindMixin } from 'feathers-vuex'
 import { mapBind } from '../store/mapBind.js'
 // import DebugSection from 'components/debugSection'
-// import keypad from 'components/keypad.vue'
+import keypad from 'components/keypad.vue'
 
 export default {
     name: 'PageSaveHarvest',
@@ -219,6 +220,7 @@ export default {
         ...mapBind('localconfig', [
             'btnSize',
             'btnSpace',
+            'keypadVisible',
             'crateSelected',
             'cropSelected',
             'placeSelected',
@@ -256,7 +258,7 @@ export default {
         makeFindMixin({ service: 'harvest' })
     ],
     components: {
-        // keypad
+        keypad
         // DebugSection
     }
 }
