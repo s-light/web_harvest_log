@@ -32,7 +32,9 @@ exports.Management = class Management {
             return Promise.all(data.map(current => this.create(current, params)));
         } else {
             if (data.action && data.service && data.params) {
-                data = this.handleAction(data.action, data.service, data.params);
+                const result = await this.handleAction(data.action, data.service, data.params);
+                // console.log('create action result', result);
+                data.result = result;
                 // this.handleAction(data.action, data.service, data.params).catch((error) => {
                 //     throw {
                 //         message: 'Management: handleAction failed.',
@@ -70,7 +72,19 @@ exports.Management = class Management {
             // if (Object.keys(this.app.services).includes(servicePath)) {
             if (service) {
                 const actionFnBound = actionFn.bind(this.app, service, servicePath, params);
-                return actionFnBound();
+                let actionResult = await actionFnBound();
+                console.log('actionResult', actionResult);
+                // if (typeof actionResult !== 'string' || !(actionResult instanceof String)) {
+                //     console.log('JSON.stringify...');
+                //     try {
+                //         actionResult = JSON.stringify(actionResult);
+                //     } catch (e) {
+                //         console.error(e);
+                //     }
+                // }
+                // console.log('actionResult', actionResult);
+                return actionResult;
+                // return actionFnBound();
             } else {
                 throw {
                     message: `Management: '${action}' - servicePath '${servicePath}' not found.`

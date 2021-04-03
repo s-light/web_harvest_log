@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const { parseAsync } = require('json2csv');
 
+const db_export_Path = '../db_export/';
+
 module.exports.actions = {
     'update-serial-device-list': updateSerialDeviceList,
     'export-cvs': exportCSV,
@@ -55,7 +57,7 @@ async function exportCSV (service, servicePath, params) {
         .then(csv => {
             // console.log('__dirname', __dirname);
             console.log('csv\n', csv);
-            let filePath = '../db_export/';
+            let filePath = db_export_Path;
             const fileName = servicePath + (timeframe? '_': '') + timeframe + '.csv';
             filePath = path.join(filePath,  fileName);
             filePath = path.resolve(filePath);
@@ -182,15 +184,16 @@ async function serverSystemAction (service, servicePath, params) {
         result = shell.exec('sudo reboot');
         break;
     case 'copyCSVtoUSB':
-        // result = shell.exec('sudo reboot');
-        result = `action '${params.action}' not implemented yet..`;
+        result = copyCSVtoUSB();
         break;
     case 'copyConfigFromUSB':
-        // result = shell.exec('sudo reboot');
-        result = `action '${params.action}' not implemented yet..`;
+        result = copyConfigFromUSB();
         break;
     default:
-        result = `action '${params.action}' not found.`;
+        console.groupEnd();
+        throw {
+            message: `action '${params.action}' not found.`
+        };
     }
     console.groupEnd();
     return result;
@@ -206,11 +209,90 @@ async function gitPull (service, servicePath, params) {
     // console.log('todo! ');
     // const result = shell.exec('git log -1');
     const result = [];
-    result.push(shell.exec('git pull'));
-    // result.push(shell.cd('./server'));
-    result.push(shell.exec('yarn'));
+    let shellResult = shell.exec('git pull');
+    result.push({
+        stdout:shellResult.stdout,
+        stderr:shellResult.stderr,
+        code:shellResult.code
+    });
+    // result.push(shellResult);
 
+    // result.push(shell.cd('./server'));
+    shellResult = shell.exec('yarn');
+    // console.log('shellResult', shellResult);
+    result.push({
+        stdout:shellResult.stdout,
+        stderr:shellResult.stderr,
+        code:shellResult.code
+    });
+    // console.log('result', result);
     console.groupEnd();
-    // throw 'Not Implemented in Server.';
+    return result;
+}
+
+
+function findFirstUSBDisc () {
+    let destinationPath = '/media/';
+    // const user = shell.echo('$USER');
+    // the slice operation at the end removes the newline
+    const user = shell.exec('echo $USER', {silent:true}).stdout.slice(0, -1);
+    console.log(`user: '${user}'`);
+    destinationPath = path.join(destinationPath,  user);
+    // console.log('destinationPath', destinationPath);
+    // console.log('shell ls destinationPath', shell.ls(destinationPath));
+    // destinationPath = path.join(destinationPath,  '*');
+    // console.log('destinationPath', destinationPath);
+    // console.log('shell ls -d destinationPath', shell.ls('-d', destinationPath));
+    const lsResult = shell.ls(destinationPath);
+    if (lsResult.length >= 1) {
+        const firstDiscName = lsResult[0];
+        // console.log('firstDiscName', firstDiscName);
+        destinationPath = path.join(destinationPath,  firstDiscName);
+        // console.log('destinationPath', destinationPath);
+    } else {
+        destinationPath = undefined;
+        throw {
+            message: 'no USB disc found',
+            error: 'no_usb_disc_found'
+        };
+    }
+    return destinationPath;
+}
+
+
+// eslint-disable-next-line no-unused-vars
+async function copyCSVtoUSB () {
+    console.group('copyCSVtoUSB');
+    let sourcePath = db_export_Path;
+    sourcePath = path.join(sourcePath,  '*');
+    sourcePath = path.resolve(sourcePath);
+    console.log('sourcePath', sourcePath);
+
+    const destinationPath = findFirstUSBDisc();
+    // sourcePath = path.join(sourcePath,  'db_export');
+    console.log('destinationPath', destinationPath);
+
+    // const result = [];
+    // http://documentup.com/shelljs/shelljs#cpoptions-source--source--dest
+    let shellResult = shell.cp(
+        // recusive
+        '-R',
+        sourcePath,
+        destinationPath
+    );
+    const result = {
+        stdout:shellResult.stdout,
+        stderr:shellResult.stderr,
+        code:shellResult.code
+    };
+    console.log('shell.cp: ', result);
+    console.groupEnd();
+    if (result.code != 0) {
+        throw {
+            error: 'copy_failed',
+            message: result.stderr,
+            result: result
+        };
+    }
     return result;
 }

@@ -133,11 +133,12 @@ export function serverSystemAction (action) {
                 message: `server system action '${action}' running. \n '${response}'`,
                 icon: 'info'
             })
-        }).catch(error => {
-            console.error('serverSystemAction:', error)
+        }).catch((error) => {
+            console.error('serverSystemAction:\n', error)
+            // console.log(error.message)
             this.$q.notify({
                 color: 'negative',
-                message: `'${action}' failed. '${error}'`,
+                message: `'${action}' failed. \n '${error}'`,
                 icon: 'report_problem'
             })
         })
