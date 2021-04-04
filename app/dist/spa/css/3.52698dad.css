@@ -1,0 +1,17 @@
+.keypad {
+/* background-color: hsla(100, 90%, 45%, 0.8) */
+  min-width: 2em;
+  min-height: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+/*# sourceMappingURL=src/components/keypad.css.map */
+
+.weight_display[data-v-5a01f114] {
+    font-size: 16em;
+}
+/* all other styles are in the global space - otherwise they do not work! */
+
+
+/*# sourceMappingURL=3.52698dad.css.map*/
