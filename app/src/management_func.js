@@ -161,7 +161,8 @@ export function serverSystemAction (action) {
 }
 
 export function gitPull () {
-    console.group('gitPull')
+    const action = 'gitPull'
+    console.group(action)
     this.$q.notify({
         color: 'info',
         message: 'pull software updates',
@@ -170,16 +171,36 @@ export function gitPull () {
     this.$FeathersVuex.api.Management.gitPull()
         .then(response => {
             console.log('gitPull: ', response)
+            let resultMessage = ''
+            if (response.result) {
+                if (Array.isArray(response.result)) {
+                    for (const resp of response.result) {
+                        for (const respPart of resp.stdout) {
+                            resultMessage += respPart + '\n<br>'
+                        }
+                    }
+                    // console.log('resultMessage: ', resultMessage)
+                    // resultMessage = resultMessage.replace('\n', '\n<br> ')
+                } else {
+                    resultMessage = response.result.stdout
+                }
+            }
+            console.log('resultMessage: ', resultMessage)
+            let message = `'${action}' successful.`
+            if (resultMessage) {
+                message += `\n<br> ${resultMessage}`
+            }
+            console.log('message: ', message)
             this.$q.notify({
                 type: 'positive',
-                message: `gitPull successful. \n<br> '${response}'`,
+                message,
                 html: true
             })
         }).catch(error => {
-            console.error('gitPull:', error)
+            console.error(action, ': ', error)
             this.$q.notify({
                 type: 'negative',
-                message: `gitPull failed.\n<br>  '${error}'`,
+                message: `'${action}' failed. \n<br> '${error}'`,
                 html: true
             })
         })

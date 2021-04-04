@@ -214,17 +214,17 @@ async function gitPull (service, servicePath, params) {
     const result = [];
     let shellResult = shell.exec('git pull');
     result.push({
-        stdout:shellResult.stdout,
+        stdout:shellResult.stdout.split('\n'),
         stderr:shellResult.stderr,
         code:shellResult.code
     });
-    // result.push(shellResult);
 
     // result.push(shell.cd('./server'));
     shellResult = shell.exec('yarn');
     // console.log('shellResult', shellResult);
+    console.dir('shellResult ...', ...shellResult);
     result.push({
-        stdout:shellResult.stdout,
+        stdout:shellResult.stdout.split('\n'),
         stderr:shellResult.stderr,
         code:shellResult.code
     });
@@ -369,7 +369,7 @@ async function copyConfigFromUSB () {
         targetPath
     );
     const result = {
-        stdout:shellResult.stdout,
+        stdout:shellResult.stdout.split('\n'),
         stderr:shellResult.stderr,
         code:shellResult.code
     };
