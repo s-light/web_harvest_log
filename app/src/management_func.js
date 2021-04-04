@@ -21,22 +21,22 @@ export function serverExportToCSV (servicePath, timeframe) {
     this.$q.notify({
         color: 'info',
         message: `Export ${servicePath} as CSV on server. Processing now.`,
-        icon: 'info'
+        html: true
     })
     this.$FeathersVuex.api.Management.serverExportAsCSV(servicePath, timeframe)
         .then(response => {
             console.log('serverImport: ', response)
             this.$q.notify({
-                color: 'positive',
+                type: 'positive',
                 message: `${servicePath} done.`,
-                icon: 'info'
+                html: true
             })
         }).catch(error => {
             console.error('serverImport:', error)
             this.$q.notify({
-                color: 'negative',
+                type: 'negative',
                 message: `${servicePath} loading failed.`,
-                icon: 'report_problem'
+                html: true
             })
         })
     console.groupEnd()
@@ -47,22 +47,22 @@ export function serverImport (servicePath) {
     this.$q.notify({
         color: 'info',
         message: `Import ${servicePath} from server. Processing now.`,
-        icon: 'info'
+        html: true
     })
     this.$FeathersVuex.api.Management.serverImport(servicePath)
         .then(response => {
             console.log('serverImport: ', response)
             this.$q.notify({
-                color: 'positive',
+                type: 'positive',
                 message: `${servicePath} done.`,
-                icon: 'info'
+                html: true
             })
         }).catch(error => {
             console.error('serverImport:', error)
             this.$q.notify({
-                color: 'negative',
+                type: 'negative',
                 message: `${servicePath} loading failed.`,
-                icon: 'report_problem'
+                html: true
             })
         })
     console.groupEnd()
@@ -73,22 +73,22 @@ export function removeDBFile (servicePath) {
     this.$q.notify({
         color: 'info',
         message: `remove ${servicePath} db from server. Processing now.`,
-        icon: 'info'
+        html: true
     })
     this.$FeathersVuex.api.Management.removeDBFile(servicePath)
         .then(response => {
             console.log('removeDBFile: ', response)
             this.$q.notify({
-                color: 'positive',
+                type: 'positive',
                 message: `${servicePath} done.`,
-                icon: 'info'
+                html: true
             })
         }).catch(error => {
             console.error('removeDBFile:', error)
             this.$q.notify({
-                color: 'negative',
+                type: 'negative',
                 message: `${servicePath} removing failed.`,
-                icon: 'report_problem'
+                html: true
             })
         })
     console.groupEnd()
@@ -99,7 +99,7 @@ export function removeDB (servicePath) {
     this.$q.notify({
         color: 'info',
         message: `remove all entries from ${servicePath}. Processing now.`,
-        icon: 'info'
+        html: true
     })
     const servicePathName = servicePath2servicePathName(servicePath)
     const serviceStore = this.[servicePathName]
@@ -110,10 +110,10 @@ export function removeDB (servicePath) {
         entry.remove()
     }
     this.$q.notify({
-        color: 'positive',
+        type: 'positive',
         message: `${servicePath} done.`,
         // timeout: 30500,
-        icon: 'info'
+        html: true
     })
     console.groupEnd()
 }
@@ -123,23 +123,38 @@ export function serverSystemAction (action) {
     this.$q.notify({
         color: 'info',
         message: `initiated server system action '${action}'`,
-        icon: 'info'
+        html: true
     })
     this.$FeathersVuex.api.Management.serverSystemAction(action)
         .then(response => {
             console.log('serverSystemAction: ', response)
+            let resultMessage = ''
+            if (response.result) {
+                if (Array.isArray(response.result)) {
+                    for (const resp of response.result) {
+                        resultMessage += '\n' + resp.stdout
+                    }
+                } else {
+                    resultMessage = response.result.stdout
+                }
+            }
+            console.log('resultMessage: ', resultMessage)
+            let message = `server system action '${action}' done.`
+            if (resultMessage) {
+                message += `\n<br> '${resultMessage}'`
+            }
             this.$q.notify({
-                color: 'positive',
-                message: `server system action '${action}' running. \n '${response}'`,
-                icon: 'info'
+                type: 'positive',
+                message,
+                html: true
             })
         }).catch((error) => {
             console.error('serverSystemAction:\n', error)
             // console.log(error.message)
             this.$q.notify({
-                color: 'negative',
-                message: `'${action}' failed. \n '${error}'`,
-                icon: 'report_problem'
+                type: 'negative',
+                message: `'${action}' failed. \n<br> '${error}'`,
+                html: true
             })
         })
     console.groupEnd()
@@ -150,22 +165,22 @@ export function gitPull () {
     this.$q.notify({
         color: 'info',
         message: 'pull software updates',
-        icon: 'info'
+        html: true
     })
     this.$FeathersVuex.api.Management.gitPull()
         .then(response => {
             console.log('gitPull: ', response)
             this.$q.notify({
-                color: 'positive',
-                message: `gitPull successful. '${response}'`,
-                icon: 'info'
+                type: 'positive',
+                message: `gitPull successful. \n<br> '${response}'`,
+                html: true
             })
         }).catch(error => {
             console.error('gitPull:', error)
             this.$q.notify({
-                color: 'negative',
-                message: `gitPull failed. '${error}'`,
-                icon: 'report_problem'
+                type: 'negative',
+                message: `gitPull failed.\n<br>  '${error}'`,
+                html: true
             })
         })
     console.groupEnd()
@@ -181,16 +196,16 @@ export function startScaleDemo () {
     this.$store.dispatch('localconfig/startScaleDemo').then(response => {
         console.log('startScaleDemo: ', response)
         this.$q.notify({
-            color: 'positive',
+            type: 'positive',
             message: 'startScaleDemo done.',
-            icon: 'info'
+            html: true
         })
     }).catch(error => {
         console.error('startScaleDemo:', error)
         this.$q.notify({
-            color: 'negative',
+            type: 'negative',
             message: 'startScaleDemo failed.',
-            icon: 'report_problem'
+            html: true
         })
     })
 }

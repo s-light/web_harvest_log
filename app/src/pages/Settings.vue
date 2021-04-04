@@ -43,10 +43,18 @@
                 icon="mdi-usb-flash-drive"
                 @click="serverSystemAction('copyCSVtoUSB')"
             /><br>
+
             <q-toggle
                 size="xl"
                 v-model="databaseManagementOptionsShow"
                 :label="$t('database_management_options_show')"
+            /><br>
+            <q-btn
+                v-if="databaseManagementOptionsShow"
+                v-ripple
+                :label="$t('copy_config_from_usb')"
+                icon="mdi-usb-flash-drive"
+                @click="serverSystemAction('copyConfigFromUSB')"
             /><br>
             <q-btn
                 v-if="databaseManagementOptionsShow"
@@ -61,13 +69,6 @@
                 :label="$t('database_config_clean')"
                 icon="mdi-database-remove"
                 @click="removeAll()"
-            /><br>
-            <q-btn
-                v-if="databaseManagementOptionsShow"
-                v-ripple
-                :label="$t('copy_config_from_usb')"
-                icon="mdi-usb-flash-drive"
-                @click="serverSystemAction('copyConfigFromUSB')"
             /><br>
 
             <br>

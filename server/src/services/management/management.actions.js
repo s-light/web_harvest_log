@@ -5,6 +5,7 @@ const fs = require('fs');
 const { parseAsync } = require('json2csv');
 
 const db_export_Path = '../db_export/';
+const config_Path = '../config/';
 
 module.exports.actions = {
     'update-serial-device-list': updateSerialDeviceList,
@@ -176,26 +177,28 @@ async function serverSystemAction (service, servicePath, params) {
     // console.log('servicePath', servicePath);
     console.log('params', params);
     let result = '---';
-    switch (params.action) {
-    case 'shutdown':
-        result = shell.exec('sudo shutdown -h now');
-        break;
-    case 'reboot':
-        result = shell.exec('sudo reboot');
-        break;
-    case 'copyCSVtoUSB':
-        result = copyCSVtoUSB();
-        break;
-    case 'copyConfigFromUSB':
-        result = copyConfigFromUSB();
-        break;
-    default:
+    try {
+        switch (params.action) {
+        case 'shutdown':
+            result = shell.exec('sudo shutdown -h now');
+            break;
+        case 'reboot':
+            result = shell.exec('sudo reboot');
+            break;
+        case 'copyCSVtoUSB':
+            result = copyCSVtoUSB();
+            break;
+        case 'copyConfigFromUSB':
+            result = copyConfigFromUSB();
+            break;
+        default:
+            throw {
+                message: `action '${params.action}' not found.`
+            };
+        }
+    } finally {
         console.groupEnd();
-        throw {
-            message: `action '${params.action}' not found.`
-        };
     }
-    console.groupEnd();
     return result;
 }
 
@@ -251,34 +254,119 @@ function findFirstUSBDisc () {
         // console.log('destinationPath', destinationPath);
     } else {
         destinationPath = undefined;
-        throw {
+        const error = {
             message: 'no USB disc found',
             error: 'no_usb_disc_found'
         };
+        console.log(error);
+        throw error;
     }
     return destinationPath;
 }
 
+function getSubPath (basePath, subPath) {
+    const resultPath = path.join(basePath,  subPath);
+    // http://documentup.com/shelljs/shelljs#testexpression
+    //  '-d', 'path': true if path is a directory
+    // '-e', 'path': true if path exists
+    let pathExists = shell.test('-ed', resultPath);
+    console.log('pathExists', pathExists);
+    if (!pathExists) {
+        const error = {
+            error: 'test_failed',
+            message: `path '${resultPath}' does not exist`,
+        };
+        console.log(error);
+        throw error;
+    }
+    // console.log('resultPath', resultPath);
+    return resultPath;
+}
 
-// eslint-disable-next-line no-unused-vars
+function createSubPath (basePath, subPath) {
+    const resultPath = path.join(basePath,  subPath);
+    let shellResult = shell.mkdir('-p', resultPath);
+    if (shellResult.code != 0) {
+        const error = {
+            error: 'mkdir_failed',
+            message: `creating '${subPath}' failed.\nerror:${shellResult.stderr}`,
+            stdout:shellResult.stdout,
+            stderr:shellResult.stderr,
+            code:shellResult.code
+        };
+        console.log(error);
+        throw error;
+    }
+    // console.log('resultPath', resultPath);
+    return resultPath;
+}
+
 async function copyCSVtoUSB () {
     console.group('copyCSVtoUSB');
+
     let sourcePath = db_export_Path;
     sourcePath = path.join(sourcePath,  '*');
     sourcePath = path.resolve(sourcePath);
     console.log('sourcePath', sourcePath);
 
-    const destinationPath = findFirstUSBDisc();
-    // sourcePath = path.join(sourcePath,  'db_export');
+    let destinationPath = undefined;
+    try {
+        destinationPath = findFirstUSBDisc();
+        destinationPath = createSubPath(destinationPath, 'web_harvest_log');
+        destinationPath = createSubPath(destinationPath, 'db_export');
+    } finally {
+        console.groupEnd();
+    }
     console.log('destinationPath', destinationPath);
 
-    // const result = [];
     // http://documentup.com/shelljs/shelljs#cpoptions-source--source--dest
     let shellResult = shell.cp(
         // recusive
         '-R',
         sourcePath,
         destinationPath
+    );
+    const result = {
+        stdout:shellResult.stdout,
+        stderr:shellResult.stderr,
+        code:shellResult.code
+    };
+    // console.log('shell.cp: ', result);
+    console.groupEnd();
+    if (result.code != 0) {
+        throw {
+            error: 'copy_failed',
+            message: result.stderr,
+            result: result
+        };
+    }
+    return result;
+}
+
+async function copyConfigFromUSB () {
+    console.group('copyConfigFromUSB');
+
+    let sourcePath = undefined;
+    try {
+        sourcePath = findFirstUSBDisc();
+        sourcePath = getSubPath(sourcePath, 'web_harvest_log');
+        sourcePath = getSubPath(sourcePath, 'config');
+    } finally {
+        console.groupEnd();
+    }
+    console.log('sourcePath', sourcePath);
+
+    let targetPath = config_Path;
+    // targetPath = path.join(targetPath,  '*');
+    targetPath = path.resolve(targetPath);
+    console.log('targetPath', targetPath);
+
+    // http://documentup.com/shelljs/shelljs#cpoptions-source--source--dest
+    let shellResult = shell.cp(
+        // recusive
+        '-R',
+        sourcePath,
+        targetPath
     );
     const result = {
         stdout:shellResult.stdout,
